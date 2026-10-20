@@ -88,10 +88,11 @@
         </div>
       </nav>
 
-      <div class="sidebar-footer">
+      <div class="sidebar-footer" style="flex-direction: column; gap: 8px;">
         <button class="btn btn-primary" id="btn-open-new-project" style="width: 100%;">
           <span>+ Novo Projeto</span>
         </button>
+        <span style="font-size: 0.7rem; color: var(--text-faint); letter-spacing: 0.05em;">Scryba <span class="app-version-tag">v0.3</span></span>
       </div>
     </aside>
 
@@ -195,6 +196,11 @@
               <div class="scryba-recents-block">
                 <div class="scryba-recents-title">Projetos Recentes</div>
                 <div class="scryba-recents-list" id="scryba-recents-list"></div>
+              </div>
+
+              <!-- Indicador de Versão do Scryba -->
+              <div style="font-size: 0.75rem; color: var(--text-faint); margin-top: 10px; letter-spacing: 0.08em; text-transform: uppercase;">
+                Scryba <span class="app-version-tag">v0.3</span>
               </div>
 
             </div>

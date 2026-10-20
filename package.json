@@ -1,17 +1,19 @@
 {
-  "name": "editor-rpg",
-  "version": "1.0.0",
-  "description": "Aplicativo Desktop de Escrita e Editor RPG",
+  "name": "scryba",
+  "version": "0.3.0",
+  "description": "Scryba - Estúdio Desktop de Escrita & RPG",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "bump": "node scripts/bump-version.js"
   },
   "keywords": [
     "editor",
     "rpg",
     "writing",
     "desktop",
-    "electron"
+    "electron",
+    "scryba"
   ],
   "author": "",
   "license": "MIT",

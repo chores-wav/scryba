@@ -45,8 +45,15 @@ app.on('window-all-closed', () => {
 });
 
 // ==========================================
-// CANAIS IPC NATIVOS (SISTEMA DE ARQUIVOS)
+// CANAIS IPC NATIVOS (SISTEMA DE ARQUIVOS & VERSÃO)
 // ==========================================
+
+// 0. Versão do Aplicativo (0.X)
+ipcMain.handle('app:get-version', () => {
+  const ver = app.getVersion();
+  const parts = ver.split('.');
+  return `0.${parts[1] || '3'}`;
+});
 
 // 1. Selecionar pasta para o projeto
 ipcMain.handle('dialog:select-directory', async () => {

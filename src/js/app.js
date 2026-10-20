@@ -122,6 +122,17 @@ document.addEventListener('DOMContentLoaded', () => {
   window.diagramModule = new window.DiagramModule();
   window.plannerModule = new window.PlannerModule();
 
+  // Carrega e atualiza a versão atual na interface
+  if (window.nativeAPI && window.nativeAPI.getAppVersion) {
+    window.nativeAPI.getAppVersion().then(version => {
+      if (version) {
+        document.querySelectorAll('.app-version-tag').forEach(el => {
+          el.textContent = `v${version}`;
+        });
+      }
+    });
+  }
+
   // Começa por padrão na Tela Inicial minimalista
   window.appRouter.navigate('dashboard');
   window.appState.notify();
