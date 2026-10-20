@@ -1,0 +1,463 @@
+/* ==========================================================================
+   ESTILOS DO EDITOR DE ESCRITA & CAPÍTULOS (ESTILO WATTPAD & NOTION)
+   ========================================================================== */
+
+.editor-module {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-app);
+}
+
+/* ==========================================
+   BARRA LATERAL DE CAPÍTULOS (ESTILO WATTPAD)
+   ========================================== */
+.chapters-sidebar {
+  width: 290px;
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width var(--transition);
+}
+
+.chapters-header {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.chapters-header h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.chapter-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Item de Capítulo */
+.chapter-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: var(--transition);
+  position: relative;
+  user-select: none;
+}
+
+.chapter-item:hover {
+  border-color: var(--border-focus);
+  background: var(--bg-card-hover);
+}
+
+.chapter-item.active {
+  background: var(--bg-active);
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 1px var(--accent-purple);
+}
+
+.chapter-item.drag-over {
+  border-top: 3px solid var(--accent-purple);
+  transform: translateY(2px);
+}
+
+.chapter-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.chapter-drag-handle {
+  cursor: grab;
+  color: var(--text-faint);
+  font-size: 0.9rem;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.chapter-drag-handle:active {
+  cursor: grabbing;
+}
+
+.chapter-title-wrapper {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.chapter-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.chapter-item:hover .chapter-actions {
+  opacity: 1;
+}
+
+.btn-chapter-action {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  transition: var(--transition);
+}
+
+.btn-chapter-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+}
+
+.btn-chapter-action.delete:hover {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.15);
+}
+
+/* Status do Capítulo (Rascunho / Em Revisão / Finalizado) */
+.chapter-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+}
+
+.chapter-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 12px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chapter-status-tag.status-draft {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.chapter-status-tag.status-review {
+  background: rgba(59, 130, 246, 0.12);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.chapter-status-tag.status-done {
+  background: rgba(16, 185, 129, 0.12);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.chapter-word-meta {
+  color: var(--text-faint);
+}
+
+/* ==========================================
+   FOLHA CENTRAL DE ESCRITA & TOOLBAR
+   ========================================== */
+.editor-main-sheet {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Barra Superior de Ferramentas & Formatação */
+.editor-top-controls {
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+
+/* Barra de Formatação (Negrito, Itálico, Títulos, etc) */
+.formatting-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 3px 6px;
+}
+
+.fmt-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fmt-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-main);
+}
+
+.fmt-btn:active {
+  background: var(--accent-purple);
+  color: #fff;
+}
+
+.fmt-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-subtle);
+  margin: 0 4px;
+}
+
+/* Controles de Temas e Exportação */
+.editor-aux-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-selector-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+}
+
+.theme-opt-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.theme-opt-btn:hover {
+  color: var(--text-main);
+}
+
+.theme-opt-btn.active {
+  background: var(--bg-card);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ==========================================
+   TEMAS VISUAIS DA FOLHA DE ESCRITA
+   ========================================= */
+
+.writing-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  padding: 40px 24px 120px 24px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Tema 1: Dark Grafite (Padrão Obsidian) */
+.writing-scroll-container.theme-dark {
+  background-color: var(--bg-app);
+  color: #f1f3f7;
+}
+
+.writing-scroll-container.theme-dark .writing-title-input {
+  color: #f8fafc;
+}
+
+.writing-scroll-container.theme-dark .writing-content-editable {
+  color: #e2e8f0;
+}
+
+/* Tema 2: Sépia Livro Antigo (Quente e Confortável) */
+.writing-scroll-container.theme-sepia {
+  background-color: #1a1714;
+  color: #ecdcc9;
+}
+
+.writing-scroll-container.theme-sepia .writing-title-input {
+  color: #f7ede2;
+  font-family: var(--font-serif-title);
+}
+
+.writing-scroll-container.theme-sepia .writing-content-editable {
+  color: #e6d3be;
+  font-family: var(--font-serif-body);
+}
+
+/* Tema 3: Pergaminho RPG (Atmosfera Fantasia Medieval) */
+.writing-scroll-container.theme-parchment {
+  background-color: #14110e;
+  background-image: radial-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: #ebdcb9;
+}
+
+.writing-scroll-container.theme-parchment .writing-title-input {
+  color: #f2e2be;
+  font-family: var(--font-serif-title);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  padding-bottom: 8px;
+}
+
+.writing-scroll-container.theme-parchment .writing-content-editable {
+  color: #dfcca2;
+  font-family: var(--font-serif-body);
+}
+
+/* Área Central da Folha */
+.writing-sheet {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.writing-title-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-family: var(--font-serif-title);
+  width: 100%;
+}
+
+.writing-title-input::placeholder {
+  color: var(--text-faint);
+  opacity: 0.5;
+}
+
+/* Editor Rico ContentEditable */
+.writing-content-editable {
+  width: 100%;
+  min-height: 520px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  font-family: var(--font-serif-body);
+  user-select: text;
+  cursor: text;
+}
+
+.writing-content-editable:empty:before {
+  content: attr(data-placeholder);
+  color: var(--text-faint);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.writing-content-editable p {
+  margin-bottom: 1.2em;
+}
+
+.writing-content-editable h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin: 1.4em 0 0.6em 0;
+  color: var(--text-main);
+}
+
+.writing-content-editable h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1.3em 0 0.5em 0;
+  color: var(--text-main);
+}
+
+.writing-content-editable h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.2em 0 0.4em 0;
+  color: var(--text-main);
+}
+
+.writing-content-editable blockquote {
+  border-left: 3px solid var(--accent-purple);
+  padding-left: 16px;
+  margin: 1.2em 0;
+  font-style: italic;
+  color: var(--text-cream-muted);
+}
+
+.writing-content-editable ul,
+.writing-content-editable ol {
+  padding-left: 28px;
+  margin-bottom: 1.2em;
+}
+
+.writing-content-editable li {
+  margin-bottom: 0.4em;
+}
+
+.writing-content-editable hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 2em 0;
+}
+
+/* Barra de Status Inferior do Editor */
+.editor-status-bar {
+  height: 36px;
+  padding: 0 24px;
+  background: var(--bg-sidebar);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  z-index: 10;
+}

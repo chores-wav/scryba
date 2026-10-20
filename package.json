@@ -1,0 +1,21 @@
+{
+  "name": "editor-rpg",
+  "version": "1.0.0",
+  "description": "Aplicativo Desktop de Escrita e Editor RPG",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "editor",
+    "rpg",
+    "writing",
+    "desktop",
+    "electron"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^44.9.0"
+  }
+}

@@ -1,0 +1,274 @@
+/* ==========================================================================
+   TELA INICIAL (DASHBOARD) - SCRYBA
+   Layout Minimalista, Limpo e 100% Centralizado (Dark Mode Puro)
+   ========================================================================== */
+
+.scryba-home-viewport {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-home);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Container Centralizado */
+.scryba-home-container {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 32px;
+  margin: auto 0;
+  animation: fadeInScryba 0.5s ease-out;
+}
+
+@keyframes fadeInScryba {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================
+   2. O LOGO E NOME (TOPO CENTRALIZADO)
+   ========================================== */
+.scryba-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.scryba-logo-mark {
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  filter: drop-shadow(0 6px 16px rgba(220, 38, 38, 0.25));
+  transition: transform 0.3s ease;
+}
+
+.scryba-logo-mark:hover {
+  transform: scale(1.05);
+}
+
+.scryba-logo-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Nome SCRYBA */
+.scryba-brand-name {
+  font-family: var(--font-serif-title);
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: var(--text-cream);
+  text-transform: uppercase;
+  margin-right: -0.28em; /* Compensa o letter-spacing no último caractere para centralizar perfeito */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================
+   3. MENSAGEM DE BOAS-VINDAS
+   ========================================== */
+.scryba-welcome-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.scryba-welcome-title {
+  font-family: var(--font-serif-title);
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.scryba-welcome-subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 460px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ==========================================
+   4. BOTÕES DE AÇÃO PRINCIPAL
+   ========================================== */
+.scryba-actions-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.scryba-btn-action {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background-color: var(--accent-purple);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: 0.96rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -4px var(--accent-purple-glow);
+  transition: var(--transition);
+  outline: none;
+  white-space: nowrap;
+}
+
+.scryba-btn-action:hover {
+  background-color: var(--accent-purple-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -4px rgba(124, 58, 237, 0.4);
+}
+
+.scryba-btn-action:active {
+  transform: translateY(0);
+}
+
+.scryba-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+/* ==========================================
+   5. SEÇÃO DE PROJETOS RECENTES (RODAPÉ)
+   ========================================== */
+.scryba-recents-block {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.scryba-recents-title {
+  font-family: var(--font-ui);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+}
+
+.scryba-recents-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scryba-recent-card {
+  width: 100%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 13px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+}
+
+.scryba-recent-card:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-focus);
+  transform: translateY(-1px);
+}
+
+.scryba-recent-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.scryba-recent-icon {
+  font-size: 1.15rem;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.scryba-recent-title {
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scryba-recent-badge {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.scryba-recent-badge.badge-book {
+  background: rgba(59, 130, 246, 0.12);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.scryba-recent-badge.badge-rpg {
+  background: rgba(225, 29, 72, 0.12);
+  color: #fda4af;
+  border: 1px solid rgba(225, 29, 72, 0.25);
+}
+
+.scryba-recent-arrow {
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  margin-left: 8px;
+  transition: var(--transition);
+}
+
+.scryba-recent-card:hover .scryba-recent-arrow {
+  color: var(--text-main);
+  transform: translateX(3px);
+}

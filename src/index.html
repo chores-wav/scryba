@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scryba</title>
+  
+  <!-- Estilos e Design System Modular -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/modules/dashboard.css">
+  <link rel="stylesheet" href="styles/modules/editor.css">
+  <link rel="stylesheet" href="styles/modules/notes.css">
+  <link rel="stylesheet" href="styles/modules/characters.css">
+  <link rel="stylesheet" href="styles/modules/world.css">
+  <link rel="stylesheet" href="styles/modules/moodboard.css">
+  <link rel="stylesheet" href="styles/modules/canvas.css">
+  <link rel="stylesheet" href="styles/modules/planner.css">
+</head>
+<body>
+  <div class="app-root in-home">
+
+    <!-- ==========================================
+         SIDEBAR DE NAVEGAÇÃO LATERAL (ESTILO OBSIDIAN)
+         Visível apenas dentro de um projeto aberto
+         ========================================== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-wrapper" id="brand-home" title="Voltar para a Tela Inicial (Scryba)">
+          <span class="brand-icon">📜</span>
+          <div class="brand-text">
+            <h1>SCRYBA</h1>
+            <span>Estúdio de Criação</span>
+          </div>
+        </div>
+        <button class="btn-icon" id="btn-toggle-sidebar" title="Recolher / Expandir Menu">◀</button>
+      </div>
+
+      <!-- Widget do Projeto Atual -->
+      <div class="sidebar-project-widget">
+        <div class="sidebar-project-info">
+          <div class="sidebar-project-title" id="sidebar-active-project-title">Crônicas do Solstício</div>
+          <div id="sidebar-active-project-badge" style="margin-top: 4px;">
+            <span class="badge badge-book">📖 Livro</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navegação dos Módulos -->
+      <nav class="sidebar-nav">
+        <div class="nav-category">Geral</div>
+        <div class="nav-item" data-view="dashboard">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">Início</span>
+        </div>
+
+        <div class="nav-category">Criação & Escrita</div>
+        <div class="nav-item active" data-view="editor">
+          <span class="nav-icon">✍️</span>
+          <span class="nav-label">Editor de Escrita</span>
+        </div>
+        <div class="nav-item" data-view="notes">
+          <span class="nav-icon">💡</span>
+          <span class="nav-label">Anotações Rápidas</span>
+        </div>
+        <div class="nav-item" data-view="planner">
+          <span class="nav-icon">🎯</span>
+          <span class="nav-label">Planejador & Metas</span>
+        </div>
+        <div class="nav-item" data-view="characters">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label">Personagens</span>
+        </div>
+
+        <div class="nav-category">Construção de Mundo</div>
+        <div class="nav-item" data-view="world">
+          <span class="nav-icon">🌍</span>
+          <span class="nav-label">Mundo & Magias</span>
+        </div>
+        <div class="nav-item" data-view="moodboard">
+          <span class="nav-icon">🖼️</span>
+          <span class="nav-label">Mural de Estética</span>
+        </div>
+        <div class="nav-item" data-view="canvas">
+          <span class="nav-icon">🕸️</span>
+          <span class="nav-label">Grafo de Conexões</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-primary" id="btn-open-new-project" style="width: 100%;">
+          <span>+ Novo Projeto</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ==========================================
+         CONTEÚDO PRINCIPAL (VIEWPORT)
+         ========================================== -->
+    <main class="main-content">
+      
+      <!-- Topo / Barra de Ferramentas Superior (Oculta na Tela Inicial) -->
+      <header class="app-header">
+        <div class="header-left">
+          <span class="header-title" id="header-view-title">Editor de Escrita</span>
+          <span id="header-project-badge"></span>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-ghost" id="btn-editor-focus" title="Modo Sem Distrações">🔍 Modo Foco</button>
+        </div>
+      </header>
+
+      <!-- CONTAINER DINÂMICO DE VIEWS -->
+      <div class="view-container">
+
+        <!-- 1. VIEW: TELA INICIAL (SCRYBA - MINIMALISTA & CENTRALIZADA) -->
+        <section class="view-section active" id="view-dashboard">
+          <div class="scryba-home-viewport">
+            <div class="scryba-home-container">
+              
+              <!-- 2. O Logo e Nome (Topo Centralizado) -->
+              <div class="scryba-brand-block">
+                <div class="scryba-logo-mark" title="Scryba">
+                  <svg class="scryba-logo-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <filter id="knot-glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#dc2626" flood-opacity="0.38"/>
+                      </filter>
+                      <linearGradient id="redKnotGrad" x1="15" y1="15" x2="105" y2="105" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#ef4444"/>
+                        <stop offset="45%" stop-color="#dc2626"/>
+                        <stop offset="100%" stop-color="#991b1b"/>
+                      </linearGradient>
+                      <linearGradient id="quillGrad" x1="30" y1="92" x2="90" y2="28" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#d4af37"/>
+                        <stop offset="30%" stop-color="#fdfbf7"/>
+                        <stop offset="100%" stop-color="#dcd0bf"/>
+                      </linearGradient>
+                    </defs>
+
+                    <!-- Nó Celta / Moldura Vermelha Infinita -->
+                    <g filter="url(#knot-glow)">
+                      <path d="M60 18 C40 6, 14 14, 14 38 C14 62, 38 68, 60 98 C82 68, 106 62, 106 38 C106 14, 80 6, 60 18 Z" 
+                            stroke="url(#redKnotGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                      <path d="M60 34 C48 24, 28 30, 28 44 C28 56, 42 63, 60 84 C78 63, 92 56, 92 44 C92 30, 72 24, 60 34 Z" 
+                            stroke="#7f1d1d" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6" />
+                      <path d="M32 36 C20 46, 20 70, 40 74 C52 76, 60 66, 60 58 C60 50, 68 40, 80 42 C100 46, 100 70, 88 74" 
+                            stroke="url(#redKnotGrad)" stroke-width="3.8" stroke-linecap="round" fill="none" />
+                    </g>
+
+                    <!-- Pena de Escrita (Quill) Entrelaçada -->
+                    <g id="scryba-quill">
+                      <!-- Haste central da pena -->
+                      <path d="M34 88 L86 26" stroke="#c5a059" stroke-width="2.5" stroke-linecap="round"/>
+                      
+                      <!-- Lâmina esquerda da pena -->
+                      <path d="M86 26 C82 34, 62 46, 50 64 C44 72, 38 80, 36 84 C38 82, 44 74, 52 68 C62 60, 78 46, 86 26 Z" 
+                            fill="url(#quillGrad)" opacity="0.95" />
+                      <path d="M78 34 C68 44, 58 52, 48 64 M72 40 C64 48, 56 56, 50 62" 
+                            stroke="#baa88f" stroke-width="0.8" opacity="0.7"/>
+
+                      <!-- Lâmina direita da pena -->
+                      <path d="M86 26 C88 34, 82 46, 74 58 C68 66, 58 74, 52 78 C54 75, 62 68, 68 60 C74 52, 82 40, 86 26 Z" 
+                            fill="url(#quillGrad)" opacity="0.85" />
+                            
+                      <!-- Ponta de escrita (Bico de pena) -->
+                      <path d="M34 88 L30 94 L36 92 Z" fill="#eab308" />
+                      <path d="M30 94 L28 97" stroke="#0a0b0e" stroke-width="1.2" stroke-linecap="round"/>
+                    </g>
+                  </svg>
+                </div>
+                <div class="scryba-brand-name">SCRYBA</div>
+              </div>
+
+              <!-- 3. Mensagem de Boas-Vindas -->
+              <div class="scryba-welcome-block">
+                <h1 class="scryba-welcome-title">Bem-vindo ao Scryba</h1>
+                <p class="scryba-welcome-subtitle">Selecione ou crie um projeto para começar a escrever sua jornada.</p>
+              </div>
+
+              <!-- 4. Botões de Ação Principal -->
+              <div class="scryba-actions-group">
+                <button class="scryba-btn-action" id="btn-home-new-project">
+                  <span class="scryba-btn-icon">📄+</span>
+                  <span>+ Novo Projeto</span>
+                </button>
+                <button class="scryba-btn-action" id="btn-home-projects-list">
+                  <span class="scryba-btn-icon">📚</span>
+                  <span>Lista de Projetos</span>
+                </button>
+              </div>
+
+              <!-- 5. Seção de Projetos Recentes (Rodapé) -->
+              <div class="scryba-recents-block">
+                <div class="scryba-recents-title">Projetos Recentes</div>
+                <div class="scryba-recents-list" id="scryba-recents-list"></div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. VIEW: EDITOR DE ESCRITA (ESTILO WATTPAD & NOTION) -->
+        <section class="view-section" id="view-editor">
+          <div class="editor-module">
+            <!-- Barra Lateral de Capítulos (Drag & Drop e Status) -->
+            <div class="chapters-sidebar">
+              <div class="chapters-header">
+                <h3>Capítulos</h3>
+                <button class="btn btn-ghost" id="btn-new-chapter" title="Adicionar novo capítulo">+ Novo</button>
+              </div>
+              <div class="chapter-list" id="editor-chapter-list"></div>
+            </div>
+
+            <!-- Folha Central de Escrita -->
+            <div class="editor-main-sheet">
+              <!-- Barra Superior de Ferramentas (Formatação, Temas e Exportação) -->
+              <div class="editor-top-controls">
+                <!-- Barra de Formatação Rápida (Notion / Medium) -->
+                <div class="formatting-toolbar">
+                  <button type="button" class="fmt-btn" data-cmd="bold" title="Negrito (Ctrl+B)"><strong>B</strong></button>
+                  <button type="button" class="fmt-btn" data-cmd="italic" title="Itálico (Ctrl+I)"><em>I</em></button>
+                  <div class="fmt-divider"></div>
+                  <button type="button" class="fmt-btn" data-cmd="formatBlock" data-val="h1" title="Título Principal">H1</button>
+                  <button type="button" class="fmt-btn" data-cmd="formatBlock" data-val="h2" title="Subtítulo">H2</button>
+                  <button type="button" class="fmt-btn" data-cmd="formatBlock" data-val="h3" title="Seção">H3</button>
+                  <button type="button" class="fmt-btn" data-cmd="formatBlock" data-val="p" title="Parágrafo Normal">¶</button>
+                  <div class="fmt-divider"></div>
+                  <button type="button" class="fmt-btn" data-cmd="formatBlock" data-val="blockquote" title="Citação Literária">“ ”</button>
+                  <button type="button" class="fmt-btn" data-cmd="insertUnorderedList" title="Lista com Marcadores">• Lista</button>
+                  <button type="button" class="fmt-btn" data-cmd="insertOrderedList" title="Lista Numerada">1. Lista</button>
+                  <button type="button" class="fmt-btn" data-cmd="insertHorizontalRule" title="Divisor de Cena">―</button>
+                </div>
+
+                <!-- Controles de Tema e Exportação -->
+                <div class="editor-aux-controls">
+                  <!-- Seletor de Tema -->
+                  <div class="theme-selector-group" title="Tema da Folha de Escrita">
+                    <button type="button" class="theme-opt-btn active" data-theme="dark">Dark</button>
+                    <button type="button" class="theme-opt-btn" data-theme="sepia">Sépia</button>
+                    <button type="button" class="theme-opt-btn" data-theme="parchment">Pergaminho</button>
+                  </div>
+
+                  <!-- Botões de Exportação -->
+                  <div style="display: flex; gap: 6px;">
+                    <button type="button" class="btn btn-secondary" id="btn-export-chapter" style="padding: 4px 10px; font-size: 0.78rem;" title="Exportar este capítulo como arquivo TXT">
+                      💾 Exportar Capítulo
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="btn-export-book" style="padding: 4px 10px; font-size: 0.78rem;" title="Exportar o livro completo em TXT">
+                      📚 Livro Todo
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Folha de Escrita com Rolagem e Tema -->
+              <div class="writing-scroll-container theme-dark" id="editor-scroll-container">
+                <div class="writing-sheet">
+                  <input type="text" id="chapter-title-input" class="writing-title-input" placeholder="Título do Capítulo...">
+                  <div id="chapter-content-editable" class="writing-content-editable" contenteditable="true" data-placeholder="Comece a redigir seu capítulo com foco e imersão..."></div>
+                </div>
+              </div>
+
+              <!-- Rodapé com Métricas ao Vivo -->
+              <footer class="editor-status-bar">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span id="editor-word-count">0 palavras</span>
+                  <span>•</span>
+                  <span id="editor-char-count">0 caracteres</span>
+                  <span>•</span>
+                  <span id="editor-reading-time">~1 min de leitura</span>
+                </div>
+                <div>
+                  <span id="editor-save-status" style="color: #10b981;">● Salvo</span>
+                </div>
+              </footer>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2.1. VIEW: ANOTAÇÕES RÁPIDAS (BLOCO DE NOTAS SIMPLES E INDEPENDENTE) -->
+        <section class="view-section" id="view-notes">
+          <div class="notes-module">
+            <!-- Coluna de Lista de Notas -->
+            <div class="notes-sidebar">
+              <div class="notes-header">
+                <h3>💡 Anotações Rápidas</h3>
+                <button class="btn btn-ghost" id="btn-new-note" title="Criar nova anotação">+ Nova</button>
+              </div>
+              <div class="notes-search-box">
+                <input type="text" id="notes-search-input" class="notes-search-input" placeholder="🔍 Buscar anotações...">
+              </div>
+              <div class="notes-list" id="notes-list"></div>
+            </div>
+
+            <!-- Área de Edição da Nota -->
+            <div class="note-editor-area">
+              <div class="note-editor-header">
+                <input type="text" id="note-title-field" class="note-title-field" placeholder="Título da anotação...">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span id="note-save-status" style="font-size: 0.78rem; color: #10b981;">● Salvo</span>
+                  <button type="button" class="btn btn-danger" id="btn-delete-current-note" style="padding: 4px 10px; font-size: 0.8rem;" title="Excluir esta anotação">
+                    🗑️ Excluir
+                  </button>
+                </div>
+              </div>
+              <textarea id="note-content-field" class="note-content-field" placeholder="Rabisque ideias soltas, regras do mestre, ganchos de enredo ou lembretes da sessão..."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. VIEW: PLANEJADOR DE PROJETOS (FOCADO EM LIVROS) -->
+        <section class="view-section" id="view-planner">
+          <div class="planner-view">
+            <div class="planner-hero">
+              <h2>Planejador Estrutural da Obra</h2>
+            </div>
+
+            <!-- Painel de Metas de Palavras -->
+            <div class="goals-banner">
+              <div class="goal-progress-box">
+                <div class="goal-title">
+                  <span>Progresso do Manuscrito</span>
+                  <span id="planner-progress-percent">0%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" id="planner-progress-fill" style="width: 0%;"></div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+                  <span><strong id="planner-current-words">0</strong> palavras escritas</span>
+                  <span>Meta: <strong id="planner-goal-words">50.000</strong> palavras</span>
+                </div>
+              </div>
+
+              <div class="goal-stat-card">
+                <div class="goal-stat-num" id="planner-chapter-count">0</div>
+                <div class="goal-stat-label">Capítulos Planejados</div>
+              </div>
+
+              <div>
+                <button class="btn btn-secondary" id="btn-edit-word-goal" style="width: 100%;">⚙️ Ajustar Meta</button>
+              </div>
+            </div>
+
+            <!-- Temas Centrais da História -->
+            <div class="planner-section">
+              <div class="section-header">
+                <h3>🏷️ Temas Centrais da História</h3>
+                <button class="btn btn-secondary" id="btn-add-theme">+ Adicionar Tema</button>
+              </div>
+              <div class="themes-grid" id="planner-themes-container"></div>
+            </div>
+
+            <!-- Estruturação Dupla: Atos e Capítulos lado a lado -->
+            <div class="planner-section">
+              <div class="section-header">
+                <h3>Estrutura Dramática (Atos x Capítulos)</h3>
+              </div>
+              <div class="acts-chapters-split">
+                <!-- Coluna de Atos -->
+                <div class="structure-column">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h4 style="font-size: 0.95rem;">🎭 Atos e Arcos Dramáticos</h4>
+                    <button class="btn btn-ghost" id="btn-add-act">+ Novo Ato</button>
+                  </div>
+                  <div id="planner-acts-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                </div>
+
+                <!-- Coluna de Capítulos Ordenados (Estilo Wattpad) -->
+                <div class="structure-column">
+                  <h4 style="font-size: 0.95rem;">📑 Linha de Capítulos</h4>
+                  <div id="planner-chapters-overview" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 4. VIEW: PERSONAGENS (ADAPTATIVO) -->
+        <section class="view-section" id="view-characters">
+          <div class="characters-view">
+            <div class="characters-header">
+              <div>
+                <h2>Galeria de Personagens</h2>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">Fichas narrativas ou fichas estruturadas de RPG conforme o projeto.</p>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <div class="characters-filters">
+                  <button class="filter-btn active char-filter-btn" data-filter="all">Todos</button>
+                  <button class="filter-btn char-filter-btn" data-filter="pj">PJs (Jogadores)</button>
+                  <button class="filter-btn char-filter-btn" data-filter="npc">NPCs</button>
+                </div>
+                <button class="btn btn-primary" id="btn-new-character">+ Novo Personagem</button>
+              </div>
+            </div>
+            <div class="characters-grid" id="characters-grid"></div>
+          </div>
+        </section>
+
+        <!-- 5. VIEW: WORLDBUILDING & MAGIAS -->
+        <section class="view-section" id="view-world">
+          <div class="world-view">
+            <div class="world-nav-subtabs">
+              <button class="world-subtab active" data-subtab="world">🏛️ Sociedade, Leis & Geografia</button>
+              <button class="world-subtab" data-subtab="spells">✨ Grimório de Magias & Rituais</button>
+            </div>
+
+            <!-- Seção de Worldbuilding Estruturada -->
+            <div id="world-lore-container" class="world-sections-grid">
+              <div class="world-topic-card">
+                <div class="world-topic-header"><span>👑</span> Política & Governo</div>
+                <textarea id="wb-politica" class="world-topic-textarea" placeholder="Descreva os governantes, impérios, coroas rivais..."></textarea>
+              </div>
+              <div class="world-topic-card">
+                <div class="world-topic-header"><span>⚖️</span> Leis & Justiça</div>
+                <textarea id="wb-leis" class="world-topic-textarea" placeholder="Quais são os crimes capitais? O que é estritamente proibido?"></textarea>
+              </div>
+              <div class="world-topic-card">
+                <div class="world-topic-header"><span>🌲</span> Bioma & Fauna</div>
+                <textarea id="wb-bioma" class="world-topic-textarea" placeholder="Vegetação predominante, monstros da região, criaturas míticas..."></textarea>
+              </div>
+              <div class="world-topic-card">
+                <div class="world-topic-header"><span>❄️</span> Clima & Estações</div>
+                <textarea id="wb-clima" class="world-topic-textarea" placeholder="Tempestades mágicas, invernos eternos, calor desértico..."></textarea>
+              </div>
+              <div class="world-topic-card">
+                <div class="world-topic-header"><span>🪙</span> Economia & Comércio</div>
+                <textarea id="wb-economia" class="world-topic-textarea" placeholder="Moeda corrente, rotas mercantis, escassez de recursos..."></textarea>
+              </div>
+              <div class="world-topic-card">
+                <div class="world-topic-header"><span>🛐</span> Religião & Deuses</div>
+                <textarea id="wb-religiao" class="world-topic-textarea" placeholder="Cultos, panteões divinos, profecias e heresias..."></textarea>
+              </div>
+              <div class="world-topic-card">
+                <div class="world-topic-header"><span>🗺️</span> Geografia & Fronteiras</div>
+                <textarea id="wb-geografia" class="world-topic-textarea" placeholder="Montanhas intransponíveis, rios místicos, fortalezas fronteiriças..."></textarea>
+              </div>
+            </div>
+
+            <!-- Seção de Magias -->
+            <div id="world-spells-container" style="display: none;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>Feitiços e Rituais Registrados</h3>
+                <button class="btn btn-primary" id="btn-new-spell">+ Nova Magia</button>
+              </div>
+              <div class="spells-grid" id="spells-grid"></div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 6. VIEW: MURAL VISUAL DE ESTÉTICA (MOODBOARD) -->
+        <section class="view-section" id="view-moodboard">
+          <div class="moodboard-view">
+            <div class="moodboard-header">
+              <div>
+                <h2>Mural Visual de Estética</h2>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">Imagens, referências visuais e conceito de arte para seu mundo.</p>
+              </div>
+              <button class="btn btn-primary" id="btn-add-moodboard">+ Adicionar Imagem</button>
+            </div>
+            <div class="moodboard-grid" id="moodboard-grid"></div>
+          </div>
+        </section>
+
+        <!-- 7. VIEW: GRAFO DE CONEXÕES E DIAGRAMA -->
+        <section class="view-section" id="view-canvas">
+          <div class="canvas-view">
+            <!-- Barra Flutuante de Ferramentas do Canvas -->
+            <div class="canvas-toolbar">
+              <button class="btn btn-primary" id="btn-add-node" style="padding: 5px 10px; font-size: 0.8rem;">+ Adicionar Nó</button>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Arraste os cartões para organizar conexões</span>
+            </div>
+
+            <!-- Camada SVG de Conexões e Superfície de Nós -->
+            <svg class="connections-svg" id="connections-svg"></svg>
+            <div class="canvas-surface" id="canvas-surface"></div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ==========================================
+         MODAIS REUTILIZÁVEIS DO SISTEMA
+         ========================================== -->
+
+    <!-- Modal 1: Novo Projeto -->
+    <div class="modal-overlay" id="modal-new-project">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Novo Projeto</h3>
+          <button class="btn-icon" id="btn-close-project-modal">✕</button>
+        </div>
+        <form id="form-new-project">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="proj-name">Nome do Projeto *</label>
+              <input type="text" id="proj-name" class="form-input" placeholder="Ex: A Espada de Cinzas" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Tipo do Projeto *</label>
+              <div class="type-selector-grid">
+                <div class="type-option-card selected book" data-type="book">
+                  <span class="type-icon">📖</span>
+                  <span class="type-title">Livro / Romance</span>
+                  <span class="type-desc">Focado em escrita por capítulos, metas de palavras e atos dramáticos.</span>
+                </div>
+                <div class="type-option-card rpg" data-type="rpg">
+                  <span class="type-icon">🎲</span>
+                  <span class="type-title">Campanha de RPG</span>
+                  <span class="type-desc">Focado em fichas de PJ/NPC, magias, sessões e worldbuilding.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="proj-folder">Local da Pasta no Computador</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="proj-folder" class="form-input" style="flex: 1;" placeholder="Ex: C:\MeusProjetos\Livro1">
+                <button type="button" class="btn btn-secondary" id="btn-browse-folder">Procurar...</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="proj-desc">Breve Resumo ou Premissa</label>
+              <textarea id="proj-desc" class="form-textarea" placeholder="Sobre o que é este livro ou campanha?"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-project-modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Criar Projeto</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal 1.1: Lista Completa de Projetos (Biblioteca Interna) -->
+    <div class="modal-overlay" id="modal-projects-list">
+      <div class="modal-card modal-lg">
+        <div class="modal-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.25rem;">📚</span>
+            <h3>Meus Projetos</h3>
+          </div>
+          <button class="btn-icon" id="btn-close-projects-modal">✕</button>
+        </div>
+        <div class="modal-body">
+          <!-- Campo de Busca -->
+          <div class="projects-modal-search">
+            <input type="text" id="projects-search-input" class="form-input" style="width: 100%;" placeholder="🔍 Buscar projeto por título...">
+          </div>
+
+          <!-- Filtros por Categoria -->
+          <div class="projects-filter-pills">
+            <button class="project-filter-pill active" data-filter="all">Todos</button>
+            <button class="project-filter-pill" data-filter="book">📖 Livros</button>
+            <button class="project-filter-pill" data-filter="rpg">🎲 RPG</button>
+          </div>
+
+          <!-- Lista de Projetos Renderizada Dinamicamente -->
+          <div class="projects-modal-list" id="modal-projects-entries"></div>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+          <button type="button" class="btn btn-primary" id="btn-projects-modal-create">+ Novo Projeto</button>
+          <button type="button" class="btn btn-ghost" id="btn-cancel-projects-modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: Novo Personagem (Adaptativo) -->
+    <div class="modal-overlay" id="modal-character">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Ficha de Personagem</h3>
+          <button class="btn-icon" id="btn-close-char-modal">✕</button>
+        </div>
+        <form id="form-character">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="char-name">Nome do Personagem *</label>
+              <input type="text" id="char-name" class="form-input" placeholder="Ex: Roland de Gilead" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="char-role">Papel / Classe / Ocupação</label>
+              <input type="text" id="char-role" class="form-input" placeholder="Ex: Guerreiro Paladino / Antagonista">
+            </div>
+
+            <!-- Campos Específicos para RPG -->
+            <div id="char-rpg-fields">
+              <div class="form-group">
+                <label class="form-label" for="char-subtype-select">Tipo no RPG</label>
+                <select id="char-subtype-select" class="form-select">
+                  <option value="pj">Personagem Jogador (PJ)</option>
+                  <option value="npc">Personagem do Mestre (NPC)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Atributos Básicos (D20 / Geral)</label>
+                <div class="rpg-stats-grid">
+                  <div>
+                    <label class="rpg-stat-label">FOR</label>
+                    <input type="number" id="stat-for" class="form-input" value="10" style="padding: 4px; text-align: center;">
+                  </div>
+                  <div>
+                    <label class="rpg-stat-label">DES</label>
+                    <input type="number" id="stat-des" class="form-input" value="10" style="padding: 4px; text-align: center;">
+                  </div>
+                  <div>
+                    <label class="rpg-stat-label">CON</label>
+                    <input type="number" id="stat-con" class="form-input" value="10" style="padding: 4px; text-align: center;">
+                  </div>
+                  <div>
+                    <label class="rpg-stat-label">INT</label>
+                    <input type="number" id="stat-int" class="form-input" value="10" style="padding: 4px; text-align: center;">
+                  </div>
+                  <div>
+                    <label class="rpg-stat-label">SAB</label>
+                    <input type="number" id="stat-sab" class="form-input" value="10" style="padding: 4px; text-align: center;">
+                  </div>
+                  <div>
+                    <label class="rpg-stat-label">CAR</label>
+                    <input type="number" id="stat-car" class="form-input" value="10" style="padding: 4px; text-align: center;">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="char-skills">Perícias Notáveis</label>
+                <input type="text" id="char-skills" class="form-input" placeholder="Ex: Atletismo +5, Percepção +4">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="char-equip">Equipamento & Armas</label>
+                <input type="text" id="char-equip" class="form-input" placeholder="Ex: Espada Longa, Cota de Malha">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="char-notes">Notas & Segredos do Mestre</label>
+                <textarea id="char-notes" class="form-textarea" placeholder="Fraquezas, motivações ocultas..."></textarea>
+              </div>
+            </div>
+
+            <!-- Campos Específicos para Livro -->
+            <div id="char-book-fields" style="display: none;">
+              <div class="form-group">
+                <label class="form-label" for="char-arc">Arco do Personagem</label>
+                <textarea id="char-arc" class="form-textarea" placeholder="De onde ele parte e como ele se transforma ao longo da narrativa?"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="char-details">Detalhes & Personalidade</label>
+                <textarea id="char-details" class="form-textarea" placeholder="Aparência física, manias, defeitos capitais e virtudes..."></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="char-summary">Resumo Rápido</label>
+              <input type="text" id="char-summary" class="form-input" placeholder="Breve frase que define este personagem">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-char-modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar Personagem</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal 3: Nova Magia -->
+    <div class="modal-overlay" id="modal-spell">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Registrar Nova Magia</h3>
+          <button class="btn-icon" id="btn-close-spell-modal">✕</button>
+        </div>
+        <form id="form-spell">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="spell-name">Nome da Magia *</label>
+              <input type="text" id="spell-name" class="form-input" placeholder="Ex: Bola de Fogo" required>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="form-group">
+                <label class="form-label" for="spell-cost">Custo / Mana</label>
+                <input type="text" id="spell-cost" class="form-input" placeholder="Ex: 3º Círculo / 20 PM">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="spell-range">Alcance</label>
+                <input type="text" id="spell-range" class="form-input" placeholder="Ex: 36 metros">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spell-components">Componentes</label>
+              <input type="text" id="spell-components" class="form-input" placeholder="Ex: Verbal, Somático, Enxofre">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spell-effect">Efeito & Dano</label>
+              <textarea id="spell-effect" class="form-textarea" placeholder="O que o feitiço faz mecanicamente?"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spell-lore">Lore / História da Magia</label>
+              <textarea id="spell-lore" class="form-textarea" placeholder="Origem mística ou citação de mago antigo..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-spell-modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Registrar Magia</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal 4: Adicionar Imagem ao Moodboard -->
+    <div class="modal-overlay" id="modal-moodboard">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Adicionar ao Mural de Estética</h3>
+          <button class="btn-icon" id="btn-close-moodboard-modal">✕</button>
+        </div>
+        <form id="form-moodboard">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="mb-title">Título da Imagem</label>
+              <input type="text" id="mb-title" class="form-input" placeholder="Ex: Fortaleza do Norte">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="mb-url">URL da Web ou Arquivo do Computador *</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="mb-url" class="form-input" style="flex: 1;" placeholder="Cole a URL ou procure no PC" required>
+                <button type="button" class="btn btn-secondary" id="btn-browse-image">Procurar...</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="mb-notes">Notas Visuais / Atmosfera</label>
+              <textarea id="mb-notes" class="form-textarea" placeholder="Ex: Paleta de cores frias, arquitetura gótica..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-moodboard-modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Adicionar ao Mural</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal 5: Adicionar Nó ao Diagrama -->
+    <div class="modal-overlay" id="modal-node">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Novo Nó no Diagrama</h3>
+          <button class="btn-icon" id="btn-close-node-modal">✕</button>
+        </div>
+        <form id="form-node">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="node-label">Nome do Nó *</label>
+              <input type="text" id="node-label" class="form-input" placeholder="Ex: Batalha de Três Rios" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="node-type">Categoria do Nó</label>
+              <select id="node-type" class="form-select">
+                <option value="personagem">Personagem</option>
+                <option value="cidade">Cidade / Local</option>
+                <option value="magia">Artefato / Magia</option>
+                <option value="evento">Evento da Trama</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="node-desc">Breve Descrição</label>
+              <input type="text" id="node-desc" class="form-input" placeholder="Relação ou contexto">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-node-modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Inserir Nó</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts do Aplicativo -->
+  <script src="js/state.js"></script>
+  <script src="js/modules/projectManager.js"></script>
+  <script src="js/modules/editor.js"></script>
+  <script src="js/modules/notes.js"></script>
+  <script src="js/modules/characters.js"></script>
+  <script src="js/modules/worldbuilding.js"></script>
+  <script src="js/modules/moodboard.js"></script>
+  <script src="js/modules/diagram.js"></script>
+  <script src="js/modules/planner.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

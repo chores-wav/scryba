@@ -1,0 +1,55 @@
+/* ESTILOS DO MURAL DE ESTÉTICA (MOODBOARD) */
+.moodboard-view {
+  padding: 32px 40px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.moodboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.moodboard-grid {
+  columns: 4 280px;
+  column-gap: 20px;
+}
+
+.moodboard-item {
+  break-inside: avoid;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: var(--transition);
+}
+
+.moodboard-item:hover {
+  border-color: var(--border-focus);
+  transform: translateY(-2px);
+}
+
+.moodboard-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  background: var(--bg-input);
+}
+
+.moodboard-caption {
+  padding: 12px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+
+.moodboard-caption p {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+

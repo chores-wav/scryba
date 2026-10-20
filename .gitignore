@@ -1,0 +1,21 @@
+# Dependências do Node (muito pesado, nunca deve subir pro Git)
+node_modules/
+
+# Logs e arquivos de depuração
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Builds e empacotamento
+dist/
+out/
+build/
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Variáveis de ambiente
+.env
+.env.local
