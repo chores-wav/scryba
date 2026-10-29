@@ -31,6 +31,10 @@ O **Scryba** é uma aplicação desktop desenvolvida em Electron utilizando de v
 
 ---
 
+Para baixar o programa acesse as [RELEASES](https://github.com/chores-wav/scryba/releases)
+
+---
+
 ## 🛠️ Tecnologias Utilizadas
 
 * **Runtime:** [Electron](https://www.electronjs.org/)
