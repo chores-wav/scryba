@@ -8,18 +8,88 @@
   <!-- Estilos e Design System Modular -->
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/modules/launch-screen.css">
   <link rel="stylesheet" href="styles/components.css">
   <link rel="stylesheet" href="styles/modules/dashboard.css">
   <link rel="stylesheet" href="styles/modules/editor.css">
   <link rel="stylesheet" href="styles/modules/notes.css">
   <link rel="stylesheet" href="styles/modules/characters.css">
+  <link rel="stylesheet" href="styles/modules/character-sheets.css">
   <link rel="stylesheet" href="styles/modules/world.css">
   <link rel="stylesheet" href="styles/modules/moodboard.css">
   <link rel="stylesheet" href="styles/modules/canvas.css">
   <link rel="stylesheet" href="styles/modules/planner.css">
+  <link rel="stylesheet" href="styles/modules/organization.css">
+  <link rel="stylesheet" href="styles/modules/dice-roller.css">
+  <link rel="stylesheet" href="styles/modules/audio-pad.css">
+  <link rel="stylesheet" href="styles/themes.css">
 </head>
 <body>
-  <div class="app-root in-home">
+  <div class="launch-screen" id="app-launch-screen" role="status" aria-label="Abrindo o Scryba">
+    <div class="launch-screen-content">
+      <span class="launch-screen-emblem" aria-hidden="true"></span>
+      <div class="launch-screen-wordmark">SCRYBA</div>
+      <p>Seu estúdio de escrita e RPG</p>
+      <span class="launch-screen-progress" aria-hidden="true"><i></i></span>
+    </div>
+  </div>
+  <svg class="scryba-icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22zM4 5.5v14A2.5 2.5 0 0 1 6.5 17H20"/></symbol>
+    <symbol id="icon-pen" viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l4.2-.8L20 7.4 16.6 4 4.8 15.8zM13.8 6.8l3.4 3.4"/></symbol>
+    <symbol id="icon-note" viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v11l-5 5H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM16 21v-5h5M7 8h10M7 12h10"/></symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="icon-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></symbol>
+    <symbol id="icon-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13M9 18a3 2 0 1 1-3-2 3 2 0 0 1 3 2Zm12-2a3 2 0 1 1-3-2 3 2 0 0 1 3 2Z"/></symbol>
+    <symbol id="icon-network" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="2" y="16" width="6" height="5" rx="1"/><rect x="16" y="16" width="6" height="5" rx="1"/><path d="M12 8v4m-7 4v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2M5 12h14"/></symbol>
+    <symbol id="icon-tree" viewBox="0 0 24 24"><path d="M12 21v-7m0 0-5-4m5 4 5-4M7 10a3 3 0 1 1 3-3 3 3 0 1 1 5 2 3 3 0 1 1 4 3 3 3 0 1 1-5 2H9a3 3 0 1 1-2-4z"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24"><path d="M9.8 2.8h4.4l.6 2.4a7.8 7.8 0 0 1 1.8.8l2.3-1.1 2.2 3.8-1.8 1.8a7.8 7.8 0 0 1 0 2l1.8 1.8-2.2 3.8-2.3-1.1a7.8 7.8 0 0 1-1.8.8l-.6 2.4H9.8l-.6-2.4a7.8 7.8 0 0 1-1.8-.8l-2.3 1.1-2.2-3.8 1.8-1.8a7.8 7.8 0 0 1 0-2L2.9 8.7l2.2-3.8 2.3 1.1a7.8 7.8 0 0 1 1.8-.8z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="icon-file-plus" viewBox="0 0 24 24"><path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8M13 3v5h5M13 3l5 5"/><path d="M18 13v8m-4-4h8"/></symbol>
+    <symbol id="icon-library" viewBox="0 0 24 24"><path d="M4 5h13a2 2 0 0 1 2 2v14H6a2 2 0 0 1-2-2zM8 3h12v16M8 9h7M8 13h7"/></symbol>
+    <symbol id="icon-save" viewBox="0 0 24 24"><path d="M4 3h14l3 3v15H3V4a1 1 0 0 1 1-1zM7 3v6h10V3M7 21v-8h10v8"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2m3 0-1 14H6L5 6m4 4v6m6-6v6"/></symbol>
+    <symbol id="icon-masks" viewBox="0 0 24 24"><path d="M3 5s3-2 6 0v7c0 3-2 5-4 6-2-2-3-4-3-7V5zM21 5s-3-2-6 0v7c0 3 2 5 4 6 2-2 3-4 3-7V5zM5 9h2m10 0h2M9 8c2 1 4 1 6 0"/></symbol>
+    <symbol id="icon-building" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M8 9h1m6 0h1m-8 3h1m6 0h1"/></symbol>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.4 5.6L19 10l-5.6 1.4L12 17l-1.4-5.6L5 10l5.6-1.4zM19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7z"/></symbol>
+    <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h2m4 0h2m-8 3h2"/></symbol>
+    <symbol id="icon-mountain" viewBox="0 0 24 24"><path d="m3 20 7-14 4 8 2-4 5 10zM8 10l2 2 2-2"/></symbol>
+    <symbol id="icon-scales" viewBox="0 0 24 24"><path d="M12 3v18m-7 0h14M5 7h14M7 7l-4 7h8L7 7zm10 0-4 7h8l-4-7z"/></symbol>
+    <symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-.8-1.7-1.2-3-1.2-1.7 0-2.8.9-2.8 2.1 0 3.4 5.6 1.5 5.6 4.7 0 1.3-1.2 2.3-3 2.3-1.4 0-2.5-.5-3.3-1.4M12 5.5v13"/></symbol>
+    <symbol id="icon-snowflake" viewBox="0 0 24 24"><path d="M12 2v20M4 6l16 12M20 6 4 18M9 4l3 2 3-2M9 20l3-2 3 2M3 10l3-1 1-3m14 8-3 1-1 3m0-12 1 3 3 1M4 14l3 1 1 3"/></symbol>
+    <symbol id="icon-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15m6-12v15"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/></symbol>
+    <symbol id="icon-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01"/></symbol>
+    <symbol id="icon-d20" viewBox="0 0 24 24">
+      <path d="M12 2.25 21.35 9.05 17.78 20H6.22L2.65 9.05 12 2.25Z"/>
+      <path d="M12 2.25 7.2 10.4M12 2.25l4.8 8.15M2.65 9.05l4.55 1.35M6.22 20 9 16m8.78 4L15 16m6.35-6.95-4.55 1.35M9 16h6l1.8-5.6-4.8-3.4-4.8 3.4L9 16Z"/>
+    </symbol>
+    <symbol id="icon-scroll" viewBox="0 0 24 24"><path d="M7 3h12v15a3 3 0 0 1-3 3H6a3 3 0 0 1 0-6h13M7 3a3 3 0 0 0 0 6h12M10 13h6"/></symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l4.2-.8L20 7.4 16.6 4 4.8 15.8z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 16v4h16v-4"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="icon-feather" viewBox="0 0 24 24"><path d="M20 4c-7-2-14 3-14 10 0 3 2 5 5 5 7 0 12-7 9-15zM4 21l9-9m-4 4 1 4m3-8 4 1"/></symbol>
+    <symbol id="icon-wand" viewBox="0 0 24 24"><path d="m4 20 12-12M14 4l1-2m4 5 2-1m-5-3 1 2M7 17l2 2m-5-6 2 1"/></symbol>
+    <symbol id="icon-link" viewBox="0 0 24 24"><path d="m10 13.5 4-4M8.5 15a3.5 3.5 0 0 1 0-5l2-2a3.5 3.5 0 0 1 5 0m0 1a3.5 3.5 0 0 1 0 5l-2 2a3.5 3.5 0 0 1-5 0"/></symbol>
+  </svg>
+  <div class="storage-setup-overlay" id="storage-setup-overlay" role="dialog" aria-modal="true" aria-labelledby="storage-setup-title">
+    <section class="storage-setup-card">
+      <img src="assets/scryba-mark.png" alt="Scryba" class="storage-setup-logo">
+      <span class="organization-kicker">Configuração inicial obrigatória</span>
+      <h1 id="storage-setup-title">Onde vamos guardar seus projetos?</h1>
+      <p>Escolha uma pasta gravável no computador. O Scryba salvará seus projetos nela e usará esse local como padrão. Você poderá trocar a pasta depois nas configurações.</p>
+      <button type="button" class="btn btn-primary" id="btn-select-initial-storage">Escolher pasta de armazenamento</button>
+      <div class="storage-setup-status" id="storage-setup-status" role="status" aria-live="polite">Selecione uma pasta para continuar.</div>
+    </section>
+  </div>
+  <div class="app-root in-home" inert>
 
     <!-- ==========================================
          SIDEBAR DE NAVEGAÇÃO LATERAL (ESTILO OBSIDIAN)
@@ -28,13 +98,10 @@
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="brand-wrapper" id="brand-home" title="Voltar para a Tela Inicial (Scryba)">
-          <span class="brand-icon">📜</span>
-          <div class="brand-text">
-            <h1>SCRYBA</h1>
-            <span>Estúdio de Criação</span>
-          </div>
+          <img class="brand-logo-image" src="assets/scryba-mark.png" alt="Scryba">
+          <span class="brand-emblem" aria-hidden="true"></span>
         </div>
-        <button class="btn-icon" id="btn-toggle-sidebar" title="Recolher / Expandir Menu">◀</button>
+        <button type="button" class="btn-icon" id="btn-toggle-sidebar" title="Recolher / Expandir Menu" aria-label="Recolher ou expandir menu"><svg class="scryba-icon sidebar-toggle-arrow" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
       </div>
 
       <!-- Widget do Projeto Atual -->
@@ -42,7 +109,7 @@
         <div class="sidebar-project-info">
           <div class="sidebar-project-title" id="sidebar-active-project-title">Crônicas do Solstício</div>
           <div id="sidebar-active-project-badge" style="margin-top: 4px;">
-            <span class="badge badge-book">📖 Livro</span>
+            <span class="badge badge-book"><span class="scryba-icon scryba-book-icon" aria-hidden="true"></span> Livro</span>
           </div>
         </div>
       </div>
@@ -51,48 +118,64 @@
       <nav class="sidebar-nav">
         <div class="nav-category">Geral</div>
         <div class="nav-item" data-view="dashboard">
-          <span class="nav-icon">🏠</span>
+          <svg class="nav-icon scryba-icon" aria-hidden="true"><use href="#icon-home"></use></svg>
           <span class="nav-label">Início</span>
         </div>
 
         <div class="nav-category">Criação & Escrita</div>
         <div class="nav-item active" data-view="editor">
-          <span class="nav-icon">✍️</span>
+          <svg class="nav-icon scryba-icon" aria-hidden="true"><use href="#icon-pen"></use></svg>
           <span class="nav-label">Editor de Escrita</span>
         </div>
         <div class="nav-item" data-view="notes">
-          <span class="nav-icon">💡</span>
+          <svg class="nav-icon scryba-icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg>
           <span class="nav-label">Anotações Rápidas</span>
         </div>
         <div class="nav-item" data-view="planner">
-          <span class="nav-icon">🎯</span>
+          <svg class="nav-icon scryba-icon" aria-hidden="true"><use href="#icon-target"></use></svg>
           <span class="nav-label">Planejador & Metas</span>
         </div>
         <div class="nav-item" data-view="characters">
-          <span class="nav-icon">👤</span>
+          <svg class="nav-icon scryba-icon" aria-hidden="true"><use href="#icon-users"></use></svg>
           <span class="nav-label">Personagens</span>
         </div>
 
         <div class="nav-category">Construção de Mundo</div>
         <div class="nav-item" data-view="world">
-          <span class="nav-icon">🌍</span>
+          <svg class="nav-icon scryba-icon" aria-hidden="true"><use href="#icon-globe"></use></svg>
           <span class="nav-label">Mundo & Magias</span>
         </div>
         <div class="nav-item" data-view="moodboard">
-          <span class="nav-icon">🖼️</span>
+          <svg class="nav-icon scryba-icon" aria-hidden="true"><use href="#icon-image"></use></svg>
           <span class="nav-label">Mural de Estética</span>
         </div>
+        <div class="nav-item rpg-only-nav-item" data-view="audio" hidden>
+          <svg class="nav-icon scryba-icon" aria-hidden="true"><use href="#icon-music"></use></svg>
+          <span class="nav-label">Pad de Áudio</span>
+        </div>
         <div class="nav-item" data-view="canvas">
-          <span class="nav-icon">🕸️</span>
-          <span class="nav-label">Grafo de Conexões</span>
+          <svg class="nav-icon scryba-icon" aria-hidden="true"><use href="#icon-network"></use></svg>
+          <span class="nav-label">Mapa Mental</span>
+        </div>
+        <div class="nav-category">Organização</div>
+        <div class="nav-item" data-view="family-tree">
+          <span class="nav-icon scryba-icon scryba-family-tree-icon" aria-hidden="true"></span>
+          <span class="nav-label">Árvore Genealógica</span>
+        </div>
+        <div class="nav-item" data-view="timeline">
+          <span class="nav-icon">◷</span>
+          <span class="nav-label">Linha do Tempo</span>
         </div>
       </nav>
 
       <div class="sidebar-footer" style="flex-direction: column; gap: 8px;">
-        <button class="btn btn-primary" id="btn-open-new-project" style="width: 100%;">
-          <span>+ Novo Projeto</span>
+        <button class="btn btn-primary" id="btn-open-new-project" title="Novo projeto" aria-label="Novo projeto">
+          <span class="sidebar-new-project-label">+ Novo Projeto</span>
         </button>
-        <span style="font-size: 0.7rem; color: var(--text-faint); letter-spacing: 0.05em;">Scryba <span class="app-version-tag">v0.3</span></span>
+        <button class="btn btn-ghost settings-sidebar-button" id="btn-open-settings" type="button" title="Configurações" aria-haspopup="dialog" aria-controls="modal-settings">
+          <span class="scryba-icon scryba-settings-icon" aria-hidden="true"></span><span class="settings-button-label">Configurações</span>
+        </button>
+        <span style="font-size: 0.7rem; color: var(--text-faint); letter-spacing: 0.05em;">Scryba <span class="app-version-tag">v1.0</span></span>
       </div>
     </aside>
 
@@ -108,7 +191,7 @@
           <span id="header-project-badge"></span>
         </div>
         <div class="header-right">
-          <button class="btn btn-ghost" id="btn-editor-focus" title="Modo Sem Distrações">🔍 Modo Foco</button>
+          <button class="btn btn-ghost" id="btn-editor-focus" title="Modo Sem Distrações"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-search"></use></svg> Modo Foco</button>
         </div>
       </header>
 
@@ -118,60 +201,14 @@
         <!-- 1. VIEW: TELA INICIAL (SCRYBA - MINIMALISTA & CENTRALIZADA) -->
         <section class="view-section active" id="view-dashboard">
           <div class="scryba-home-viewport">
+            <button class="home-settings-button" id="btn-home-settings" type="button" aria-label="Configurações" title="Configurações">
+              <span class="scryba-icon scryba-settings-icon" aria-hidden="true"></span>
+            </button>
             <div class="scryba-home-container">
               
               <!-- 2. O Logo e Nome (Topo Centralizado) -->
               <div class="scryba-brand-block">
-                <div class="scryba-logo-mark" title="Scryba">
-                  <svg class="scryba-logo-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <filter id="knot-glow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#dc2626" flood-opacity="0.38"/>
-                      </filter>
-                      <linearGradient id="redKnotGrad" x1="15" y1="15" x2="105" y2="105" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#ef4444"/>
-                        <stop offset="45%" stop-color="#dc2626"/>
-                        <stop offset="100%" stop-color="#991b1b"/>
-                      </linearGradient>
-                      <linearGradient id="quillGrad" x1="30" y1="92" x2="90" y2="28" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#d4af37"/>
-                        <stop offset="30%" stop-color="#fdfbf7"/>
-                        <stop offset="100%" stop-color="#dcd0bf"/>
-                      </linearGradient>
-                    </defs>
-
-                    <!-- Nó Celta / Moldura Vermelha Infinita -->
-                    <g filter="url(#knot-glow)">
-                      <path d="M60 18 C40 6, 14 14, 14 38 C14 62, 38 68, 60 98 C82 68, 106 62, 106 38 C106 14, 80 6, 60 18 Z" 
-                            stroke="url(#redKnotGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-                      <path d="M60 34 C48 24, 28 30, 28 44 C28 56, 42 63, 60 84 C78 63, 92 56, 92 44 C92 30, 72 24, 60 34 Z" 
-                            stroke="#7f1d1d" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6" />
-                      <path d="M32 36 C20 46, 20 70, 40 74 C52 76, 60 66, 60 58 C60 50, 68 40, 80 42 C100 46, 100 70, 88 74" 
-                            stroke="url(#redKnotGrad)" stroke-width="3.8" stroke-linecap="round" fill="none" />
-                    </g>
-
-                    <!-- Pena de Escrita (Quill) Entrelaçada -->
-                    <g id="scryba-quill">
-                      <!-- Haste central da pena -->
-                      <path d="M34 88 L86 26" stroke="#c5a059" stroke-width="2.5" stroke-linecap="round"/>
-                      
-                      <!-- Lâmina esquerda da pena -->
-                      <path d="M86 26 C82 34, 62 46, 50 64 C44 72, 38 80, 36 84 C38 82, 44 74, 52 68 C62 60, 78 46, 86 26 Z" 
-                            fill="url(#quillGrad)" opacity="0.95" />
-                      <path d="M78 34 C68 44, 58 52, 48 64 M72 40 C64 48, 56 56, 50 62" 
-                            stroke="#baa88f" stroke-width="0.8" opacity="0.7"/>
-
-                      <!-- Lâmina direita da pena -->
-                      <path d="M86 26 C88 34, 82 46, 74 58 C68 66, 58 74, 52 78 C54 75, 62 68, 68 60 C74 52, 82 40, 86 26 Z" 
-                            fill="url(#quillGrad)" opacity="0.85" />
-                            
-                      <!-- Ponta de escrita (Bico de pena) -->
-                      <path d="M34 88 L30 94 L36 92 Z" fill="#eab308" />
-                      <path d="M30 94 L28 97" stroke="#0a0b0e" stroke-width="1.2" stroke-linecap="round"/>
-                    </g>
-                  </svg>
-                </div>
-                <div class="scryba-brand-name">SCRYBA</div>
+                <img class="scryba-logo-image" src="assets/scryba-mark.png" alt="Scryba">
               </div>
 
               <!-- 3. Mensagem de Boas-Vindas -->
@@ -183,11 +220,11 @@
               <!-- 4. Botões de Ação Principal -->
               <div class="scryba-actions-group">
                 <button class="scryba-btn-action" id="btn-home-new-project">
-                  <span class="scryba-btn-icon">📄+</span>
+                  <span class="scryba-btn-icon"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-file-plus"></use></svg></span>
                   <span>+ Novo Projeto</span>
                 </button>
                 <button class="scryba-btn-action" id="btn-home-projects-list">
-                  <span class="scryba-btn-icon">📚</span>
+                  <span class="scryba-btn-icon"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-library"></use></svg></span>
                   <span>Lista de Projetos</span>
                 </button>
               </div>
@@ -200,7 +237,7 @@
 
               <!-- Indicador de Versão do Scryba -->
               <div style="font-size: 0.75rem; color: var(--text-faint); margin-top: 10px; letter-spacing: 0.08em; text-transform: uppercase;">
-                Scryba <span class="app-version-tag">v0.3</span>
+                Scryba <span class="app-version-tag">v1.0</span>
               </div>
 
             </div>
@@ -223,10 +260,16 @@
             <div class="editor-main-sheet">
               <!-- Barra Superior de Ferramentas (Formatação, Temas e Exportação) -->
               <div class="editor-top-controls">
+                <button type="button" class="editor-format-toggle" id="btn-toggle-formatting" aria-expanded="false" aria-controls="editor-formatting-panel" aria-label="Abrir ferramentas do editor" title="Ferramentas do editor">
+                  <span class="editor-hamburger" aria-hidden="true"><i></i><i></i><i></i></span>
+                </button>
                 <!-- Barra de Formatação Rápida (Notion / Medium) -->
-                <div class="formatting-toolbar">
+                <div class="editor-formatting-panel" id="editor-formatting-panel" hidden>
+                <div class="formatting-toolbar" aria-label="Ferramentas de formatação do texto">
                   <button type="button" class="fmt-btn" data-cmd="bold" title="Negrito (Ctrl+B)"><strong>B</strong></button>
                   <button type="button" class="fmt-btn" data-cmd="italic" title="Itálico (Ctrl+I)"><em>I</em></button>
+                  <button type="button" class="fmt-btn" data-cmd="underline" title="Sublinhado"><u>U</u></button>
+                  <button type="button" class="fmt-btn" data-cmd="strikeThrough" title="Tachado"><s>S</s></button>
                   <div class="fmt-divider"></div>
                   <button type="button" class="fmt-btn" data-cmd="formatBlock" data-val="h1" title="Título Principal">H1</button>
                   <button type="button" class="fmt-btn" data-cmd="formatBlock" data-val="h2" title="Subtítulo">H2</button>
@@ -237,7 +280,56 @@
                   <button type="button" class="fmt-btn" data-cmd="insertUnorderedList" title="Lista com Marcadores">• Lista</button>
                   <button type="button" class="fmt-btn" data-cmd="insertOrderedList" title="Lista Numerada">1. Lista</button>
                   <button type="button" class="fmt-btn" data-cmd="insertHorizontalRule" title="Divisor de Cena">―</button>
+                  <div class="fmt-divider"></div>
+                  <button type="button" class="fmt-btn" data-cmd="justifyLeft" title="Alinhar à esquerda">⇤</button>
+                  <button type="button" class="fmt-btn" data-cmd="justifyCenter" title="Centralizar">≡</button>
+                  <button type="button" class="fmt-btn" data-cmd="justifyRight" title="Alinhar à direita">⇥</button>
+                  <button type="button" class="fmt-btn" data-cmd="justifyFull" title="Justificar">☰</button>
+                  <div class="fmt-divider"></div>
+                  <button type="button" class="fmt-btn" data-cmd="outdent" title="Diminuir recuo">⇤</button>
+                  <button type="button" class="fmt-btn" data-cmd="indent" title="Aumentar recuo">⇥</button>
+                  <button type="button" class="fmt-btn" data-cmd="undo" title="Desfazer">↶</button>
+                  <button type="button" class="fmt-btn" data-cmd="redo" title="Refazer">↷</button>
+                  <label class="editor-color-control" title="Cor do texto">A<input type="color" id="editor-text-color" aria-label="Cor do texto" value="#333333"></label>
+                  <label class="editor-color-control editor-highlight-control" title="Realce do texto">▰<input type="color" id="editor-highlight-color" aria-label="Cor de realce" value="#fff2a8"></label>
+                  <select class="editor-size-select" id="editor-font-size" aria-label="Tamanho do texto" title="Tamanho do texto">
+                    <option value="3">Normal</option><option value="1">Pequeno</option><option value="2">Médio</option><option value="4">Grande</option><option value="5">Muito grande</option><option value="6">Título</option>
+                  </select>
+                  <select class="editor-size-select" id="editor-line-spacing" aria-label="Espaçamento entre linhas" title="Espaçamento entre linhas">
+                    <option value="1.0">Linhas 1.0</option><option value="1.15">Linhas 1.15</option><option value="1.5">Linhas 1.5</option><option value="2">Linhas 2.0</option>
+                  </select>
+                  <button type="button" class="fmt-btn" data-cmd="createLink" title="Inserir ou editar link">Link</button>
+                  <button type="button" class="fmt-btn" data-cmd="unlink" title="Remover link">⛓̸</button>
+                  <button type="button" class="fmt-btn" data-cmd="removeFormat" title="Limpar formatação">Tx</button>
                 </div>
+
+                <label class="editor-font-control" for="editor-font-select">
+                  <span>Fonte</span>
+                  <select id="editor-font-select" aria-label="Fonte do texto do editor">
+                    <option value="lora">Lora</option>
+                    <option value="inter">Inter</option>
+                    <option value="atkinson">Atkinson Hyperlegible</option>
+                    <option value="opendyslexic">OpenDyslexic · dislexia</option>
+                    <option value="lexend">Lexend</option>
+                    <option value="merriweather">Merriweather</option>
+                    <option value="playfair">Playfair Display</option>
+                    <option value="eb-garamond">EB Garamond</option>
+                    <option value="cormorant">Cormorant Garamond</option>
+                    <option value="cinzel">Cinzel</option>
+                    <option value="montserrat">Montserrat</option>
+                    <option value="nunito">Nunito</option>
+                    <option value="roboto">Roboto</option>
+                    <option value="open-sans">Open Sans</option>
+                    <option value="fira-sans">Fira Sans</option>
+                    <option value="georgia">Georgia</option>
+                    <option value="arial">Arial</option>
+                    <option value="verdana">Verdana</option>
+                    <option value="trebuchet">Trebuchet MS</option>
+                    <option value="times">Times New Roman</option>
+                    <option value="courier">Courier New</option>
+                    <option value="roboto-mono">Roboto Mono</option>
+                  </select>
+                </label>
 
                 <!-- Controles de Tema e Exportação -->
                 <div class="editor-aux-controls">
@@ -249,14 +341,23 @@
                   </div>
 
                   <!-- Botões de Exportação -->
-                  <div style="display: flex; gap: 6px;">
-                    <button type="button" class="btn btn-secondary" id="btn-export-chapter" style="padding: 4px 10px; font-size: 0.78rem;" title="Exportar este capítulo como arquivo TXT">
-                      💾 Exportar Capítulo
-                    </button>
-                    <button type="button" class="btn btn-secondary" id="btn-export-book" style="padding: 4px 10px; font-size: 0.78rem;" title="Exportar o livro completo em TXT">
-                      📚 Livro Todo
-                    </button>
+                  <div class="editor-export-menus">
+                    <div class="editor-export-menu-wrap">
+                      <button type="button" class="btn btn-secondary editor-export-toggle" id="btn-export-chapter" aria-expanded="false" aria-haspopup="menu">Exportar capítulo <span aria-hidden="true">⌄</span></button>
+                      <div class="editor-export-menu" role="menu" hidden>
+                        <button type="button" role="menuitem" data-export-target="chapter" data-export-format="word">Word (.docx)</button>
+                        <button type="button" role="menuitem" data-export-target="chapter" data-export-format="pdf">PDF (.pdf)</button>
+                      </div>
+                    </div>
+                    <div class="editor-export-menu-wrap">
+                      <button type="button" class="btn btn-secondary editor-export-toggle" id="btn-export-book" aria-expanded="false" aria-haspopup="menu">Livro todo <span aria-hidden="true">⌄</span></button>
+                      <div class="editor-export-menu" role="menu" hidden>
+                        <button type="button" role="menuitem" data-export-target="book" data-export-format="word">Word (.docx)</button>
+                        <button type="button" role="menuitem" data-export-target="book" data-export-format="pdf">PDF (.pdf)</button>
+                      </div>
+                    </div>
                   </div>
+                </div>
                 </div>
               </div>
 
@@ -264,7 +365,7 @@
               <div class="writing-scroll-container theme-dark" id="editor-scroll-container">
                 <div class="writing-sheet">
                   <input type="text" id="chapter-title-input" class="writing-title-input" placeholder="Título do Capítulo...">
-                  <div id="chapter-content-editable" class="writing-content-editable" contenteditable="true" data-placeholder="Comece a redigir seu capítulo com foco e imersão..."></div>
+                  <div id="chapter-content-editable" class="writing-content-editable" contenteditable="true" data-placeholder="Comece a redigir seu capítulo... Você também pode arrastar imagens para inseri-las no texto."></div>
                 </div>
               </div>
 
@@ -278,7 +379,8 @@
                   <span id="editor-reading-time">~1 min de leitura</span>
                 </div>
                 <div>
-                  <span id="editor-save-status" style="color: #10b981;">● Salvo</span>
+                  <span id="editor-save-status" class="editor-save-status" role="status" aria-live="polite">Salvo</span>
+                  <button type="button" class="btn btn-ghost editor-history-button" id="btn-open-save-history">Histórico</button>
                 </div>
               </footer>
             </div>
@@ -291,11 +393,11 @@
             <!-- Coluna de Lista de Notas -->
             <div class="notes-sidebar">
               <div class="notes-header">
-                <h3>💡 Anotações Rápidas</h3>
+                <h3><svg class="scryba-icon" aria-hidden="true"><use href="#icon-note"></use></svg> Anotações Rápidas</h3>
                 <button class="btn btn-ghost" id="btn-new-note" title="Criar nova anotação">+ Nova</button>
               </div>
               <div class="notes-search-box">
-                <input type="text" id="notes-search-input" class="notes-search-input" placeholder="🔍 Buscar anotações...">
+                <input type="text" id="notes-search-input" class="notes-search-input" placeholder="Buscar anotações...">
               </div>
               <div class="notes-list" id="notes-list"></div>
             </div>
@@ -307,7 +409,7 @@
                 <div style="display: flex; align-items: center; gap: 12px;">
                   <span id="note-save-status" style="font-size: 0.78rem; color: #10b981;">● Salvo</span>
                   <button type="button" class="btn btn-danger" id="btn-delete-current-note" style="padding: 4px 10px; font-size: 0.8rem;" title="Excluir esta anotação">
-                    🗑️ Excluir
+                    <svg class="scryba-icon" aria-hidden="true"><use href="#icon-trash"></use></svg> Excluir
                   </button>
                 </div>
               </div>
@@ -324,50 +426,52 @@
             </div>
 
             <!-- Painel de Metas de Palavras -->
-            <div class="goals-banner">
-              <div class="goal-progress-box">
+            <div class="goals-banner" id="planner-goals-banner">
+              <div class="goal-progress-box" id="planner-word-goal-panel">
                 <div class="goal-title">
-                  <span>Progresso do Manuscrito</span>
+                  <span id="planner-progress-title">Progresso do Manuscrito</span>
                   <span id="planner-progress-percent">0%</span>
                 </div>
-                <div class="progress-track">
+                <div class="progress-track" role="progressbar" aria-label="Progresso da meta de palavras" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                   <div class="progress-fill" id="planner-progress-fill" style="width: 0%;"></div>
                 </div>
                 <div style="font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: space-between;">
                   <span><strong id="planner-current-words">0</strong> palavras escritas</span>
                   <span>Meta: <strong id="planner-goal-words">50.000</strong> palavras</span>
+                  <span>Faltam: <strong id="planner-remaining-words">50.000</strong></span>
                 </div>
+                <small class="goal-scope-note" id="planner-goal-scope-note">A contagem usa os textos do Editor. Os capítulos planejados ficam separados.</small>
               </div>
 
               <div class="goal-stat-card">
                 <div class="goal-stat-num" id="planner-chapter-count">0</div>
-                <div class="goal-stat-label">Capítulos Planejados</div>
+                <div class="goal-stat-label" id="planner-count-label">Capítulos Planejados</div>
               </div>
 
-              <div>
-                <button class="btn btn-secondary" id="btn-edit-word-goal" style="width: 100%;">⚙️ Ajustar Meta</button>
+              <div id="planner-word-goal-action">
+                <button type="button" class="btn planner-goal-action" id="btn-edit-word-goal"><span class="scryba-icon scryba-settings-icon" aria-hidden="true"></span> Ajustar Meta</button>
               </div>
             </div>
 
-            <!-- Temas Centrais da História -->
+            <!-- Gêneros do projeto -->
             <div class="planner-section">
               <div class="section-header">
-                <h3>🏷️ Temas Centrais da História</h3>
-                <button class="btn btn-secondary" id="btn-add-theme">+ Adicionar Tema</button>
+                <h3 id="planner-genres-title"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-library"></use></svg> Gêneros Literários</h3>
+                <button type="button" class="btn planner-genre-action" id="btn-add-genre">+ Adicionar Gênero</button>
               </div>
-              <div class="themes-grid" id="planner-themes-container"></div>
+              <div class="genres-grid" id="planner-genres-container"></div>
             </div>
 
             <!-- Estruturação Dupla: Atos e Capítulos lado a lado -->
             <div class="planner-section">
               <div class="section-header">
-                <h3>Estrutura Dramática (Atos x Capítulos)</h3>
+                <h3 id="planner-structure-title">Estrutura Dramática (Atos x Capítulos)</h3>
               </div>
               <div class="acts-chapters-split">
                 <!-- Coluna de Atos -->
                 <div class="structure-column">
                   <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h4 style="font-size: 0.95rem;">🎭 Atos e Arcos Dramáticos</h4>
+                    <h4 style="font-size: 0.95rem;" id="planner-acts-heading"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-masks"></use></svg> Atos e Arcos Dramáticos</h4>
                     <button class="btn btn-ghost" id="btn-add-act">+ Novo Ato</button>
                   </div>
                   <div id="planner-acts-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
@@ -375,7 +479,10 @@
 
                 <!-- Coluna de Capítulos Ordenados (Estilo Wattpad) -->
                 <div class="structure-column">
-                  <h4 style="font-size: 0.95rem;">📑 Linha de Capítulos</h4>
+                  <div class="planner-column-heading">
+                    <h4 style="font-size: 0.95rem;" id="planner-chapters-heading"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg> Capítulos Planejados</h4>
+                    <button type="button" class="btn btn-ghost" id="btn-add-planned-chapter">+ Novo Capítulo</button>
+                  </div>
                   <div id="planner-chapters-overview" style="display: flex; flex-direction: column; gap: 10px;"></div>
                 </div>
               </div>
@@ -392,16 +499,25 @@
                 <h2>Galeria de Personagens</h2>
                 <p style="color: var(--text-muted); font-size: 0.88rem;">Fichas narrativas ou fichas estruturadas de RPG conforme o projeto.</p>
               </div>
-              <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="characters-header-actions">
                 <div class="characters-filters">
                   <button class="filter-btn active char-filter-btn" data-filter="all">Todos</button>
                   <button class="filter-btn char-filter-btn" data-filter="pj">PJs (Jogadores)</button>
                   <button class="filter-btn char-filter-btn" data-filter="npc">NPCs</button>
                 </div>
+                <div class="char-menu-anchor">
+                  <button type="button" class="btn btn-secondary char-menu-trigger" id="btn-characters-menu" aria-label="Configurações da galeria" aria-haspopup="true" aria-expanded="false">⋮</button>
+                  <div class="char-context-menu" id="characters-menu" role="menu" hidden>
+                    <button type="button" class="char-menu-item" data-action="sort-name" role="menuitem" aria-pressed="false">A-Z</button>
+                    <button type="button" class="char-menu-item" data-action="sort-creation" role="menuitem" aria-pressed="true">Ordem de Criação ↑</button>
+                    <button type="button" class="char-menu-item" data-action="paste" role="menuitem">Colar personagem</button>
+                    <button type="button" class="char-menu-item char-menu-item-danger" data-action="clear" role="menuitem">Limpar galeria</button>
+                  </div>
+                </div>
                 <button class="btn btn-primary" id="btn-new-character">+ Novo Personagem</button>
               </div>
             </div>
-            <div class="characters-grid" id="characters-grid"></div>
+            <div class="characters-gallery" id="characters-gallery"></div>
           </div>
         </section>
 
@@ -409,47 +525,18 @@
         <section class="view-section" id="view-world">
           <div class="world-view">
             <div class="world-nav-subtabs">
-              <button class="world-subtab active" data-subtab="world">🏛️ Sociedade, Leis & Geografia</button>
-              <button class="world-subtab" data-subtab="spells">✨ Grimório de Magias & Rituais</button>
+              <button class="world-subtab active" data-subtab="world"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-building"></use></svg> Sociedade, Leis & Geografia</button>
+              <button class="world-subtab" data-subtab="spells"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg> Grimório de Magias & Rituais</button>
             </div>
 
             <!-- Seção de Worldbuilding Estruturada -->
-            <div id="world-lore-container" class="world-sections-grid">
-              <div class="world-topic-card">
-                <div class="world-topic-header"><span>👑</span> Política & Governo</div>
-                <textarea id="wb-politica" class="world-topic-textarea" placeholder="Descreva os governantes, impérios, coroas rivais..."></textarea>
-              </div>
-              <div class="world-topic-card">
-                <div class="world-topic-header"><span>⚖️</span> Leis & Justiça</div>
-                <textarea id="wb-leis" class="world-topic-textarea" placeholder="Quais são os crimes capitais? O que é estritamente proibido?"></textarea>
-              </div>
-              <div class="world-topic-card">
-                <div class="world-topic-header"><span>🌲</span> Bioma & Fauna</div>
-                <textarea id="wb-bioma" class="world-topic-textarea" placeholder="Vegetação predominante, monstros da região, criaturas míticas..."></textarea>
-              </div>
-              <div class="world-topic-card">
-                <div class="world-topic-header"><span>❄️</span> Clima & Estações</div>
-                <textarea id="wb-clima" class="world-topic-textarea" placeholder="Tempestades mágicas, invernos eternos, calor desértico..."></textarea>
-              </div>
-              <div class="world-topic-card">
-                <div class="world-topic-header"><span>🪙</span> Economia & Comércio</div>
-                <textarea id="wb-economia" class="world-topic-textarea" placeholder="Moeda corrente, rotas mercantis, escassez de recursos..."></textarea>
-              </div>
-              <div class="world-topic-card">
-                <div class="world-topic-header"><span>🛐</span> Religião & Deuses</div>
-                <textarea id="wb-religiao" class="world-topic-textarea" placeholder="Cultos, panteões divinos, profecias e heresias..."></textarea>
-              </div>
-              <div class="world-topic-card">
-                <div class="world-topic-header"><span>🗺️</span> Geografia & Fronteiras</div>
-                <textarea id="wb-geografia" class="world-topic-textarea" placeholder="Montanhas intransponíveis, rios místicos, fortalezas fronteiriças..."></textarea>
-              </div>
-            </div>
+            <div id="world-lore-container" class="world-sections-grid" aria-label="Tópicos de Worldbuilding"></div>
 
             <!-- Seção de Magias -->
             <div id="world-spells-container" style="display: none;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h3>Feitiços e Rituais Registrados</h3>
-                <button class="btn btn-primary" id="btn-new-spell">+ Nova Magia</button>
+                <button class="btn btn-primary" id="btn-new-spell">+ Novo registro</button>
               </div>
               <div class="spells-grid" id="spells-grid"></div>
             </div>
@@ -463,11 +550,70 @@
             <div class="moodboard-header">
               <div>
                 <h2>Mural Visual de Estética</h2>
-                <p style="color: var(--text-muted); font-size: 0.88rem;">Imagens, referências visuais e conceito de arte para seu mundo.</p>
+                <p>Arraste o fundo para navegar · Espaço + arrastar também move o canvas · Rodinha para zoom</p>
               </div>
-              <button class="btn btn-primary" id="btn-add-moodboard">+ Adicionar Imagem</button>
+              <button class="btn btn-primary" id="btn-add-moodboard">+ Adicionar imagem</button>
             </div>
-            <div class="moodboard-grid" id="moodboard-grid"></div>
+            <div class="moodboard-grid" id="moodboard-grid" role="application" aria-label="Canvas infinito do Mural de Estética" tabindex="0">
+              <div class="moodboard-world" id="moodboard-world"></div>
+              <div class="moodboard-snap-guides" id="moodboard-snap-guides" aria-hidden="true"><i class="moodboard-snap-guide-x"></i><i class="moodboard-snap-guide-y"></i></div>
+              <div class="moodboard-empty-dropzone" id="moodboard-empty-state">
+                <div class="moodboard-empty-icon" aria-hidden="true">↧</div>
+                <h2>Arraste imagens para este espaço</h2>
+                <p>Solte referências em qualquer ponto. Arraste o fundo para navegar e use a rodinha para aproximar ou afastar.</p>
+              </div>
+            </div>
+            <div class="moodboard-toolbar" aria-label="Controles do canvas">
+              <button type="button" class="btn-icon" id="btn-moodboard-zoom-out" aria-label="Diminuir zoom" title="Diminuir zoom">−</button>
+              <span id="moodboard-zoom-level" class="moodboard-zoom-level">100%</span>
+              <button type="button" class="btn-icon" id="btn-moodboard-zoom-in" aria-label="Aumentar zoom" title="Aumentar zoom">+</button>
+              <span class="moodboard-toolbar-divider"></span>
+              <button type="button" class="btn btn-ghost moodboard-snap-toggle" id="btn-moodboard-snap" aria-label="Alinhamento magnético" aria-pressed="true" title="Alinhamento magnético ligado"><img src="./assets/moodboard-alignment-link.png" alt="" aria-hidden="true"></button>
+              <button type="button" class="btn btn-ghost" id="btn-moodboard-reset-view">Centralizar</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-audio">
+          <div class="audio-pad-view">
+            <header class="audio-page-header">
+              <div>
+                <span class="audio-page-kicker">FERRAMENTAS DE SESSÃO</span>
+                <h2>Pad de Áudio</h2>
+                <p>Use sons incluídos no Scryba ou adicione seus próprios arquivos para ambientar a sessão.</p>
+              </div>
+              <label class="audio-volume-control" for="audio-master-volume"><span>Volume geral</span><input id="audio-master-volume" type="range" min="0" max="100" value="65"><output id="audio-volume-value">65%</output></label>
+            </header>
+            <div class="audio-category-grid">
+              <section class="audio-category-card" data-audio-panel="music">
+                <header class="audio-category-header">
+                  <div class="audio-category-symbol audio-music-symbol" aria-hidden="true">♫</div>
+                  <div><span class="audio-category-kicker">AMBIENTAÇÃO</span><h3>Músicas</h3><p>As faixas selecionadas tocam em loop. Solte arquivos ou pastas aqui para adicioná-los.</p></div>
+                  <button type="button" class="btn btn-primary audio-add-button" data-audio-add="music">+ Adicionar música</button>
+                </header>
+                <p class="audio-drop-status" id="audio-music-drop-status" aria-live="polite"></p>
+                <ol class="audio-track-list" id="audio-music-list"></ol>
+              </section>
+              <section class="audio-category-card" data-audio-panel="effects">
+                <header class="audio-category-header">
+                  <div class="audio-category-symbol audio-effects-symbol" aria-hidden="true">◖</div>
+                  <div><span class="audio-category-kicker">AÇÃO & ATMOSFERA</span><h3>Efeitos sonoros</h3><p>Toque sons sob demanda. Solte arquivos ou pastas aqui para adicioná-los.</p></div>
+                  <button type="button" class="btn btn-primary audio-add-button" data-audio-add="effects">+ Adicionar efeito</button>
+                </header>
+                <p class="audio-drop-status" id="audio-effects-drop-status" aria-live="polite"></p>
+                <ol class="audio-track-list" id="audio-effects-list"></ol>
+              </section>
+            </div>
+            <section class="audio-player" aria-label="Controles de reprodução">
+              <div class="audio-player-track"><span class="audio-player-eyebrow">TOCANDO AGORA</span><strong id="audio-current-track">Escolha uma música</strong></div>
+              <div class="audio-player-controls">
+                <button type="button" class="audio-control-button" id="audio-previous" aria-label="Faixa anterior" title="Faixa anterior">|◀</button>
+                <button type="button" class="audio-control-button audio-control-primary" id="audio-play-pause" aria-label="Tocar" title="Tocar"><svg class="audio-transport-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+                <button type="button" class="audio-control-button" id="audio-next" aria-label="Próxima faixa" title="Próxima faixa">▶|</button>
+                <button type="button" class="audio-control-button audio-control-repeat is-active" id="audio-repeat" aria-label="Repetir faixa: ativado" aria-pressed="true" title="Repetir faixa">↻</button>
+              </div>
+              <div class="audio-player-progress"><span id="audio-current-time">0:00</span><input id="audio-progress" type="range" min="0" max="1000" value="0" aria-label="Progresso da música"><span id="audio-duration">0:00</span></div>
+            </section>
           </div>
         </section>
 
@@ -476,13 +622,131 @@
           <div class="canvas-view">
             <!-- Barra Flutuante de Ferramentas do Canvas -->
             <div class="canvas-toolbar">
-              <button class="btn btn-primary" id="btn-add-node" style="padding: 5px 10px; font-size: 0.8rem;">+ Adicionar Nó</button>
-              <span style="font-size: 0.75rem; color: var(--text-muted);">Arraste os cartões para organizar conexões</span>
+              <button type="button" class="btn btn-primary" id="btn-add-node">+ Novo cartão</button>
+              <button type="button" class="btn btn-ghost" id="btn-connect-nodes" aria-pressed="false">↗ Conectar</button>
+              <span class="canvas-toolbar-divider"></span>
+              <button type="button" class="btn btn-ghost canvas-snap-toggle" id="btn-canvas-snap" aria-label="Alinhamento magnético" aria-pressed="true" title="Alinhamento magnético ligado">⌖ Alinhar</button>
+              <span class="canvas-toolbar-divider"></span>
+              <button type="button" class="btn btn-ghost canvas-zoom-btn" id="btn-canvas-zoom-out" aria-label="Diminuir zoom">−</button>
+              <span id="canvas-zoom-level" class="canvas-zoom-level">100%</span>
+              <button type="button" class="btn btn-ghost canvas-zoom-btn" id="btn-canvas-zoom-in" aria-label="Aumentar zoom">+</button>
+              <button type="button" class="btn btn-ghost" id="btn-canvas-fit">Enquadrar</button>
             </div>
+            <div class="canvas-hint" id="canvas-hint">Arraste o fundo para navegar · role para aproximar · clique duplo em um cartão para editar</div>
 
-            <!-- Camada SVG de Conexões e Superfície de Nós -->
-            <svg class="connections-svg" id="connections-svg"></svg>
-            <div class="canvas-surface" id="canvas-surface"></div>
+            <!-- Área navegável com cartões e conexões -->
+            <div class="canvas-viewport" id="canvas-viewport">
+              <div class="canvas-world" id="canvas-world">
+                <svg class="connections-svg" id="connections-svg" viewBox="0 0 5000 4000" aria-label="Conexões do mapa mental"></svg>
+                <div class="canvas-surface" id="canvas-surface"></div>
+              </div>
+            </div>
+            <div class="canvas-snap-guides" id="canvas-snap-guides" aria-hidden="true"><i class="canvas-snap-guide-x"></i><i class="canvas-snap-guide-y"></i></div>
+            <div class="canvas-connection-popover" id="modal-connection" aria-hidden="true" role="dialog" aria-label="Configurações da conexão">
+              <div class="canvas-connection-popover-header">
+                <span>Conexão</span>
+                <button type="button" class="btn-icon" id="btn-close-connection-modal" aria-label="Fechar configurações">✕</button>
+              </div>
+              <form id="form-connection">
+                <label class="canvas-popover-label" for="connection-label">Texto</label>
+                <input id="connection-label" class="form-input" type="text" maxlength="100" placeholder="Ex.: é aliado de...">
+                <div class="canvas-popover-row">
+                  <span class="canvas-popover-label">Cor</span>
+                  <div class="canvas-color-picker" role="group" aria-label="Cor da conexão">
+                    <button type="button" class="canvas-color-swatch" data-color="#dc2626" aria-label="Vermelho" title="Vermelho"></button>
+                    <button type="button" class="canvas-color-swatch" data-color="#f97316" aria-label="Laranja" title="Laranja"></button>
+                    <button type="button" class="canvas-color-swatch" data-color="#facc15" aria-label="Amarelo" title="Amarelo"></button>
+                    <button type="button" class="canvas-color-swatch" data-color="#22c55e" aria-label="Verde" title="Verde"></button>
+                    <button type="button" class="canvas-color-swatch" data-color="#06b6d4" aria-label="Ciano" title="Ciano"></button>
+                    <button type="button" class="canvas-color-swatch" data-color="#2563eb" aria-label="Azul" title="Azul"></button>
+                    <button type="button" class="canvas-color-swatch" data-color="#a855f7" aria-label="Roxo" title="Roxo"></button>
+                    <button type="button" class="canvas-color-swatch" data-color="#ec4899" aria-label="Rosa" title="Rosa"></button>
+                    <button type="button" class="canvas-custom-color-button" id="btn-custom-connection-color" aria-label="Escolher cor personalizada" title="Cor personalizada">+</button>
+                    <input id="connection-color" class="canvas-custom-color-input" type="color" value="#dc2626" aria-label="Escolher cor personalizada" tabindex="-1">
+                  </div>
+                </div>
+                <div class="canvas-saved-colors-row">
+                  <div class="canvas-saved-colors" id="canvas-saved-colors" aria-label="Cores personalizadas salvas"></div>
+                  <button type="button" class="canvas-save-color-button" id="btn-save-connection-color">Salvar cor</button>
+                </div>
+                <button type="button" class="canvas-delete-saved-color" id="btn-delete-saved-color">Apagar cor</button>
+                <div class="canvas-popover-markers">
+                  <label><span>Início</span>
+                    <select id="connection-start-marker" class="form-select">
+                      <option value="none">Sem marcador</option><option value="arrow">Seta</option><option value="circle">Bolinha</option><option value="diamond">Losango</option><option value="square">Quadrado</option>
+                    </select>
+                  </label>
+                  <label><span>Final</span>
+                    <select id="connection-end-marker" class="form-select">
+                      <option value="none">Sem marcador</option><option value="arrow">Seta</option><option value="circle">Bolinha</option><option value="diamond">Losango</option><option value="square">Quadrado</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="canvas-connection-popover-actions">
+                  <button type="button" class="btn btn-ghost canvas-connection-delete" id="btn-delete-connection">Excluir linha</button>
+                  <button type="submit" class="btn btn-primary">Aplicar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-family-tree">
+          <div class="family-tree-view">
+            <div id="family-tree-gallery-view" class="family-tree-gallery-view">
+              <header class="organization-header">
+                <div>
+                  <span class="organization-kicker">Personagens & linhagens</span>
+                  <h2>Árvores genealógicas</h2>
+                  <p>Crie e organize diferentes famílias e linhagens da sua história.</p>
+                </div>
+                <button type="button" class="btn btn-primary" id="btn-create-family-tree">+ Nova árvore</button>
+              </header>
+              <div id="family-tree-gallery" class="family-tree-gallery"></div>
+            </div>
+            <div id="family-tree-detail-view" class="family-tree-detail-view" hidden>
+              <header class="organization-header">
+                <div class="family-tree-detail-heading">
+                  <button type="button" class="btn btn-ghost family-tree-back" id="btn-back-family-gallery">← Todas as árvores</button>
+                  <span class="organization-kicker">Personagens & linhagens</span>
+                  <h2 id="family-tree-title">Árvore genealógica</h2>
+                  <p>Organize pessoas, relações e gerações desta linhagem.</p>
+                </div>
+                <button type="button" class="btn btn-primary" id="btn-add-family-member">+ Adicionar pessoa</button>
+              </header>
+              <div class="family-tree-toolbar">
+                <span id="family-tree-count">0 pessoas</span>
+                <span class="family-tree-hint">Escolha até dois progenitores ao cadastrar cada pessoa.</span>
+              </div>
+              <div class="family-tree-scroll" id="family-tree-scroll">
+                <div class="family-tree-stage" id="family-tree-stage">
+                  <svg class="family-tree-lines" id="family-tree-lines" aria-hidden="true"></svg>
+                  <div class="family-tree-generations" id="family-tree-generations"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-timeline">
+          <div class="timeline-view">
+            <header class="organization-header">
+              <div>
+                <span class="organization-kicker">Cronologia do projeto</span>
+                <h2>Linha do tempo</h2>
+                <p>Veja os acontecimentos em ordem e acompanhe a evolução da sua narrativa.</p>
+              </div>
+              <button type="button" class="btn btn-primary" id="btn-add-timeline-event">+ Adicionar evento</button>
+            </header>
+            <div class="timeline-toolbar">
+              <div class="timeline-summary" id="timeline-summary">Nenhum evento cadastrado</div>
+              <label for="timeline-order">Ordem
+                <select class="form-select" id="timeline-order"><option value="asc">Mais antigo primeiro</option><option value="desc">Mais recente primeiro</option></select>
+              </label>
+            </div>
+            <div class="timeline-scroll" id="timeline-scroll">
+              <div class="timeline-track" id="timeline-track"></div>
+            </div>
           </div>
         </section>
 
@@ -511,23 +775,15 @@
               <label class="form-label">Tipo do Projeto *</label>
               <div class="type-selector-grid">
                 <div class="type-option-card selected book" data-type="book">
-                  <span class="type-icon">📖</span>
+                  <span class="type-icon scryba-icon scryba-book-icon" aria-hidden="true"></span>
                   <span class="type-title">Livro / Romance</span>
                   <span class="type-desc">Focado em escrita por capítulos, metas de palavras e atos dramáticos.</span>
                 </div>
                 <div class="type-option-card rpg" data-type="rpg">
-                  <span class="type-icon">🎲</span>
+                  <span class="type-icon scryba-icon scryba-rpg-icon" aria-hidden="true"></span>
                   <span class="type-title">Campanha de RPG</span>
                   <span class="type-desc">Focado em fichas de PJ/NPC, magias, sessões e worldbuilding.</span>
                 </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="proj-folder">Local da Pasta no Computador</label>
-              <div style="display: flex; gap: 8px;">
-                <input type="text" id="proj-folder" class="form-input" style="flex: 1;" placeholder="Ex: C:\MeusProjetos\Livro1">
-                <button type="button" class="btn btn-secondary" id="btn-browse-folder">Procurar...</button>
               </div>
             </div>
 
@@ -549,7 +805,7 @@
       <div class="modal-card modal-lg">
         <div class="modal-header">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 1.25rem;">📚</span>
+            <svg class="scryba-icon" aria-hidden="true"><use href="#icon-library"></use></svg>
             <h3>Meus Projetos</h3>
           </div>
           <button class="btn-icon" id="btn-close-projects-modal">✕</button>
@@ -557,14 +813,14 @@
         <div class="modal-body">
           <!-- Campo de Busca -->
           <div class="projects-modal-search">
-            <input type="text" id="projects-search-input" class="form-input" style="width: 100%;" placeholder="🔍 Buscar projeto por título...">
+            <input type="text" id="projects-search-input" class="form-input" style="width: 100%;" placeholder="Buscar projeto por título...">
           </div>
 
           <!-- Filtros por Categoria -->
           <div class="projects-filter-pills">
             <button class="project-filter-pill active" data-filter="all">Todos</button>
-            <button class="project-filter-pill" data-filter="book">📖 Livros</button>
-            <button class="project-filter-pill" data-filter="rpg">🎲 RPG</button>
+            <button class="project-filter-pill" data-filter="book"><span class="scryba-icon scryba-book-icon" aria-hidden="true"></span> Livros</button>
+            <button class="project-filter-pill" data-filter="rpg"><span class="scryba-icon scryba-rpg-icon" aria-hidden="true"></span> RPG</button>
           </div>
 
           <!-- Lista de Projetos Renderizada Dinamicamente -->
@@ -577,95 +833,94 @@
       </div>
     </div>
 
+    <div class="modal-overlay" id="modal-edit-project">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Editar projeto</h3>
+          <button type="button" class="btn-icon" id="btn-close-edit-project" aria-label="Fechar">×</button>
+        </div>
+        <form id="form-edit-project">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="edit-project-name">Nome do projeto</label>
+              <input type="text" id="edit-project-name" class="form-input" required maxlength="100">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-project-description">Descrição</label>
+              <textarea id="edit-project-description" class="form-textarea" maxlength="1000"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-edit-project">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar alterações</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Modal 2: Novo Personagem (Adaptativo) -->
     <div class="modal-overlay" id="modal-character">
-      <div class="modal-card">
+      <div class="modal-card modal-lg character-sheet-modal">
         <div class="modal-header">
           <h3>Ficha de Personagem</h3>
           <button class="btn-icon" id="btn-close-char-modal">✕</button>
         </div>
         <form id="form-character">
-          <div class="modal-body">
-            <div class="form-group">
-              <label class="form-label" for="char-name">Nome do Personagem *</label>
-              <input type="text" id="char-name" class="form-input" placeholder="Ex: Roland de Gilead" required>
+          <div class="modal-body character-sheet-modal-body">
+            <div class="sheet-toolbar">
+              <label class="form-label" for="char-system-select">Sistema da ficha</label>
+              <select id="char-system-select" class="form-select">
+                <option value="dnd5e">D&amp;D 5e</option>
+                <option value="daggerheart">Daggerheart</option>
+                <option value="ordem-paranormal">Ordem Paranormal RPG</option>
+                <option value="vampire-masquerade">Vampiro: A Máscara</option>
+              </select>
+              <span class="sheet-save-indicator" id="sheet-save-indicator" aria-live="polite">Informe o nome para salvar</span>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="char-role">Papel / Classe / Ocupação</label>
-              <input type="text" id="char-role" class="form-input" placeholder="Ex: Guerreiro Paladino / Antagonista">
-            </div>
-
-            <!-- Campos Específicos para RPG -->
-            <div id="char-rpg-fields">
+            <div class="sheet-common-fields">
               <div class="form-group">
-                <label class="form-label" for="char-subtype-select">Tipo no RPG</label>
+                <label class="form-label" for="char-name">Nome do Personagem *</label>
+                <input type="text" id="char-name" class="form-input" placeholder="Nome do personagem" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="char-role">Papel / Classe / Ocupação</label>
+                <input type="text" id="char-role" class="form-input" placeholder="Ex.: guerreiro, ocultista, artista">
+                <label class="form-label" for="char-subtype-select">Categoria</label>
                 <select id="char-subtype-select" class="form-select">
-                  <option value="pj">Personagem Jogador (PJ)</option>
-                  <option value="npc">Personagem do Mestre (NPC)</option>
+                  <option value="pj">Personagem jogador (PJ)</option>
+                  <option value="npc">Personagem do mestre (NPC)</option>
                 </select>
               </div>
 
-              <div class="form-group">
-                <label class="form-label">Atributos Básicos (D20 / Geral)</label>
-                <div class="rpg-stats-grid">
-                  <div>
-                    <label class="rpg-stat-label">FOR</label>
-                    <input type="number" id="stat-for" class="form-input" value="10" style="padding: 4px; text-align: center;">
-                  </div>
-                  <div>
-                    <label class="rpg-stat-label">DES</label>
-                    <input type="number" id="stat-des" class="form-input" value="10" style="padding: 4px; text-align: center;">
-                  </div>
-                  <div>
-                    <label class="rpg-stat-label">CON</label>
-                    <input type="number" id="stat-con" class="form-input" value="10" style="padding: 4px; text-align: center;">
-                  </div>
-                  <div>
-                    <label class="rpg-stat-label">INT</label>
-                    <input type="number" id="stat-int" class="form-input" value="10" style="padding: 4px; text-align: center;">
-                  </div>
-                  <div>
-                    <label class="rpg-stat-label">SAB</label>
-                    <input type="number" id="stat-sab" class="form-input" value="10" style="padding: 4px; text-align: center;">
-                  </div>
-                  <div>
-                    <label class="rpg-stat-label">CAR</label>
-                    <input type="number" id="stat-car" class="form-input" value="10" style="padding: 4px; text-align: center;">
+            <div class="form-group">
+              <label class="form-label">Imagem do Personagem</label>
+              <div class="char-avatar-upload-area">
+                <div
+                  class="char-avatar-preview"
+                  id="char-avatar-preview"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Selecionar imagem do personagem"
+                >
+                  <div class="upload-hint">
+                    <svg class="scryba-icon" aria-hidden="true"><use href="#icon-image"></use></svg>
+                    <span>Clique ou arraste uma imagem</span>
                   </div>
                 </div>
+                <div class="char-avatar-actions">
+                  <button type="button" class="btn btn-secondary" id="btn-upload-avatar">Escolher imagem</button>
+                  <button type="button" class="btn btn-ghost" id="btn-remove-avatar" style="display: none;">Remover imagem</button>
+                </div>
               </div>
-
-              <div class="form-group">
-                <label class="form-label" for="char-skills">Perícias Notáveis</label>
-                <input type="text" id="char-skills" class="form-input" placeholder="Ex: Atletismo +5, Percepção +4">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="char-equip">Equipamento & Armas</label>
-                <input type="text" id="char-equip" class="form-input" placeholder="Ex: Espada Longa, Cota de Malha">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="char-notes">Notas & Segredos do Mestre</label>
-                <textarea id="char-notes" class="form-textarea" placeholder="Fraquezas, motivações ocultas..."></textarea>
-              </div>
+              <label class="form-label" for="char-avatar-url">Ou informe uma URL</label>
+              <input type="url" id="char-avatar-url" class="form-input" placeholder="https://exemplo.com/imagem.png">
             </div>
 
-            <!-- Campos Específicos para Livro -->
-            <div id="char-book-fields" style="display: none;">
-              <div class="form-group">
-                <label class="form-label" for="char-arc">Arco do Personagem</label>
-                <textarea id="char-arc" class="form-textarea" placeholder="De onde ele parte e como ele se transforma ao longo da narrativa?"></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="char-details">Detalhes & Personalidade</label>
-                <textarea id="char-details" class="form-textarea" placeholder="Aparência física, manias, defeitos capitais e virtudes..."></textarea>
-              </div>
             </div>
-
-            <div class="form-group">
-              <label class="form-label" for="char-summary">Resumo Rápido</label>
+            <div id="character-sheet-fields" class="character-sheet-fields"></div>
+            <div class="form-group sheet-summary-field">
+              <label class="form-label" for="char-summary">Resumo rápido</label>
               <input type="text" id="char-summary" class="form-input" placeholder="Breve frase que define este personagem">
             </div>
 
@@ -678,48 +933,105 @@
       </div>
     </div>
 
+    <div class="modal-overlay" id="modal-character-details">
+      <div class="modal-card modal-lg character-details-card">
+        <div class="modal-header">
+          <h3 id="character-details-title">Ficha do Personagem</h3>
+          <div class="character-details-header-actions">
+            <button type="button" class="btn btn-secondary" id="btn-edit-character-details">Editar</button>
+            <button type="button" class="btn-icon" id="btn-close-character-details" aria-label="Fechar ficha">✕</button>
+          </div>
+        </div>
+        <div class="modal-body character-details-body" id="character-details-content"></div>
+      </div>
+    </div>
+
     <!-- Modal 3: Nova Magia -->
     <div class="modal-overlay" id="modal-spell">
       <div class="modal-card">
         <div class="modal-header">
-          <h3>Registrar Nova Magia</h3>
-          <button class="btn-icon" id="btn-close-spell-modal">✕</button>
+          <h3 id="spell-modal-title">Novo registro do Grimório</h3>
+          <button type="button" class="btn-icon" id="btn-close-spell-modal" aria-label="Fechar">✕</button>
         </div>
         <form id="form-spell">
           <div class="modal-body">
+            <input type="hidden" id="spell-id">
             <div class="form-group">
-              <label class="form-label" for="spell-name">Nome da Magia *</label>
+              <label class="form-label" for="spell-name">Nome *</label>
               <input type="text" id="spell-name" class="form-input" placeholder="Ex: Bola de Fogo" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spell-type">Tipo de registro</label>
+              <select id="spell-type" class="form-input">
+                <option value="magia">Magia</option>
+                <option value="ritual">Ritual</option>
+              </select>
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div class="form-group">
-                <label class="form-label" for="spell-cost">Custo / Mana</label>
+                <label class="form-label" for="spell-school">Escola / Tradição</label>
+                <input type="text" id="spell-school" class="form-input" maxlength="80" placeholder="Ex.: Evocação">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="spell-level">Círculo / Nível</label>
+                <input type="text" id="spell-level" class="form-input" maxlength="40" placeholder="Ex.: 3º círculo">
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="form-group">
+                <label class="form-label" for="spell-cost">Custo / Mana / Círculo</label>
                 <input type="text" id="spell-cost" class="form-input" placeholder="Ex: 3º Círculo / 20 PM">
               </div>
               <div class="form-group">
                 <label class="form-label" for="spell-range">Alcance</label>
                 <input type="text" id="spell-range" class="form-input" placeholder="Ex: 36 metros">
               </div>
+              <div class="form-group">
+                <label class="form-label" for="spell-duration">Duração</label>
+                <input type="text" id="spell-duration" class="form-input" maxlength="80" placeholder="Ex.: 1 minuto">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spell-casting-time">Tempo de conjuração</label>
+              <input type="text" id="spell-casting-time" class="form-input" maxlength="80" placeholder="Ex.: 1 ação">
             </div>
             <div class="form-group">
               <label class="form-label" for="spell-components">Componentes</label>
               <input type="text" id="spell-components" class="form-input" placeholder="Ex: Verbal, Somático, Enxofre">
             </div>
             <div class="form-group">
-              <label class="form-label" for="spell-effect">Efeito & Dano</label>
+              <label class="form-label" for="spell-effect">Efeito e regras</label>
               <textarea id="spell-effect" class="form-textarea" placeholder="O que o feitiço faz mecanicamente?"></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label" for="spell-lore">Lore / História da Magia</label>
+              <label class="form-label" for="spell-lore">Origem / Notas</label>
               <textarea id="spell-lore" class="form-textarea" placeholder="Origem mística ou citação de mago antigo..."></textarea>
+            </div>
+            <div class="form-group spell-concentration-field">
+              <label><input type="checkbox" id="spell-concentration"> Exige concentração</label>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-ghost" id="btn-cancel-spell-modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Registrar Magia</button>
+            <button type="submit" class="btn btn-primary" id="btn-save-spell">Salvar registro</button>
           </div>
         </form>
       </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-spell-detail" aria-hidden="true">
+      <article class="spell-detail-card" role="dialog" aria-modal="true" aria-labelledby="spell-detail-name">
+        <button type="button" class="btn-icon spell-detail-close" id="btn-close-spell-detail" aria-label="Fechar">✕</button>
+        <div class="spell-detail-topline"><span id="spell-detail-emblem" class="spell-detail-emblem"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg></span><span id="spell-detail-type" class="spell-detail-type">Magia</span></div>
+        <div class="spell-detail-heading">
+          <div><h2 id="spell-detail-name"></h2><p id="spell-detail-school"></p></div>
+          <span id="spell-detail-level" class="spell-detail-level"></span>
+        </div>
+        <div id="spell-detail-stats" class="spell-detail-stats"></div>
+        <div class="spell-detail-effect-wrap"><p id="spell-detail-effect" class="spell-detail-effect"></p></div>
+        <p id="spell-detail-lore" class="spell-detail-lore" hidden></p>
+        <div class="spell-detail-tags" id="spell-detail-tags"></div>
+      </article>
     </div>
 
     <!-- Modal 4: Adicionar Imagem ao Moodboard -->
@@ -737,9 +1049,10 @@
             </div>
             <div class="form-group">
               <label class="form-label" for="mb-url">URL da Web ou Arquivo do Computador *</label>
-              <div style="display: flex; gap: 8px;">
+              <div class="moodboard-file-drop-target" id="mb-file-drop-target">
                 <input type="text" id="mb-url" class="form-input" style="flex: 1;" placeholder="Cole a URL ou procure no PC" required>
                 <button type="button" class="btn btn-secondary" id="btn-browse-image">Procurar...</button>
+                <small>ou arraste uma imagem para esta área</small>
               </div>
             </div>
             <div class="form-group">
@@ -759,40 +1072,492 @@
     <div class="modal-overlay" id="modal-node">
       <div class="modal-card">
         <div class="modal-header">
-          <h3>Novo Nó no Diagrama</h3>
-          <button class="btn-icon" id="btn-close-node-modal">✕</button>
+          <h3 id="node-modal-title">Novo cartão no Canvas</h3>
+          <button type="button" class="btn-icon" id="btn-close-node-modal" aria-label="Fechar">✕</button>
         </div>
         <form id="form-node">
           <div class="modal-body">
+            <input type="hidden" id="node-id">
             <div class="form-group">
-              <label class="form-label" for="node-label">Nome do Nó *</label>
+              <label class="form-label" for="node-label">Título *</label>
               <input type="text" id="node-label" class="form-input" placeholder="Ex: Batalha de Três Rios" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="node-type">Categoria do Nó</label>
+              <label class="form-label" for="node-type">Tipo de cartão</label>
               <select id="node-type" class="form-select">
                 <option value="personagem">Personagem</option>
                 <option value="cidade">Cidade / Local</option>
                 <option value="magia">Artefato / Magia</option>
                 <option value="evento">Evento da Trama</option>
+                <option value="grupo">Grupo / Facção</option>
+                <option value="nota">Nota</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label" for="node-desc">Breve Descrição</label>
-              <input type="text" id="node-desc" class="form-input" placeholder="Relação ou contexto">
+              <label class="form-label" for="node-desc">Conteúdo</label>
+              <textarea id="node-desc" class="form-textarea" rows="5" placeholder="Adicione detalhes, contexto e ideias."></textarea>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-ghost" id="btn-cancel-node-modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Inserir Nó</button>
+            <button type="submit" class="btn btn-primary" id="btn-save-node">Adicionar cartão</button>
           </div>
         </form>
       </div>
     </div>
 
+    <div class="modal-overlay" id="modal-planner-act">
+      <div class="modal-card planner-act-modal">
+        <div class="modal-header">
+          <h3 id="planner-act-modal-title">Novo ato</h3>
+          <button type="button" class="btn-icon" id="btn-close-planner-act" aria-label="Fechar">✕</button>
+        </div>
+        <form id="form-planner-act">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="planner-act-name" id="planner-act-name-label">Nome do ato *</label>
+              <input id="planner-act-name" class="form-input" type="text" maxlength="100" placeholder="Ex.: Ato I — O chamado" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="planner-act-desc">Resumo do arco</label>
+              <textarea id="planner-act-desc" class="form-textarea" rows="5" maxlength="2000" placeholder="Descreva os acontecimentos e a transformação deste ato."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-planner-act">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="btn-save-planner-act">Salvar ato</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-planner-chapter">
+      <div class="modal-card planner-act-modal planner-chapter-modal">
+        <div class="modal-header">
+          <h3 id="planner-chapter-modal-title">Planejar capítulo</h3>
+          <button type="button" class="btn-icon" id="btn-close-planner-chapter" aria-label="Fechar">✕</button>
+        </div>
+        <form id="form-planner-chapter">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="planner-chapter-name" id="planner-chapter-name-label">Título do capítulo *</label>
+              <input id="planner-chapter-name" class="form-input" type="text" maxlength="120" placeholder="Ex.: O chamado na floresta" required>
+            </div>
+            <div class="form-group planner-chapter-goal-field">
+              <label class="form-label" for="planner-chapter-goal" id="planner-chapter-goal-label">Meta de palavras para este capítulo</label>
+              <input id="planner-chapter-goal" class="form-input" type="number" min="1" step="1" placeholder="Ex.: 2.500">
+              <small>A meta deste planejamento é independente do texto escrito no Editor.</small>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="planner-chapter-plan" id="planner-chapter-plan-label">O que deve acontecer neste capítulo?</label>
+              <textarea id="planner-chapter-plan" class="form-textarea" rows="8" maxlength="10000" placeholder="Anote cenas, acontecimentos, revelações e mudanças importantes."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-planner-chapter">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="btn-save-planner-chapter">Salvar planejamento</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-planner-goal">
+      <div class="modal-card planner-action-modal">
+        <div class="modal-header">
+          <h3>Ajustar meta do manuscrito</h3>
+          <button type="button" class="btn-icon" id="btn-close-planner-goal" aria-label="Fechar">✕</button>
+        </div>
+        <form id="form-planner-goal">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="planner-goal-input">Meta total de palavras</label>
+              <input id="planner-goal-input" class="form-input" type="number" min="1" step="1" required>
+              <small class="planner-modal-hint">O progresso considera o texto escrito nos capítulos do Editor.</small>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-planner-goal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar meta</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-planner-genre">
+      <div class="modal-card planner-action-modal">
+        <div class="modal-header">
+          <h3 id="planner-genre-modal-title">Adicionar gênero literário</h3>
+          <button type="button" class="btn-icon" id="btn-close-planner-genre" aria-label="Fechar">✕</button>
+        </div>
+        <form id="form-planner-genre">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label" for="planner-genre-input" id="planner-genre-label">Gênero literário</label>
+              <input id="planner-genre-input" class="form-input" type="text" maxlength="60" placeholder="Ex.: Fantasia, romance, ficção científica" required>
+              <small class="planner-modal-hint" id="planner-genre-hint">Cadastre um ou mais gêneros que descrevem sua obra.</small>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="btn-cancel-planner-genre">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="btn-save-planner-genre">Adicionar gênero</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-world-topic" aria-hidden="true">
+      <div class="modal-card world-topic-modal" role="dialog" aria-modal="true" aria-labelledby="world-topic-modal-title">
+        <div class="modal-header">
+          <div>
+            <h3 id="world-topic-modal-title">Tópico</h3>
+            <p id="world-topic-modal-description" class="world-topic-modal-description"></p>
+          </div>
+          <button type="button" class="btn-icon" id="btn-close-world-topic" aria-label="Fechar">✕</button>
+        </div>
+        <div class="world-topic-modal-body">
+            <div id="world-topic-gallery-view" class="world-topic-gallery-view">
+              <div class="world-topic-gallery-toolbar">
+                <div>
+                  <h4>Galeria de itens</h4>
+                  <p>Explore e organize as ideias deste tópico.</p>
+                </div>
+                <button type="button" class="btn btn-primary" id="btn-new-world-topic-entry">+ Criar item</button>
+              </div>
+              <div id="world-topic-entry-list" class="world-topic-entry-list"></div>
+            </div>
+            <div id="world-topic-editor-view" class="world-topic-editor-view" hidden>
+              <button type="button" class="world-topic-back-button" id="btn-back-world-topic-gallery">← Voltar à galeria</button>
+              <div class="world-topic-entry-form">
+            <input type="hidden" id="world-topic-entry-id">
+            <div class="form-group">
+              <label class="form-label" for="world-topic-entry-title">Nome do item *</label>
+              <input id="world-topic-entry-title" class="form-input" type="text" maxlength="120" placeholder="Ex.: Reino de Valedouro" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="world-topic-entry-notes">Detalhes</label>
+              <textarea id="world-topic-entry-notes" class="form-textarea" rows="4" maxlength="10000" placeholder="Descreva esta região, povo, tradição ou ideia..."></textarea>
+            </div>
+            <div class="world-topic-entry-actions">
+              <button type="button" class="btn btn-ghost" id="btn-cancel-world-topic-entry" hidden>Cancelar edição</button>
+                <button type="button" class="btn btn-primary" id="btn-save-world-topic-entry">Adicionar item</button>
+            </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-settings" aria-hidden="true">
+      <section class="modal-card settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <header class="modal-header">
+          <div><h3 id="settings-title">Configurações</h3><p>Personalize a aparência e o comportamento do Scryba.</p></div>
+          <button type="button" class="btn-icon" id="btn-close-settings" aria-label="Fechar configurações">✕</button>
+        </header>
+        <div class="modal-body settings-modal-body">
+          <div id="settings-main-content" class="settings-main-content">
+          <div class="settings-row settings-storage-row">
+          <span><strong>Pasta de armazenamento</strong><small>O Scryba cria uma pasta com o nome de cada projeto neste local e a renomeia junto com o projeto. Ao trocar, os projetos atuais são copiados para o novo local.</small><code id="settings-storage-path">Carregando localização…</code><small id="settings-storage-status" role="status" aria-live="polite"></small></span>
+            <button type="button" class="btn btn-secondary" id="btn-change-storage-location">Trocar pasta</button>
+          </div>
+          <label class="settings-row" for="settings-app-theme">
+            <span><strong>Tema do aplicativo</strong><small>Altera as cores das telas e dos painéis.</small></span>
+            <select class="form-select" id="settings-app-theme">
+              <option value="dark">Escuro Scryba</option>
+              <option value="light">Claro</option>
+              <option value="cyberpunk">Cyberpunk</option>
+              <option value="medieval">Medieval</option>
+              <option value="witchcraft">Bruxaria</option>
+              <option value="vampire">Vampiro</option>
+              <option value="steampunk">Steampunk</option>
+            </select>
+          </label>
+          <label class="settings-row" for="settings-editor-font">
+            <span><strong>Fonte padrão do editor</strong><small>Aplicada imediatamente ao texto de escrita.</small></span>
+            <select class="form-select" id="settings-editor-font">
+              <option value="lora">Lora</option><option value="inter">Inter</option><option value="atkinson">Atkinson Hyperlegible</option><option value="opendyslexic">OpenDyslexic</option><option value="lexend">Lexend</option><option value="merriweather">Merriweather</option><option value="playfair">Playfair Display</option><option value="eb-garamond">EB Garamond</option><option value="cormorant">Cormorant Garamond</option><option value="cinzel">Cinzel</option><option value="montserrat">Montserrat</option><option value="nunito">Nunito</option><option value="roboto">Roboto</option><option value="open-sans">Open Sans</option><option value="fira-sans">Fira Sans</option><option value="georgia">Georgia</option><option value="arial">Arial</option><option value="verdana">Verdana</option><option value="trebuchet">Trebuchet MS</option><option value="times">Times New Roman</option><option value="courier">Courier New</option><option value="roboto-mono">Roboto Mono</option>
+            </select>
+          </label>
+          <label class="settings-row settings-checkbox-row" for="settings-collapse-sidebar">
+            <span><strong>Iniciar com o menu recolhido</strong><small>Economiza espaço horizontal ao abrir um projeto.</small></span>
+            <input id="settings-collapse-sidebar" type="checkbox">
+          </label>
+          <button type="button" class="btn btn-secondary settings-about-open" id="btn-open-about">Sobre o aplicativo <span aria-hidden="true">→</span></button>
+          <button type="button" class="btn btn-secondary settings-tutorial-open" id="btn-open-tutorial">Tutorial de uso <span aria-hidden="true">→</span></button>
+          <button type="button" class="btn btn-ghost settings-reset-button" id="btn-reset-settings">Restaurar configurações padrão</button>
+          </div>
+          <section class="settings-about-view" id="settings-about-view" aria-labelledby="settings-about-title" hidden>
+            <header class="settings-about-hero">
+              <span class="settings-about-emblem" aria-hidden="true"></span>
+              <div><span class="settings-about-kicker">ESTÚDIO CRIATIVO</span><h2 id="settings-about-title">Sobre o Scryba</h2></div>
+            </header>
+            <p class="settings-about-description">O Scryba reúne em um só lugar as ferramentas para escrever histórias e preparar campanhas de RPG.</p>
+            <div class="settings-about-version"><span>Versão instalada</span><strong id="settings-about-version">Consultando…</strong></div>
+            <div class="settings-about-features">
+              <article><strong>Escrita & planejamento</strong><p>Editor de capítulos, anotações, metas e planejamento da narrativa.</p></article>
+              <article><strong>Criação de mundos</strong><p>Personagens, fichas, magias, mapas mentais e mural de referências.</p></article>
+              <article><strong>Mesa de RPG</strong><p>Rolagem de dados, linha do tempo e pad de áudio para ambientar sessões.</p></article>
+            </div>
+            <p class="settings-about-storage">Os projetos ficam organizados na pasta de armazenamento escolhida nas configurações.</p>
+            <button type="button" class="btn btn-secondary settings-about-back" id="btn-back-about">← Voltar às configurações</button>
+          </section>
+          <section class="settings-tutorial-view" id="settings-tutorial-view" aria-labelledby="settings-tutorial-title" hidden>
+            <header class="settings-tutorial-heading">
+              <div><span class="settings-about-kicker">GUIA DO SCRYBA</span><h2 id="settings-tutorial-title">Tutorial de uso</h2><p>Escolha um assunto para ver o passo a passo. Você pode abrir ou recolher todas as seções.</p></div>
+              <button type="button" class="btn btn-secondary" id="btn-back-tutorial">← Configurações</button>
+            </header>
+            <div class="settings-tutorial-controls">
+              <button type="button" class="btn btn-ghost" data-tutorial-action="expand">Abrir todas</button>
+              <button type="button" class="btn btn-ghost" data-tutorial-action="collapse">Recolher todas</button>
+            </div>
+            <div class="settings-tutorial-chapters">
+              <details open>
+                <summary>1. Começando: tela inicial e projetos</summary>
+                <div class="tutorial-chapter-content">
+                  <p>A tela inicial reúne seus projetos. Para começar, clique em <strong>+ Novo Projeto</strong>, escolha o tipo <strong>Livro</strong> ou <strong>RPG</strong>, informe os dados solicitados e clique em <strong>Criar Projeto</strong>.</p>
+                  <p>Na primeira execução, escolha a pasta de armazenamento quando o Scryba solicitar. O programa cria nela uma pasta para cada projeto.</p>
+                  <p>Abra um projeto pela opção <strong>Abrir Projeto</strong> no card. Para alterar seus dados, use o botão de edição; para removê-lo, use excluir e confirme a ação.</p>
+                  <p>O projeto aberto aparece no topo da sidebar. A opção <strong>Início</strong> ou o logo retorna à tela inicial.</p>
+                </div>
+              </details>
+              <details>
+                <summary>2. Navegação e configurações</summary>
+                <div class="tutorial-chapter-content">
+                  <p>Use a sidebar para alternar entre Editor, Anotações, Planejador, Personagens, Mundo & Magias, Mural de Estética, Mapa Mental e as ferramentas de organização. O <strong>Pad de Áudio</strong> aparece em projetos RPG.</p>
+                  <p>Clique na seta do cabeçalho da sidebar para recolhê-la ou expandi-la. Os ícones continuam disponíveis quando ela está recolhida.</p>
+                  <p>Abra <strong>Configurações</strong> pela engrenagem. Lá você pode escolher o tema, fonte do editor, pasta de armazenamento e se a sidebar inicia recolhida. A troca de tema atualiza a aparência das telas.</p>
+                </div>
+              </details>
+              <details>
+                <summary>3. Escrever e organizar capítulos</summary>
+                <div class="tutorial-chapter-content">
+                  <p>No <strong>Editor de Escrita</strong>, escolha um capítulo na lista lateral ou clique em <strong>+ Novo</strong>. Edite o título e escreva na área central. Arraste uma imagem do computador para o texto para inseri-la.</p>
+                  <p>Arraste os capítulos pela lista para mudar a ordem. Clique no selo de status para alternar entre <strong>Rascunho</strong>, <strong>Em Revisão</strong> e <strong>Finalizado</strong>.</p>
+                  <p>O botão flutuante de três linhas abre as ferramentas de formatação. Selecione o trecho desejado e aplique negrito, itálico, sublinhado, títulos, listas e outras opções do painel.</p>
+                  <p>O status no rodapé informa quando as alterações foram salvas. Use <kbd>Ctrl</kbd> + <kbd>S</kbd> para salvar rapidamente. O botão <strong>Histórico</strong> permite consultar e restaurar versões anteriores.</p>
+                  <p>Para exportar, use os controles de exportação do editor e escolha o formato disponível, como Word ou PDF.</p>
+                </div>
+              </details>
+              <details>
+                <summary>4. Anotações e planejamento</summary>
+                <div class="tutorial-chapter-content">
+                  <p><strong>Anotações Rápidas</strong> serve para ideias e lembretes separados do texto dos capítulos. Crie uma nota, dê um título e escreva seu conteúdo; selecione uma nota na lista para continuar editando.</p>
+                  <p>No <strong>Planejador</strong>, defina metas e organize atos e capítulos planejados. O progresso de palavras usa o texto escrito no Editor; o planejamento permanece separado do manuscrito.</p>
+                </div>
+              </details>
+              <details>
+                <summary>5. Personagens e fichas</summary>
+                <div class="tutorial-chapter-content">
+                  <p>Na tela <strong>Personagens</strong>, clique em <strong>+ Novo Personagem</strong>. Preencha nome, papel e resumo, escolha o tipo de ficha/sistema quando aplicável e adicione um retrato pelo seletor ou arrastando uma imagem para a área de retrato.</p>
+                  <p>Abra um card para ler a ficha. Use <strong>Editar</strong> para alterar seus dados. No menu do card há ações de organização, como copiar, duplicar ou excluir.</p>
+                  <p>Os campos da ficha variam conforme o sistema selecionado. Salve as alterações para atualizar a galeria do projeto.</p>
+                </div>
+              </details>
+              <details>
+                <summary>6. Mundo, tópicos e magias</summary>
+                <div class="tutorial-chapter-content">
+                  <p>Em <strong>Mundo & Magias</strong>, use as abas para alternar entre os tópicos de worldbuilding e o grimório. Crie tópicos para registrar lugares, grupos, eventos e outras informações do cenário.</p>
+                  <p>No grimório, crie uma magia e preencha os dados relevantes, incluindo tempo de conjuração, alcance, componentes, duração, efeito e lore. Clique no card para ver os detalhes; use editar ou excluir para mantê-lo atualizado.</p>
+                </div>
+              </details>
+              <details>
+                <summary>7. Mural de Estética</summary>
+                <div class="tutorial-chapter-content">
+                  <p>Use <strong>+ Adicionar imagem</strong> ou arraste imagens do computador para o mural. Arraste um item para posicioná-lo e use as alças para redimensionar.</p>
+                  <p>O alinhamento magnético ajuda a alinhar itens ao mover e redimensionar. Os controles no rodapé aproximam, afastam e centralizam a visualização. Arraste o fundo para navegar pelo mural e use a rodinha do mouse para ajustar o zoom.</p>
+                </div>
+              </details>
+              <details>
+                <summary>8. Mapa Mental</summary>
+                <div class="tutorial-chapter-content">
+                  <p>Clique em <strong>+ Novo cartão</strong> para criar um item. Mova e redimensione cartões para organizar as relações do cenário; o alinhamento magnético ajuda a posicioná-los.</p>
+                  <p>Ative <strong>Conectar</strong> e selecione os cartões para criar linhas. As conexões podem se prender às laterais, ao topo ou à base dos cartões. Use o zoom e <strong>Enquadrar</strong> para navegar pelo mapa.</p>
+                </div>
+              </details>
+              <details>
+                <summary>9. Pad de Áudio e dados de RPG</summary>
+                <div class="tutorial-chapter-content">
+                  <p>Abra <strong>Pad de Áudio</strong> pela sidebar. Na área <strong>Músicas</strong>, adicione arquivos para tocar a faixa escolhida em loop. Em <strong>Efeitos sonoros</strong>, toque sons sob demanda; efeitos diferentes podem se sobrepor.</p>
+                  <p>Você pode usar <strong>+ Adicionar</strong> ou arrastar arquivos e pastas para cada painel. O Scryba percorre as pastas e importa somente arquivos de áudio compatíveis; os arquivos aparecem na lista sem a estrutura de pastas. O volume geral fica no topo da tela.</p>
+                  <p>O botão flutuante de dados fica disponível em projetos RPG fora da tela inicial. Clique nos dados para selecionar quantidades, use <strong>Limpar</strong> para zerar a seleção e <strong>Rolar</strong> para ver o resultado. As duas rolagens mais recentes ficam no painel; após a terceira, aparece o histórico completo com os dados e resultados.</p>
+                </div>
+              </details>
+              <details>
+                <summary>10. Árvore genealógica e linha do tempo</summary>
+                <div class="tutorial-chapter-content">
+                  <p>Em <strong>Árvore Genealógica</strong>, crie uma árvore e adicione pessoas para organizar relações e gerações. Abra uma árvore da galeria para editar sua estrutura.</p>
+                  <p>Na <strong>Linha do Tempo</strong>, adicione acontecimentos com seus dados e ordene-os cronologicamente para acompanhar a sequência da narrativa ou campanha.</p>
+                </div>
+              </details>
+              <details>
+                <summary>11. Salvamento, versões e dicas rápidas</summary>
+                <div class="tutorial-chapter-content">
+                  <p>O Scryba salva as mudanças do projeto e mostra no rodapé do Editor o horário do último salvamento. <kbd>Ctrl</kbd> + <kbd>S</kbd> solicita um salvamento rápido de qualquer tela.</p>
+                  <p>Use <strong>Histórico</strong> no Editor para recuperar uma versão anterior se precisar desfazer mudanças mais antigas. Ao restaurar, confira o conteúdo recuperado antes de continuar.</p>
+                  <p>No texto do Editor, <kbd>Ctrl</kbd> + <kbd>B</kbd> aplica negrito, <kbd>Ctrl</kbd> + <kbd>I</kbd> itálico e <kbd>Ctrl</kbd> + <kbd>U</kbd> sublinhado. Os mesmos atalhos funcionam com <kbd>⌘</kbd> no macOS.</p>
+                  <p>Se não encontrar uma ferramenta, confira primeiro o projeto aberto e a tela atual. Recursos de RPG, como dados e Pad de Áudio, ficam disponíveis em projetos RPG.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-overlay" id="modal-family-tree" aria-hidden="true">
+      <section class="modal-card organization-modal family-tree-create-modal" role="dialog" aria-modal="true" aria-labelledby="family-tree-modal-title">
+        <header class="modal-header"><h3 id="family-tree-modal-title">Criar árvore genealógica</h3><button type="button" class="btn-icon" id="btn-close-family-tree" aria-label="Fechar">✕</button></header>
+        <form id="form-family-tree">
+          <div class="modal-body">
+            <label class="form-group"><span class="form-label">Nome da árvore *</span><input class="form-input" id="family-tree-name" maxlength="100" required placeholder="Ex.: Casa Valemont"></label>
+            <label class="form-group family-tree-description-field"><span class="form-label">Descrição</span><textarea class="form-textarea" id="family-tree-description" rows="3" maxlength="500" placeholder="Uma nota para identificar esta linhagem"></textarea></label>
+          </div>
+          <footer class="modal-footer"><button type="button" class="btn btn-ghost" id="btn-cancel-family-tree">Cancelar</button><button type="submit" class="btn btn-primary">Criar árvore</button></footer>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-overlay" id="modal-family-member" aria-hidden="true">
+      <section class="modal-card organization-modal" role="dialog" aria-modal="true" aria-labelledby="family-member-modal-title">
+        <header class="modal-header"><h3 id="family-member-modal-title">Adicionar pessoa</h3><button type="button" class="btn-icon" id="btn-close-family-member" aria-label="Fechar">✕</button></header>
+        <form id="form-family-member">
+          <input type="hidden" id="family-member-id">
+          <div class="modal-body organization-form-grid">
+            <label class="form-group"><span class="form-label">Nome *</span><input class="form-input" id="family-member-name" maxlength="100" required placeholder="Nome da pessoa"></label>
+            <label class="form-group"><span class="form-label">Papel / relação</span><input class="form-input" id="family-member-role" maxlength="80" placeholder="Ex.: matriarca, herdeiro"></label>
+            <label class="form-group"><span class="form-label">Nascimento / ano</span><input class="form-input" id="family-member-birth" maxlength="40" placeholder="Ex.: 1248 ou 03/05/1248"></label>
+            <label class="form-group"><span class="form-label">Falecimento</span><input class="form-input" id="family-member-death" maxlength="40" placeholder="Opcional"></label>
+            <div class="family-avatar-field organization-form-wide">
+              <span class="form-label">Retrato da pessoa</span>
+              <div class="family-avatar-drop" id="family-avatar-drop" role="button" tabindex="0" aria-label="Selecionar ou soltar imagem de retrato">
+                <img id="family-avatar-preview" alt="Prévia do retrato" hidden>
+                <div id="family-avatar-placeholder"><svg class="scryba-icon" aria-hidden="true"><use href="#icon-user"></use></svg><strong>Adicionar retrato</strong><small>Clique ou arraste uma imagem para cá</small></div>
+              </div>
+              <input id="family-member-avatar-input" type="file" accept="image/*" hidden>
+              <div class="family-avatar-controls">
+                <button type="button" class="btn btn-secondary" id="btn-select-family-avatar">Escolher imagem</button>
+                <button type="button" class="btn btn-ghost" id="btn-remove-family-avatar">Remover retrato</button>
+                <small>O arquivo é otimizado e salvo no projeto.</small>
+              </div>
+            </div>
+            <fieldset class="family-parent-fieldset"><legend class="form-label">Progenitores</legend><div id="family-parent-options" class="family-parent-options"></div></fieldset>
+            <label class="form-group organization-form-wide"><span class="form-label">Notas</span><textarea class="form-textarea" id="family-member-notes" rows="3" maxlength="2000" placeholder="História, relações ou detalhes importantes"></textarea></label>
+          </div>
+          <footer class="modal-footer"><button type="button" class="btn btn-ghost" id="btn-cancel-family-member">Cancelar</button><button type="submit" class="btn btn-primary" id="btn-save-family-member">Salvar pessoa</button></footer>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-overlay" id="modal-timeline-event" aria-hidden="true">
+      <section class="modal-card organization-modal" role="dialog" aria-modal="true" aria-labelledby="timeline-event-modal-title">
+        <header class="modal-header"><h3 id="timeline-event-modal-title">Adicionar evento</h3><button type="button" class="btn-icon" id="btn-close-timeline-event" aria-label="Fechar">✕</button></header>
+        <form id="form-timeline-event">
+          <input type="hidden" id="timeline-event-id">
+          <div class="modal-body organization-form-grid">
+            <label class="form-group organization-form-wide"><span class="form-label">Evento *</span><input class="form-input" id="timeline-event-title" maxlength="120" required placeholder="Ex.: Fundação do reino"></label>
+            <label class="form-group"><span class="form-label">Data / ano *</span><input class="form-input" id="timeline-event-date" maxlength="60" required placeholder="Ex.: 1248, Ano 31 ou 03/05/1248"></label>
+            <label class="form-group"><span class="form-label">Categoria</span><input class="form-input" id="timeline-event-category" maxlength="50" placeholder="Ex.: guerra, nascimento"></label>
+            <label class="form-group"><span class="form-label">Local</span><input class="form-input" id="timeline-event-location" maxlength="100" placeholder="Onde aconteceu"></label>
+            <label class="form-group"><span class="form-label">Personagens envolvidos</span><input class="form-input" id="timeline-event-people" maxlength="180" placeholder="Separe nomes por vírgula"></label>
+            <label class="form-group organization-form-wide"><span class="form-label">Descrição</span><textarea class="form-textarea" id="timeline-event-description" rows="4" maxlength="3000" placeholder="O que aconteceu e quais foram as consequências?"></textarea></label>
+          </div>
+          <footer class="modal-footer"><button type="button" class="btn btn-ghost" id="btn-cancel-timeline-event">Cancelar</button><button type="submit" class="btn btn-primary" id="btn-save-timeline-event">Salvar evento</button></footer>
+        </form>
+      </section>
+    </div>
+
+  </div>
+
+  <div class="modal-overlay" id="modal-publication-export" aria-hidden="true">
+    <section class="modal-card publication-export-modal" role="dialog" aria-modal="true" aria-labelledby="publication-export-title">
+      <header class="modal-header"><div><h3 id="publication-export-title">Preparar livro para publicação</h3><p id="publication-export-scope">Defina o acabamento do arquivo antes de exportar.</p></div><button type="button" class="btn-icon" id="btn-close-publication-export" aria-label="Fechar">×</button></header>
+      <form id="form-publication-export">
+        <div class="modal-body publication-export-body">
+          <section class="publication-export-section"><h4>Formato e tipografia</h4><div class="publication-export-grid">
+            <label class="form-group"><span class="form-label">Formato da página</span><select class="form-select" id="publication-trim"><option value="a5">A5 · 14,8 × 21 cm</option><option value="six-by-nine">6 × 9 pol · 15,24 × 22,86 cm</option><option value="five-five-by-eight-five">5,5 × 8,5 pol · 13,97 × 21,59 cm</option><option value="a4">A4 · 21 × 29,7 cm</option></select></label>
+            <label class="form-group"><span class="form-label">Fonte do miolo</span><select class="form-select" id="publication-font"><option value="literary">Literária (Georgia)</option><option value="garamond">Garamond</option><option value="times">Times New Roman</option><option value="arial">Arial</option><option value="dyslexic">OpenDyslexic</option></select></label>
+            <label class="form-group"><span class="form-label">Tamanho do corpo (pt)</span><select class="form-select" id="publication-font-size"><option>10</option><option>10.5</option><option selected>11</option><option>11.5</option><option>12</option></select></label>
+            <label class="form-group"><span class="form-label">Entrelinhas</span><select class="form-select" id="publication-leading"><option value="1.15">Compacta · 1,15</option><option value="1.35">Confortável · 1,35</option><option value="1.5" selected>Aberta · 1,5</option><option value="1.8">Manuscrito · 1,8</option></select></label>
+          </div></section>
+          <section class="publication-export-section"><h4>Página e navegação</h4><div class="publication-export-grid">
+            <label class="form-group"><span class="form-label">Margens (cm)</span><input class="form-input" id="publication-margin" type="number" min="1" max="4" step="0.1" value="2"></label>
+            <label class="form-group"><span class="form-label">Margem interna extra (cm)</span><input class="form-input" id="publication-gutter" type="number" min="0" max="2.5" step="0.1" value="0.5"></label>
+            <label class="publication-check"><input type="checkbox" id="publication-page-numbers" checked><span>Numerar páginas (começando no primeiro capítulo)</span></label>
+            <label class="publication-check"><input type="checkbox" id="publication-running-header" checked><span>Exibir título do livro no cabeçalho</span></label>
+            <label class="publication-check"><input type="checkbox" id="publication-toc" checked><span>Incluir sumário dos capítulos</span></label>
+            <label class="publication-check"><input type="checkbox" id="publication-chapter-break" checked><span>Começar cada capítulo em página nova</span></label>
+          </div></section>
+          <section class="publication-export-section publication-book-only"><h4>Elementos do livro</h4><div class="publication-export-grid">
+            <label class="form-group"><span class="form-label">Nome do autor</span><input class="form-input" id="publication-author" maxlength="120" placeholder="Opcional"></label>
+            <label class="form-group"><span class="form-label">Editora / selo</span><input class="form-input" id="publication-publisher" maxlength="120" placeholder="Opcional"></label>
+            <label class="form-group"><span class="form-label">Ano</span><input class="form-input" id="publication-year" maxlength="4" placeholder="2026"></label>
+            <label class="form-group"><span class="form-label">Subtítulo</span><input class="form-input" id="publication-subtitle" maxlength="160" placeholder="Opcional"></label>
+            <label class="form-group"><span class="form-label">Edição</span><input class="form-input" id="publication-edition" maxlength="50" placeholder="Ex.: 1ª edição"></label>
+            <label class="form-group"><span class="form-label">ISBN</span><input class="form-input" id="publication-isbn" maxlength="30" placeholder="Opcional"></label>
+            <label class="form-group publication-form-wide"><span class="form-label">Dedicatória</span><textarea class="form-textarea" id="publication-dedication" rows="2" maxlength="1000" placeholder="Opcional"></textarea></label>
+            <label class="form-group publication-form-wide"><span class="form-label">Epígrafe</span><textarea class="form-textarea" id="publication-epigraph" rows="2" maxlength="1500" placeholder="Opcional"></textarea></label>
+            <label class="form-group publication-form-wide"><span class="form-label">Direitos autorais</span><input class="form-input" id="publication-copyright" maxlength="240" placeholder="© 2026 Nome do autor. Todos os direitos reservados."></label>
+          </div><p class="publication-export-note">O PDF sai fechado para leitura e impressão; o DOCX continua editável e inclui um sumário que o Word pode atualizar ao abrir. A capa externa, sangria, ISBN, fontes licenciadas e perfis específicos ainda dependem das exigências da gráfica ou plataforma escolhida.</p></section>
+        </div>
+        <footer class="modal-footer"><button type="button" class="btn btn-ghost" id="btn-cancel-publication-export">Cancelar</button><button type="button" class="btn btn-secondary" id="btn-preview-publication">Pré-visualizar</button><button type="submit" class="btn btn-primary" id="btn-confirm-publication-export">Gerar arquivo</button></footer>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-overlay publication-preview-overlay" id="modal-publication-preview" aria-hidden="true">
+    <section class="publication-preview-modal" role="dialog" aria-modal="true" aria-labelledby="publication-preview-title">
+      <header><div><h3 id="publication-preview-title">Prévia da diagramação</h3><p>Confira a composição antes de gerar o arquivo.</p></div><button type="button" class="btn-icon" id="btn-close-publication-preview" aria-label="Fechar prévia">×</button></header>
+      <iframe id="publication-preview-frame" title="Prévia do livro diagramado" sandbox="allow-same-origin"></iframe>
+    </section>
+  </div>
+
+  <div class="modal-overlay" id="modal-save-history" aria-hidden="true">
+    <section class="modal-card save-history-modal" role="dialog" aria-modal="true" aria-labelledby="save-history-title">
+      <header class="modal-header">
+        <div><h3 id="save-history-title">Histórico de versões</h3><p>Recupere uma versão anterior deste projeto.</p></div>
+        <button type="button" class="btn-icon" id="btn-close-save-history" aria-label="Fechar histórico">×</button>
+      </header>
+      <div class="modal-body save-history-body" id="save-history-list" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <div class="dice-roller" id="dice-roller" hidden>
+    <section class="dice-roller-panel" id="dice-roller-panel" role="dialog" aria-modal="false" aria-labelledby="dice-roller-title" hidden>
+      <header class="dice-roller-header">
+        <div><span class="dice-roller-eyebrow">MESA DE JOGO</span><h2 id="dice-roller-title">Rolagem de dados</h2></div>
+        <button type="button" class="btn-icon" id="btn-dice-close" aria-label="Fechar rolagem de dados">×</button>
+      </header>
+      <div class="dice-roller-body">
+        <div class="dice-selection-heading"><span>Selecione seus dados</span><button type="button" class="dice-clear-button" id="btn-clear-dice">Limpar</button></div>
+        <div class="dice-quick-rolls" role="group" aria-label="Selecionar dados">
+          <button type="button" data-dice-sides="4" aria-label="Adicionar d4">d4<span class="dice-count" aria-live="polite">0</span></button>
+          <button type="button" data-dice-sides="6" aria-label="Adicionar d6">d6<span class="dice-count" aria-live="polite">0</span></button>
+          <button type="button" data-dice-sides="8" aria-label="Adicionar d8">d8<span class="dice-count" aria-live="polite">0</span></button>
+          <button type="button" data-dice-sides="10" aria-label="Adicionar d10">d10<span class="dice-count" aria-live="polite">0</span></button>
+          <button type="button" data-dice-sides="12" aria-label="Adicionar d12">d12<span class="dice-count" aria-live="polite">0</span></button>
+          <button type="button" data-dice-sides="20" aria-label="Adicionar d20">d20<span class="dice-count" aria-live="polite">0</span></button>
+          <button type="button" data-dice-sides="100" aria-label="Adicionar d100">d100<span class="dice-count" aria-live="polite">0</span></button>
+        </div>
+        <button type="button" class="btn btn-primary dice-roll-button" id="btn-roll-dice">Rolar</button>
+        <div class="dice-result" id="dice-result" aria-live="polite">
+          <span class="dice-result-label">Resultado</span><strong id="dice-result-total">—</strong><p id="dice-result-breakdown">Escolha os dados e role.</p>
+        </div>
+        <div class="dice-history-wrap"><h3>Rolagens recentes</h3><ol class="dice-history" id="dice-history"></ol><button type="button" class="dice-history-open" id="btn-open-dice-history" hidden>Ver histórico completo</button></div>
+      </div>
+    </section>
+    <section class="dice-history-dialog" id="dice-history-dialog" role="dialog" aria-modal="true" aria-labelledby="dice-history-title" hidden>
+      <div class="dice-history-card">
+        <header class="dice-roller-header"><div><span class="dice-roller-eyebrow">SESSÃO ATUAL</span><h2 id="dice-history-title">Histórico de rolagens</h2></div><button type="button" class="btn-icon" id="btn-close-dice-history" aria-label="Fechar histórico">×</button></header>
+        <div class="dice-history-dialog-body"><ol class="dice-history-full" id="dice-history-full"></ol></div>
+      </div>
+    </section>
+    <button type="button" class="dice-floating-button" id="btn-open-dice" aria-label="Abrir rolagem de dados" aria-controls="dice-roller-panel" aria-expanded="false" title="Rolar dados">
+      <svg class="scryba-icon" aria-hidden="true"><use href="#icon-d20"></use></svg><span class="dice-floating-label">Dados</span>
+    </button>
   </div>
 
   <!-- Scripts do Aplicativo -->
+  <script src="js/icons.js"></script>
+  <script src="js/sampleProjects.js"></script>
   <script src="js/state.js"></script>
   <script src="js/modules/projectManager.js"></script>
   <script src="js/modules/editor.js"></script>
@@ -802,6 +1567,10 @@
   <script src="js/modules/moodboard.js"></script>
   <script src="js/modules/diagram.js"></script>
   <script src="js/modules/planner.js"></script>
+  <script src="js/modules/familyTree.js"></script>
+  <script src="js/modules/timeline.js"></script>
+  <script src="js/modules/diceRoller.js"></script>
+  <script src="js/modules/audioPad.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@ const { execSync } = require('child_process');
 const pkgPath = path.join(__dirname, '..', 'package.json');
 const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 
-// Formato de versão: 0.X.0 -> incrementa o X (0.3 -> 0.4 -> 0.5...)
+// Incrementa a versão minor mantendo o major e zerando o patch (1.0.0 -> 1.1.0).
 const parts = pkg.version.split('.');
 let major = parseInt(parts[0], 10) || 0;
 let minor = parseInt(parts[1], 10) || 0;

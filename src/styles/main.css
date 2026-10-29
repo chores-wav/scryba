@@ -1,38 +1,57 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    DESIGN SYSTEM - SCRYBA (DARK MODE PURO - MINIMALISTA & ELEGANTE)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Fira+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Lexend:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Merriweather:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap');
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@5.3.0/latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@5.3.0/latin-700-normal.woff2') format('woff2');
+}
 
 :root {
   /* Fundo Dark Mode Puro (Preto e Grafite Profundo) */
-  --bg-app: #08090b;
-  --bg-home: #07080a;
-  --bg-sidebar: #0f1115;
-  --bg-card: #13151b;
-  --bg-card-hover: #191c24;
-  --bg-input: #0c0e12;
-  --bg-active: #1f232d;
-  --border-subtle: #1c202a;
-  --border-focus: #373e52;
+  --bg-app: #0A0A0C;
+  --bg-home: #0A0A0C;
+  --bg-sidebar: #141417;
+  --bg-card: #141417;
+  --bg-card-hover: #1C1C22;
+  --bg-input: #101013;
+  --bg-active: #1F1F24;
+  --border-subtle: #27272A;
+  --border-focus: #3F3F46;
 
   /* Tipografia e Cores de Texto */
-  --text-main: #f4f5f7;
-  --text-cream: #f5ece0;
-  --text-cream-muted: #dcd0bf;
-  --text-muted: #8b92a3;
-  --text-faint: #4e5566;
+  --text-main: #F3EED9;
+  --text-cream: #F3EED9;
+  --text-cream-muted: #C9C5B7;
+  --text-muted: #8E8E93;
+  --text-faint: #66666D;
   
   /* Cores de Destaque */
-  --accent-purple: #7c3aed;       /* Roxo Vibrante Notion/Obsidian */
-  --accent-purple-hover: #6d28d9;
-  --accent-purple-glow: rgba(124, 58, 237, 0.25);
+  --accent-purple: #8E8E93;
+  --accent-purple-hover: #B8B8BD;
+  --accent-purple-glow: rgba(184, 184, 189, 0.12);
+  --accent-brand: #23232A;
+  --accent-brand-hover: #2E2E38;
+  --accent-brand-light: #F3EED9;
   
-  --accent-red-knot: #dc2626;     /* Vermelho da Moldura Celta / Nó */
-  --accent-rpg: #e11d48;
-  --accent-rpg-light: #fda4af;
-  --accent-book: #3b82f6;
-  --accent-book-light: #93c5fd;
+  --accent-red-knot: #8E8E93;
+  --accent-rpg: #8E8E93;
+  --accent-rpg-light: #C9C9CE;
+  --accent-book: #8E8E93;
+  --accent-book-light: #C9C9CE;
   
   --success: #10b981;
   --warning: #f59e0b;
@@ -53,7 +72,223 @@
   --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset Básico */
+:root[data-app-theme="light"] {
+  --bg-app: #f2eee9;
+  --bg-home: #f7f3ee;
+  --bg-sidebar: #ebe5dd;
+  --bg-card: #fffdfa;
+  --bg-card-hover: #f4eee7;
+  --bg-input: #fffdfa;
+  --bg-active: #ded5ca;
+  --border-subtle: #ded6cc;
+  --border-focus: #b8a99a;
+  --text-main: #28231f;
+  --text-cream: #3c3027;
+  --text-cream-muted: #66584c;
+  --text-muted: #746b63;
+  --text-faint: #978d83;
+  --accent-purple: #7c3aed;
+  --accent-purple-hover: #6d28d9;
+  --accent-purple-glow: rgba(124, 58, 237, 0.18);
+  --accent-brand: #7c3aed;
+  --accent-brand-hover: #6d28d9;
+  --accent-brand-light: #6d28d9;
+  --accent-red-knot: #b91c1c;
+  --accent-rpg: #be123c;
+  --accent-rpg-light: #9f1239;
+  --accent-book: #1d4ed8;
+  --accent-book-light: #1e40af;
+  --shadow-sm: 0 2px 6px rgba(48, 36, 24, 0.1);
+  --shadow-lg: 0 16px 36px -8px rgba(48, 36, 24, 0.2);
+}
+
+:root[data-app-theme="cyberpunk"] {
+  --bg-app: #07090D;
+  --bg-home: #080B10;
+  --bg-sidebar: #0D1118;
+  --bg-card: #111821;
+  --bg-card-hover: #18212B;
+  --bg-input: #090D12;
+  --bg-active: #1A252B;
+  --border-subtle: #263440;
+  --border-focus: #00D9F5;
+  --text-main: #F2F3EB;
+  --text-cream: #FCEE0A;
+  --text-cream-muted: #D8D9C8;
+  --text-muted: #A5B0B5;
+  --text-faint: #697981;
+  --accent-purple: #FF2E6C;
+  --accent-purple-hover: #FF5688;
+  --accent-purple-glow: rgba(255, 46, 108, 0.22);
+  --accent-brand: #FCEE0A;
+  --accent-brand-hover: #DED000;
+  --accent-brand-light: #FFF88A;
+  --accent-red-knot: #00D9F5;
+  --accent-rpg: #FF2E6C;
+  --accent-rpg-light: #FF8DAF;
+  --accent-book: #00CDEB;
+  --accent-book-light: #8CEDFA;
+  --font-ui: 'Fira Sans', 'Inter', sans-serif;
+  --font-serif-title: 'Montserrat', 'Inter', sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 7px;
+}
+
+:root[data-app-theme="medieval"] {
+  --bg-app: #D7C092;
+  --bg-home: #E8D5AD;
+  --bg-sidebar: #D9C398;
+  --bg-card: #ECDDba;
+  --bg-card-hover: #F2E4C6;
+  --bg-input: #F0E2C3;
+  --bg-active: #E3D0A7;
+  --border-subtle: #B89A68;
+  --border-focus: #80552B;
+  --text-main: #382719;
+  --text-cream: #49331D;
+  --text-cream-muted: #674C2D;
+  --text-muted: #725B3C;
+  --text-faint: #907A58;
+  --accent-purple: #8A5B2D;
+  --accent-purple-hover: #704622;
+  --accent-purple-glow: rgba(105, 69, 33, 0.16);
+  --accent-brand: #8B5B2E;
+  --accent-brand-hover: #70451F;
+  --accent-brand-light: #79502A;
+  --accent-red-knot: #9B5738;
+  --accent-rpg: #88462F;
+  --accent-rpg-light: #713B2A;
+  --accent-book: #586747;
+  --accent-book-light: #46553A;
+  --font-ui: 'EB Garamond', Georgia, serif;
+  --font-serif-title: 'Cinzel', Georgia, serif;
+  --font-serif-body: 'EB Garamond', Georgia, serif;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --shadow-sm: 0 2px 5px rgba(76, 52, 24, 0.17);
+  --shadow-lg: 0 18px 40px -12px rgba(62, 41, 17, 0.42);
+}
+
+:root[data-app-theme="witchcraft"] {
+  --bg-app: #0F0A15;
+  --bg-home: #0F0A15;
+  --bg-sidebar: #160F22;
+  --bg-card: #1A1324;
+  --bg-card-hover: #241A31;
+  --bg-input: #120D19;
+  --bg-active: #321C49;
+  --border-subtle: #2C1F3D;
+  --border-focus: #9333EA;
+  --text-main: #F5E6CA;
+  --text-cream: #F3EED9;
+  --text-cream-muted: #D8C9AF;
+  --text-muted: #B4A5BC;
+  --text-faint: #83758F;
+  --accent-purple: #6B21A8;
+  --accent-purple-hover: #7E22CE;
+  --accent-purple-glow: rgba(147, 51, 234, 0.22);
+  --accent-brand: #6B21A8;
+  --accent-brand-hover: #4C1D95;
+  --accent-brand-light: #C084FC;
+  --accent-red-knot: #D4AF37;
+  --accent-rpg: #6B21A8;
+  --accent-rpg-light: #C084FC;
+  --accent-book: #6B21A8;
+  --accent-book-light: #C084FC;
+  --font-ui: 'Cormorant Garamond', Georgia, serif;
+  --font-serif-title: 'Cinzel', Georgia, serif;
+  --font-serif-body: 'Cormorant Garamond', Georgia, serif;
+}
+
+:root[data-app-theme="vampire"] {
+  --bg-app: #10090D;
+  --bg-home: #0B070A;
+  --bg-sidebar: #180D13;
+  --bg-card: #211118;
+  --bg-card-hover: #2D151E;
+  --bg-input: #120A0F;
+  --bg-active: #3A1722;
+  --border-subtle: #43212C;
+  --border-focus: #9C3A50;
+  --text-main: #F5E9E8;
+  --text-cream: #F0D9D4;
+  --text-cream-muted: #D5B6B2;
+  --text-muted: #B39A9C;
+  --text-faint: #80696D;
+  --accent-purple: #9C263D;
+  --accent-purple-hover: #B3324B;
+  --accent-purple-glow: rgba(179, 35, 60, 0.22);
+  --accent-brand: #8F1D34;
+  --accent-brand-hover: #A92740;
+  --accent-brand-light: #D98A98;
+  --accent-red-knot: #A93A4F;
+  --accent-rpg: #9E293F;
+  --accent-rpg-light: #E2949F;
+  --accent-book: #765563;
+  --accent-book-light: #D0B6C1;
+  --border-moonlight: rgba(218, 198, 200, 0.24);
+  --font-ui: 'Inter', sans-serif;
+  --font-serif-title: 'Cinzel', Georgia, serif;
+  --font-serif-body: 'Cormorant Garamond', Georgia, serif;
+  --radius-sm: 3px;
+  --radius-md: 5px;
+}
+
+:root[data-app-theme="steampunk"] {
+  --bg-app: #17120e;
+  --bg-home: #120d09;
+  --bg-sidebar: #241a13;
+  --bg-card: #2c2017;
+  --bg-card-hover: #39291b;
+  --bg-input: #1b140e;
+  --bg-active: #49311d;
+  --border-subtle: #4b3825;
+  --border-focus: #8b6336;
+  --text-main: #f1e5d2;
+  --text-cream: #eed4a7;
+  --text-cream-muted: #d4ba91;
+  --text-muted: #b19a7c;
+  --text-faint: #82705a;
+  --accent-purple: #bd7d3c;
+  --accent-purple-hover: #9c622c;
+  --accent-purple-glow: rgba(189, 125, 60, 0.23);
+  --accent-brand: #c18440;
+  --accent-brand-hover: #9e652f;
+  --accent-brand-light: #e7bd7c;
+  --accent-red-knot: #5f8c83;
+  --accent-rpg: #a95738;
+  --accent-rpg-light: #e0a58a;
+  --accent-book: #567f86;
+  --accent-book-light: #aad0d1;
+  --font-ui: 'Roboto', 'Inter', sans-serif;
+  --font-serif-title: 'Cinzel', Georgia, serif;
+  --font-serif-body: 'EB Garamond', Georgia, serif;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+}
+
+:root[data-app-theme="cyberpunk"] .app-root {
+  background-image: radial-gradient(ellipse at 85% 0%, rgba(252, 238, 10, 0.07), transparent 38%), radial-gradient(ellipse at 0% 100%, rgba(0, 217, 245, 0.09), transparent 36%);
+}
+
+:root[data-app-theme="medieval"] .app-root {
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(182, 138, 66, 0.08), transparent 55%);
+}
+
+:root[data-app-theme="witchcraft"] .app-root {
+  background-image: radial-gradient(ellipse at 90% 10%, rgba(128, 73, 153, 0.12), transparent 40%), radial-gradient(ellipse at 0% 90%, rgba(68, 104, 68, 0.08), transparent 38%);
+}
+
+:root[data-app-theme="vampire"] .app-root {
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(145, 20, 42, 0.13), transparent 48%);
+}
+
+:root[data-app-theme="steampunk"] .app-root {
+  background-image: radial-gradient(ellipse at 90% 0%, rgba(183, 115, 51, 0.11), transparent 42%), radial-gradient(ellipse at 0% 100%, rgba(65, 112, 106, 0.07), transparent 38%);
+}
+
+/* Reset BÃ¡sico */
 * {
   margin: 0;
   padding: 0;
@@ -85,3 +320,68 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border-focus);
 }
+/* Ãcones vetoriais compartilhados pela interface */
+.scryba-icon-definitions {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.scryba-icon {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: -0.2em;
+}
+
+.scryba-book-icon {
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url('../assets/scryba-book-icon.png') center / contain no-repeat;
+  mask: url('../assets/scryba-book-icon.png') center / contain no-repeat;
+  stroke: none;
+}
+
+.scryba-family-tree-icon {
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url('../assets/family-tree-icon.png') center / contain no-repeat;
+  mask: url('../assets/family-tree-icon.png') center / contain no-repeat;
+  stroke: none;
+}
+
+.scryba-rpg-icon {
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url('../assets/rpg-icon.png') center / contain no-repeat;
+  mask: url('../assets/rpg-icon.png') center / contain no-repeat;
+  stroke: none;
+}
+
+.scryba-settings-icon {
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url('../assets/settings-icon.png') center / contain no-repeat;
+  mask: url('../assets/settings-icon.png') center / contain no-repeat;
+  stroke: none;
+}
+
+.nav-icon.scryba-icon { width: 19px; height: 19px; }
+.type-icon.scryba-icon { width: 30px; height: 30px; }
+.scryba-btn-icon .scryba-icon { width: 22px; height: 22px; }
+.btn-icon .scryba-icon,
+.act-action .scryba-icon,
+.btn-chapter-action .scryba-icon { width: 16px; height: 16px; }
+.settings-sidebar-button > .scryba-icon { width: 19px; height: 19px; }
+.character-details-image-placeholder > .scryba-icon { width: 46px; height: 46px; }
+.organization-empty-icon > .scryba-icon { width: 34px; height: 34px; }
+.world-topic-icon > .scryba-icon { width: 24px; height: 24px; }
+.icon-chevron-up { transform: rotate(-90deg); }
+.icon-chevron-down { transform: rotate(90deg); }

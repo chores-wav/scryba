@@ -1,0 +1,1238 @@
+﻿.view-section {
+  isolation: isolate;
+}
+
+.view-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Bruxaria: sigilo, fases da lua e marcas astrais em baixo contraste. */
+:root[data-app-theme="witchcraft"] .sidebar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23c9a5dc' stroke-width='1.2'%3E%3Ccircle cx='120' cy='120' r='82'/%3E%3Ccircle cx='120' cy='120' r='68' stroke-dasharray='2 7'/%3E%3Cpath d='M120 52 136 101 188 101 146 132 162 182 120 151 78 182 94 132 52 101 104 101Z'/%3E%3Cpath d='M120 31v12m0 154v12M31 120h12m154 0h12M57 57l9 9m108 108 9 9m0-126-9 9M66 174l-9 9'/%3E%3C/g%3E%3Ccircle cx='120' cy='120' r='4' fill='%23b9d49a'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  background-position: right 24px bottom 18px;
+  background-repeat: no-repeat;
+}
+
+:root[data-app-theme="witchcraft"] .editor-module,
+:root[data-app-theme="witchcraft"] .notes-module,
+:root[data-app-theme="witchcraft"] .planner-view,
+:root[data-app-theme="witchcraft"] .characters-view,
+:root[data-app-theme="witchcraft"] .world-view,
+:root[data-app-theme="witchcraft"] .moodboard-view,
+:root[data-app-theme="witchcraft"] .canvas-view,
+:root[data-app-theme="witchcraft"] .family-tree-view,
+:root[data-app-theme="witchcraft"] .timeline-view,
+:root[data-app-theme="witchcraft"] .scryba-home-viewport {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23c9a5dc' stroke-opacity='.24' stroke-width='1.2'%3E%3Ccircle cx='120' cy='120' r='82'/%3E%3Ccircle cx='120' cy='120' r='68' stroke-dasharray='2 7'/%3E%3Cpath d='M120 52 136 101 188 101 146 132 162 182 120 151 78 182 94 132 52 101 104 101Z'/%3E%3C/g%3E%3C/svg%3E"), radial-gradient(ellipse at 100% 100%, rgba(83, 57, 104, 0.12), transparent 48%);
+  background-size: 260px 260px, auto;
+  background-position: right 12px bottom 8px, center;
+  background-repeat: no-repeat;
+}
+
+:root[data-app-theme="witchcraft"] .sidebar {
+  background-image: radial-gradient(ellipse at 50% 100%, rgba(88, 121, 78, 0.13), transparent 48%);
+}
+
+:root[data-app-theme="witchcraft"] .canvas-viewport {
+  background-color: #100d17;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23c9a5dc' stroke-width='1.2'%3E%3Ccircle cx='120' cy='120' r='82'/%3E%3Ccircle cx='120' cy='120' r='68' stroke-dasharray='2 7'/%3E%3Cpath d='M120 52 136 101 188 101 146 132 162 182 120 151 78 182 94 132 52 101 104 101Z'/%3E%3C/g%3E%3C/svg%3E"), radial-gradient(rgba(192, 164, 208, 0.12) 1px, transparent 1px);
+  background-size: 300px 300px, 24px 24px;
+  background-position: right 20px bottom 18px, 0 0;
+  background-repeat: no-repeat, repeat;
+}
+
+:root[data-app-theme="witchcraft"] .sidebar::after {
+  inset: auto 0 0;
+  height: 180px;
+  opacity: 0.09;
+  background-position: center bottom -55px;
+  background-size: 210px;
+}
+:root[data-app-theme="witchcraft"] .card,
+:root[data-app-theme="witchcraft"] .modal-card,
+:root[data-app-theme="witchcraft"] .world-topic-card,
+:root[data-app-theme="witchcraft"] .chapter-item,
+:root[data-app-theme="witchcraft"] .note-item-card,
+:root[data-app-theme="witchcraft"] .family-person-card,
+:root[data-app-theme="witchcraft"] .family-tree-gallery-card,
+:root[data-app-theme="witchcraft"] .timeline-event-card,
+:root[data-app-theme="witchcraft"] .scryba-recent-card {
+  border-color: rgba(184, 133, 205, 0.42);
+  box-shadow: inset 0 0 0 1px rgba(184, 133, 205, 0.08), 0 7px 22px rgba(8, 4, 14, 0.18);
+}
+
+:root[data-app-theme="witchcraft"] .app-header,
+:root[data-app-theme="witchcraft"] .chapters-header,
+:root[data-app-theme="witchcraft"] .notes-header,
+:root[data-app-theme="witchcraft"] .world-nav-subtabs {
+  border-color: rgba(147, 51, 234, 0.38);
+}
+
+:root[data-app-theme="witchcraft"] .app-header {
+  background-color: #1E112A;
+  border-bottom-color: rgba(147, 51, 234, 0.5);
+  box-shadow: inset 0 -1px rgba(192, 132, 252, 0.16), 0 2px 16px rgba(107, 33, 168, 0.12);
+}
+
+:root[data-app-theme="witchcraft"] .chapters-header,
+:root[data-app-theme="witchcraft"] .notes-header,
+:root[data-app-theme="witchcraft"] .sidebar-header,
+:root[data-app-theme="witchcraft"] .world-nav-subtabs {
+  border-color: rgba(197, 160, 89, 0.28);
+}
+
+:root[data-app-theme="witchcraft"] .sidebar,
+:root[data-app-theme="witchcraft"] .chapters-sidebar,
+:root[data-app-theme="witchcraft"] .notes-sidebar {
+  border-color: #2C1F3D;
+}
+
+:root[data-app-theme="witchcraft"] .nav-item.active,
+:root[data-app-theme="witchcraft"] .btn-primary,
+:root[data-app-theme="witchcraft"] .scryba-btn-action,
+:root[data-app-theme="witchcraft"] #btn-open-new-project,
+:root[data-app-theme="witchcraft"] .dice-floating-button {
+  border: 1px solid rgba(192, 132, 252, 0.38);
+  color: #F3EED9;
+  background: linear-gradient(135deg, #6B21A8 0%, #4C1D95 100%);
+  box-shadow: 0 0 18px rgba(147, 51, 234, 0.18), inset 0 1px rgba(255, 255, 255, 0.12);
+}
+
+:root[data-app-theme="witchcraft"] .btn-primary:hover,
+:root[data-app-theme="witchcraft"] .scryba-btn-action:hover,
+:root[data-app-theme="witchcraft"] #btn-open-new-project:hover,
+:root[data-app-theme="witchcraft"] .dice-floating-button:hover,
+:root[data-app-theme="witchcraft"] .dice-floating-button[aria-expanded="true"] {
+  background: linear-gradient(135deg, #7E22CE 0%, #5B21B6 100%);
+  box-shadow: 0 0 22px rgba(147, 51, 234, 0.27), inset 0 1px rgba(255, 255, 255, 0.16);
+}
+
+:root[data-app-theme="witchcraft"] .nav-item.active .nav-icon,
+:root[data-app-theme="witchcraft"] .nav-item.active .scryba-icon {
+  color: #D4AF37;
+}
+
+:root[data-app-theme="witchcraft"] .badge-book,
+:root[data-app-theme="witchcraft"] .badge-rpg,
+:root[data-app-theme="witchcraft"] .scryba-recent-badge.badge-book,
+:root[data-app-theme="witchcraft"] .scryba-recent-badge.badge-rpg {
+  border: 1px solid rgba(192, 132, 252, 0.3);
+  background: rgba(147, 51, 234, 0.15);
+  color: #C084FC;
+}
+
+:root[data-app-theme="witchcraft"] .chapter-status-tag.status-done {
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+}
+
+:root[data-app-theme="witchcraft"] .writing-scroll-container {
+  background-color: #0F0A15 !important;
+  color: #F5E6CA;
+}
+
+:root[data-app-theme="witchcraft"] .writing-title-input,
+:root[data-app-theme="witchcraft"] .writing-content-editable,
+:root[data-app-theme="witchcraft"] .writing-scroll-container .writing-title-input,
+:root[data-app-theme="witchcraft"] .writing-scroll-container .writing-content-editable {
+  color: #F5E6CA !important;
+}
+
+:root[data-app-theme="witchcraft"] .writing-title-input {
+  border-bottom-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Medieval: parchment, sepia filigree and illuminated manuscript details. */
+:root[data-app-theme="medieval"] .sidebar,
+:root[data-app-theme="medieval"] .app-header,
+:root[data-app-theme="medieval"] .editor-module,
+:root[data-app-theme="medieval"] .chapters-sidebar,
+:root[data-app-theme="medieval"] .notes-module,
+:root[data-app-theme="medieval"] .notes-sidebar,
+:root[data-app-theme="medieval"] .planner-view,
+:root[data-app-theme="medieval"] .characters-view,
+:root[data-app-theme="medieval"] .world-view,
+:root[data-app-theme="medieval"] .moodboard-view,
+:root[data-app-theme="medieval"] .family-tree-view,
+:root[data-app-theme="medieval"] .timeline-view,
+:root[data-app-theme="medieval"] .canvas-view,
+:root[data-app-theme="medieval"] .scryba-home-viewport,
+:root[data-app-theme="medieval"] .modal-card,
+:root[data-app-theme="medieval"] .card,
+:root[data-app-theme="medieval"] .chapter-item,
+:root[data-app-theme="medieval"] .note-item-card,
+:root[data-app-theme="medieval"] .world-topic-card,
+:root[data-app-theme="medieval"] .family-person-card,
+:root[data-app-theme="medieval"] .family-tree-gallery-card,
+:root[data-app-theme="medieval"] .timeline-event-card,
+:root[data-app-theme="medieval"] .scryba-recent-card {
+  background-image: radial-gradient(ellipse at 18% 22%, rgba(166, 118, 53, 0.055), transparent 38%), radial-gradient(ellipse at 82% 76%, rgba(166, 118, 53, 0.05), transparent 42%), radial-gradient(ellipse at 50% 0%, rgba(255, 250, 230, 0.3), transparent 72%);
+}
+
+:root[data-app-theme="medieval"] .sidebar,
+:root[data-app-theme="medieval"] .chapters-sidebar,
+:root[data-app-theme="medieval"] .notes-sidebar {
+  border-right: 3px double #9B7546;
+  box-shadow: inset -5px 0 12px rgba(90, 60, 25, 0.1), inset -8px 0 rgba(255, 247, 220, 0.2);
+}
+
+:root[data-app-theme="medieval"] .app-root.in-home .scryba-home-viewport {
+  border: 8px double #9B7546;
+  box-shadow: inset 0 0 0 10px rgba(255, 248, 221, 0.2), inset 0 0 100px rgba(90, 59, 27, 0.16), 0 8px 35px rgba(72, 47, 20, 0.18);
+}
+
+:root[data-app-theme="medieval"] .scryba-logo-image,
+:root[data-app-theme="medieval"] .brand-logo-image {
+  filter: invert(1);
+  mix-blend-mode: multiply;
+}
+
+:root[data-app-theme="medieval"] .modal-card,
+:root[data-app-theme="medieval"] .card,
+:root[data-app-theme="medieval"] .world-topic-card,
+:root[data-app-theme="medieval"] .chapter-item,
+:root[data-app-theme="medieval"] .note-item-card,
+:root[data-app-theme="medieval"] .scryba-recent-card {
+  border: 1px solid #B3915F;
+  box-shadow: inset 0 0 0 1px rgba(255, 247, 219, 0.36), 0 5px 13px rgba(74, 50, 24, 0.14);
+}
+
+:root[data-app-theme="medieval"] .btn-primary,
+:root[data-app-theme="medieval"] .scryba-btn-action {
+  background-image: linear-gradient(135deg, rgba(255, 232, 183, 0.19), transparent 55%);
+  border-color: #70491F;
+  box-shadow: inset 0 1px rgba(255, 240, 204, 0.3), 0 3px 7px rgba(74, 50, 24, 0.18);
+  color: #FFF1D0;
+}
+
+:root[data-app-theme="medieval"] .canvas-viewport {
+  background-color: #E2CEA5;
+  background-image: radial-gradient(ellipse at 50% 35%, rgba(255, 248, 224, 0.28), transparent 70%), radial-gradient(ellipse at 15% 75%, rgba(143, 99, 46, 0.055), transparent 48%);
+}
+
+:root[data-app-theme="medieval"] .writing-scroll-container {
+  background-color: #E9D7B1 !important;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(255, 248, 221, 0.34), transparent 68%), radial-gradient(ellipse at 70% 78%, rgba(157, 111, 52, 0.06), transparent 45%), radial-gradient(ellipse at 14% 52%, rgba(143, 99, 46, 0.035), transparent 42%);
+  color: #382719;
+}
+
+:root[data-app-theme="medieval"] .writing-title-input,
+:root[data-app-theme="medieval"] .writing-content-editable,
+:root[data-app-theme="medieval"] .writing-scroll-container .writing-title-input,
+:root[data-app-theme="medieval"] .writing-scroll-container .writing-content-editable {
+  color: #382719 !important;
+}
+
+:root[data-app-theme="medieval"] .writing-title-input {
+  border-bottom: 1px solid rgba(112, 78, 39, 0.42);
+}
+:root[data-app-theme="medieval"] .badge-book,
+:root[data-app-theme="medieval"] .scryba-recent-badge.badge-book {
+  border-color: #657B83;
+  background: #344A53;
+  color: #E0EDF0;
+}
+
+:root[data-app-theme="medieval"] .badge-rpg,
+:root[data-app-theme="medieval"] .scryba-recent-badge.badge-rpg {
+  border-color: #805145;
+  background: #59312C;
+  color: #F3DDD2;
+}
+
+:root[data-app-theme="medieval"] .chapter-status-tag.status-draft {
+  border-color: #8B6A36;
+  background: #5A4528;
+  color: #F5DEAA;
+}
+
+:root[data-app-theme="medieval"] .chapter-status-tag.status-review {
+  border-color: #5F7885;
+  background: #344854;
+  color: #DBEAF0;
+}
+
+:root[data-app-theme="medieval"] .chapter-status-tag.status-done {
+  border-color: #58745D;
+  background: #304538;
+  color: #D8E9DA;
+}
+/* Cyberpunk: grade tÃ©cnica, linhas de varredura e molduras neon angulares. */
+:root[data-app-theme="cyberpunk"] .view-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 220'%3E%3Cg fill='none' stroke='%2300D9F5' stroke-width='1.4'%3E%3Cpath d='M18 202V112h42v90m10 0V69h52v133m10 0V128h38v74m8 0V44h58v158m12 0v-83h38v83m9 0V97h27v105'/%3E%3Cpath d='M82 90h10m10 0h10m-30 18h10m10 0h10m-30 18h10m10 0h10m78-59h12m15 0h12m-39 18h12m15 0h12m-39 18h12m15 0h12m27 20h10m10 0h10m-30 18h10m10 0h10'/%3E%3C/g%3E%3Cpath d='M0 202h320' stroke='%23FCEE0A' stroke-width='2'/%3E%3Cpath d='M204 34h62m-20-8 20 8-20 8' fill='none' stroke='%23FCEE0A' stroke-width='2'/%3E%3C/svg%3E"), repeating-linear-gradient(0deg, transparent 0 5px, rgba(0, 217, 245, 0.12) 6px, transparent 7px), linear-gradient(90deg, rgba(0, 217, 245, 0.09) 1px, transparent 1px), linear-gradient(rgba(0, 217, 245, 0.07) 1px, transparent 1px);
+  background-size: 320px 220px, auto, 42px 42px, 42px 42px;
+  background-position: right 14px bottom 12px, center, 0 0, 0 0;
+  background-repeat: no-repeat, repeat, repeat, repeat;
+}
+
+:root[data-app-theme="cyberpunk"] .editor-module,
+:root[data-app-theme="cyberpunk"] .notes-module,
+:root[data-app-theme="cyberpunk"] .planner-view,
+:root[data-app-theme="cyberpunk"] .characters-view,
+:root[data-app-theme="cyberpunk"] .world-view,
+:root[data-app-theme="cyberpunk"] .moodboard-view,
+:root[data-app-theme="cyberpunk"] .canvas-view,
+:root[data-app-theme="cyberpunk"] .family-tree-view,
+:root[data-app-theme="cyberpunk"] .timeline-view,
+:root[data-app-theme="cyberpunk"] .scryba-home-viewport {
+  background-image: linear-gradient(135deg, rgba(252, 238, 10, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 217, 245, 0.045) 1px, transparent 1px), linear-gradient(rgba(0, 217, 245, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px, 34px 34px, 34px 34px;
+}
+
+:root[data-app-theme="cyberpunk"] .card,
+:root[data-app-theme="cyberpunk"] .modal-card,
+:root[data-app-theme="cyberpunk"] .world-topic-card,
+:root[data-app-theme="cyberpunk"] .chapter-item,
+:root[data-app-theme="cyberpunk"] .note-item-card,
+:root[data-app-theme="cyberpunk"] .family-person-card,
+:root[data-app-theme="cyberpunk"] .family-tree-gallery-card,
+:root[data-app-theme="cyberpunk"] .timeline-event-card,
+:root[data-app-theme="cyberpunk"] .scryba-recent-card {
+  border-color: rgba(0, 217, 245, 0.32);
+  box-shadow: inset 2px 0 rgba(0, 217, 245, 0.2), 0 8px 24px rgba(0, 0, 0, 0.24);
+}
+
+:root[data-app-theme="cyberpunk"] .nav-item.active,
+:root[data-app-theme="cyberpunk"] .btn-primary,
+:root[data-app-theme="cyberpunk"] .scryba-btn-action {
+  box-shadow: 0 0 16px rgba(252, 238, 10, 0.16);
+}
+
+:root[data-app-theme="cyberpunk"] .nav-item.active {
+  color: #FCEE0A;
+  background: rgba(252, 238, 10, 0.1);
+  border-left: 2px solid #FCEE0A;
+}
+
+:root[data-app-theme="cyberpunk"] .btn-primary,
+:root[data-app-theme="cyberpunk"] .scryba-btn-action {
+  color: #10120B;
+  border-color: #FCEE0A;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+:root[data-app-theme="cyberpunk"] .btn-primary:hover,
+:root[data-app-theme="cyberpunk"] .scryba-btn-action:hover {
+  color: #090B0D;
+  box-shadow: 0 0 22px rgba(252, 238, 10, 0.25);
+}
+
+:root[data-app-theme="cyberpunk"] .card,
+:root[data-app-theme="cyberpunk"] .chapter-item,
+:root[data-app-theme="cyberpunk"] .scryba-recent-card,
+:root[data-app-theme="cyberpunk"] .world-topic-card {
+  background-image: linear-gradient(135deg, rgba(252, 238, 10, 0.035), transparent 42%), repeating-linear-gradient(135deg, transparent 0 13px, rgba(0, 217, 245, 0.018) 13px 14px);
+}
+
+:root[data-app-theme="cyberpunk"] .chapter-item.active {
+  border-color: rgba(252, 238, 10, 0.58);
+  border-left: 2px solid #FCEE0A;
+  background-color: #172027;
+  box-shadow: inset 3px 0 rgba(252, 238, 10, 0.2), 0 0 14px rgba(252, 238, 10, 0.07);
+}
+
+:root[data-app-theme="cyberpunk"] .sidebar {
+  background-image: linear-gradient(180deg, rgba(0, 217, 245, 0.04), transparent 34%), repeating-linear-gradient(135deg, transparent 0 18px, rgba(252, 238, 10, 0.018) 18px 19px);
+}
+
+:root[data-app-theme="cyberpunk"] .sidebar::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  pointer-events: none;
+  background: repeating-linear-gradient(135deg, #FCEE0A 0 8px, transparent 8px 16px);
+  opacity: 0.68;
+}
+
+:root[data-app-theme="cyberpunk"] .app-header,
+:root[data-app-theme="cyberpunk"] .chapters-header,
+:root[data-app-theme="cyberpunk"] .notes-header {
+  border-bottom-color: rgba(0, 217, 245, 0.3);
+}
+
+:root[data-app-theme="cyberpunk"] .canvas-toolbar,
+:root[data-app-theme="cyberpunk"] .canvas-hint {
+  background: rgba(9, 13, 18, 0.92);
+  border-color: rgba(0, 217, 245, 0.38);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.42), inset 2px 0 rgba(252, 238, 10, 0.46);
+}
+
+:root[data-app-theme="cyberpunk"] .canvas-viewport {
+  background-color: #07090D;
+  background-image: linear-gradient(rgba(0, 217, 245, 0.11) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 217, 245, 0.11) 1px, transparent 1px), radial-gradient(rgba(252, 238, 10, 0.22) 1px, transparent 1px), linear-gradient(135deg, transparent 0 48%, rgba(252, 238, 10, 0.035) 49% 50%, transparent 51%);
+  background-size: 34px 34px, 34px 34px, 34px 34px, 160px 160px;
+}
+
+/* Vampiro: veludo escuro, damasco ornamental e filetes rubros. */
+
+:root[data-app-theme="vampire"] .view-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(ellipse at 100% 0%, rgba(129, 24, 46, 0.16), transparent 36%), radial-gradient(ellipse at 0% 100%, rgba(68, 14, 29, 0.2), transparent 42%), linear-gradient(145deg, rgba(221, 157, 166, 0.018), transparent 42%);
+}
+
+:root[data-app-theme="vampire"] .view-section::after {
+  content: "";
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  z-index: 0;
+  width: 156px;
+  height: 208px;
+  color: #B9828B;
+  background-color: currentColor;
+  -webkit-mask: url("../assets/vampire-ironwork.svg") center / contain no-repeat;
+  mask: url("../assets/vampire-ironwork.svg") center / contain no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+:root[data-app-theme="vampire"] .editor-module,
+:root[data-app-theme="vampire"] .notes-module,
+:root[data-app-theme="vampire"] .planner-view,
+:root[data-app-theme="vampire"] .characters-view,
+:root[data-app-theme="vampire"] .world-view,
+:root[data-app-theme="vampire"] .moodboard-view,
+:root[data-app-theme="vampire"] .canvas-view,
+:root[data-app-theme="vampire"] .family-tree-view,
+:root[data-app-theme="vampire"] .timeline-view,
+:root[data-app-theme="vampire"] .scryba-home-viewport {
+  background-image: radial-gradient(ellipse at 100% 0%, rgba(118, 23, 42, 0.15), transparent 42%);
+}
+
+:root[data-app-theme="vampire"] .app-root.in-home .scryba-home-viewport {
+  background-image: linear-gradient(90deg, rgba(10, 4, 8, 0.94) 0%, rgba(16, 5, 10, 0.76) 48%, rgba(9, 4, 8, 0.32) 100%), url("../assets/vampire-castle-moon.png"), radial-gradient(ellipse at 100% 0%, rgba(118, 23, 42, 0.2), transparent 48%);
+  background-size: cover, cover, auto;
+  background-position: center, center, center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(168, 65, 82, 0.42);
+  box-shadow: inset 0 0 0 1px rgba(222, 183, 188, 0.08), 0 16px 42px rgba(0, 0, 0, 0.32);
+}
+
+:root[data-app-theme="vampire"] .app-root:not(.in-home) .main-content {
+  background-image: radial-gradient(ellipse at 100% 0%, rgba(82, 15, 30, 0.1), transparent 38%), linear-gradient(135deg, rgba(255, 255, 255, 0.008), transparent 46%);
+}
+
+:root[data-app-theme="vampire"] .btn-primary,
+:root[data-app-theme="vampire"] .scryba-btn-action,
+:root[data-app-theme="vampire"] .nav-item.active,
+:root[data-app-theme="vampire"] #btn-open-new-project,
+:root[data-app-theme="vampire"] .dice-floating-button {
+  border: 1px solid rgba(217, 138, 152, 0.38);
+  color: #F5E9E8;
+  background: linear-gradient(135deg, #8F1D34 0%, #54121F 100%);
+  box-shadow: inset 0 1px rgba(255, 230, 232, 0.1), 0 0 17px rgba(150, 31, 53, 0.18);
+}
+
+:root[data-app-theme="vampire"] .btn-primary:hover,
+:root[data-app-theme="vampire"] .scryba-btn-action:hover,
+:root[data-app-theme="vampire"] #btn-open-new-project:hover,
+:root[data-app-theme="vampire"] .dice-floating-button:hover,
+:root[data-app-theme="vampire"] .dice-floating-button[aria-expanded="true"] {
+  background: linear-gradient(135deg, #A92740 0%, #681728 100%);
+  box-shadow: inset 0 1px rgba(255, 230, 232, 0.14), 0 0 22px rgba(179, 35, 60, 0.28);
+}
+
+:root[data-app-theme="vampire"] .app-header {
+  background: linear-gradient(180deg, #1A0A10, #10090D);
+  border-bottom-color: rgba(177, 60, 79, 0.48);
+  box-shadow: inset 0 -1px rgba(221, 164, 170, 0.12), 0 2px 16px rgba(90, 13, 30, 0.18);
+}
+
+:root[data-app-theme="vampire"] .chapters-header,
+:root[data-app-theme="vampire"] .notes-header,
+:root[data-app-theme="vampire"] .sidebar-header,
+:root[data-app-theme="vampire"] .world-nav-subtabs {
+  border-color: rgba(190, 129, 137, 0.2);
+}
+
+:root[data-app-theme="vampire"] .sidebar,
+:root[data-app-theme="vampire"] .chapters-sidebar,
+:root[data-app-theme="vampire"] .notes-sidebar {
+  border-color: #39202A;
+}
+
+:root[data-app-theme="vampire"] .sidebar,
+:root[data-app-theme="vampire"] .chapters-sidebar,
+:root[data-app-theme="vampire"] .notes-sidebar {
+  background-image: linear-gradient(180deg, rgba(75, 18, 34, 0.12), transparent 30%, rgba(0, 0, 0, 0.08));
+}
+
+:root[data-app-theme="vampire"] .sidebar-footer {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  border-top-color: rgba(190, 129, 137, 0.24);
+  background: linear-gradient(180deg, rgba(24, 13, 19, 0.64), rgba(18, 9, 14, 0.84));
+}
+
+:root[data-app-theme="vampire"] .sidebar-footer::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: url("../assets/vampire-bat.png"), url("../assets/vampire-sidebar-moon-bat.svg");
+  background-position: center 52%, center 46%;
+  background-size: 126px 109px, 126px 126px;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+:root[data-app-theme="vampire"] .sidebar-footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+:root[data-app-theme="vampire"] .sidebar.collapsed .sidebar-footer::before {
+  background-size: 72px 62px, 74px 74px;
+  opacity: 0.16;
+}
+
+:root[data-app-theme="vampire"] .chapter-item.active {
+  background: #351620;
+  border-color: #733246;
+  border-left: 2px solid #D69AA2;
+  box-shadow: 0 0 18px rgba(117, 24, 43, 0.2);
+}
+
+:root[data-app-theme="vampire"] .app-header .header-title,
+:root[data-app-theme="vampire"] .view-section h1,
+:root[data-app-theme="vampire"] .chapters-header h3,
+:root[data-app-theme="vampire"] .view-section h2,
+:root[data-app-theme="vampire"] .modal-card h2 {
+  font-family: var(--font-serif-title);
+  letter-spacing: 0.025em;
+}
+
+:root[data-app-theme="vampire"] .card,
+:root[data-app-theme="vampire"] .modal-card,
+:root[data-app-theme="vampire"] .world-topic-card,
+:root[data-app-theme="vampire"] .chapter-item,
+:root[data-app-theme="vampire"] .note-item-card,
+:root[data-app-theme="vampire"] .family-person-card,
+:root[data-app-theme="vampire"] .family-tree-gallery-card,
+:root[data-app-theme="vampire"] .timeline-event-card,
+:root[data-app-theme="vampire"] .scryba-recent-card {
+  border-color: rgba(163, 57, 75, 0.54);
+  box-shadow: inset 0 1px rgba(240, 180, 180, 0.035), 0 8px 22px rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(145deg, rgba(110, 23, 42, 0.07), transparent 58%);
+}
+
+/* Steampunk: engrenagens gravadas, latÃ£o escovado e rebites nos painÃ©is. */
+:root[data-app-theme="steampunk"] {
+  --bg-app: #100D0A;
+  --bg-home: #15100C;
+  --bg-sidebar: #1A130E;
+  --bg-card: #211912;
+  --bg-card-hover: #2B2118;
+  --bg-input: #17110D;
+  --bg-active: #38291A;
+  --border-subtle: #493725;
+  --border-focus: #A67B42;
+  --text-main: #E9D9BC;
+  --text-cream: #F0E1C4;
+  --text-cream-muted: #C7B493;
+  --text-muted: #A9977D;
+  --text-faint: #82735F;
+  --accent-brand: #895B2B;
+  --accent-brand-hover: #A87539;
+  --accent-brand-light: #F0D9AC;
+  --accent-purple: #B8874B;
+  --accent-purple-hover: #D0A66B;
+  --accent-purple-glow: rgba(190, 137, 65, 0.2);
+  --font-ui: 'Fira Sans', 'Segoe UI', sans-serif;
+  --font-serif-title: 'Cinzel', Georgia, serif;
+  --shadow-sm: 0 3px 10px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.52);
+}
+
+:root[data-app-theme="steampunk"] .view-section::before,
+:root[data-app-theme="steampunk"] .sidebar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23d1a362' stroke-width='2'%3E%3Ccircle cx='120' cy='120' r='48'/%3E%3Ccircle cx='120' cy='120' r='31'/%3E%3Ccircle cx='120' cy='120' r='9'/%3E%3Cpath d='M114 59h12v18h-12zm0 104h12v18h-12zM59 114h18v12H59zm104 0h18v12h-18zM76 76l9-9 13 13-9 9zm66 66 9-9 13 13-9 9zm0-62 13-13 9 9-13 13zM76 164l13-13 9 9-13 13zM120 0v31M120 209v31M0 120h31m178 0h31'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 260px 260px;
+  background-position: right 20px bottom 18px;
+  background-repeat: no-repeat;
+}
+
+:root[data-app-theme="steampunk"] .editor-module,
+:root[data-app-theme="steampunk"] .notes-module,
+:root[data-app-theme="steampunk"] .planner-view,
+:root[data-app-theme="steampunk"] .characters-view,
+:root[data-app-theme="steampunk"] .world-view,
+:root[data-app-theme="steampunk"] .moodboard-view,
+:root[data-app-theme="steampunk"] .canvas-view,
+:root[data-app-theme="steampunk"] .family-tree-view,
+:root[data-app-theme="steampunk"] .timeline-view,
+:root[data-app-theme="steampunk"] .scryba-home-viewport {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23d1a362' stroke-opacity='.22' stroke-width='2'%3E%3Ccircle cx='120' cy='120' r='48'/%3E%3Ccircle cx='120' cy='120' r='31'/%3E%3Ccircle cx='120' cy='120' r='9'/%3E%3Cpath d='M114 59h12v18h-12zm0 104h12v18h-12zM59 114h18v12H59zm104 0h18v12h-18zM76 76l9-9 13 13-9 9zm66 66 9-9 13 13-9 9zm0-62 13-13 9 9-13 13zM76 164l13-13 9 9-13 13z'/%3E%3C/g%3E%3C/svg%3E"), radial-gradient(ellipse at 100% 100%, rgba(183, 115, 51, 0.09), transparent 45%);
+  background-size: 240px 240px, auto;
+  background-position: right 12px bottom 12px, center;
+  background-repeat: no-repeat;
+}
+
+:root[data-app-theme="steampunk"] .sidebar {
+  background-image: linear-gradient(145deg, rgba(194, 135, 65, 0.08), transparent 45%);
+}
+
+:root[data-app-theme="steampunk"] .sidebar::after {
+  inset: auto 0 0;
+  height: 190px;
+  opacity: 0.1;
+  background-size: 190px;
+  background-position: center bottom -40px;
+}
+
+:root[data-app-theme="steampunk"] .card,
+:root[data-app-theme="steampunk"] .modal-card,
+:root[data-app-theme="steampunk"] .world-topic-card,
+:root[data-app-theme="steampunk"] .chapter-item,
+:root[data-app-theme="steampunk"] .note-item-card,
+:root[data-app-theme="steampunk"] .family-person-card,
+:root[data-app-theme="steampunk"] .family-tree-gallery-card,
+:root[data-app-theme="steampunk"] .timeline-event-card,
+:root[data-app-theme="steampunk"] .scryba-recent-card {
+  border-color: rgba(191, 139, 72, 0.52);
+  box-shadow: inset 0 1px rgba(248, 214, 159, 0.06), 0 7px 18px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-app-theme="steampunk"] .btn-primary,
+:root[data-app-theme="steampunk"] .scryba-btn-action {
+  background-image: linear-gradient(145deg, rgba(255, 220, 158, 0.16), transparent 58%);
+  border-color: #75502b;
+  box-shadow: inset 0 1px rgba(255, 233, 191, 0.2), 0 3px 9px rgba(0, 0, 0, 0.22);
+}
+
+:root[data-app-theme="steampunk"] .canvas-viewport {
+  background-image: radial-gradient(rgba(213, 169, 100, 0.24) 1px, transparent 1px), linear-gradient(rgba(142, 102, 54, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px, 112px 112px;
+}
+
+/* Camadas de acabamento: instrumentos gravados, latÃ£o e couro escuro. */
+:root[data-app-theme="steampunk"] .view-section::before,
+:root[data-app-theme="steampunk"] .sidebar::after {
+  background-image: url("../assets/steampunk-clockwork.svg"), radial-gradient(ellipse at 78% 82%, rgba(193, 126, 50, 0.11), transparent 44%);
+  background-size: 310px 310px, auto;
+  background-position: right 18px bottom 14px, center;
+}
+
+:root[data-app-theme="steampunk"] .editor-module,
+:root[data-app-theme="steampunk"] .notes-module,
+:root[data-app-theme="steampunk"] .planner-view,
+:root[data-app-theme="steampunk"] .characters-view,
+:root[data-app-theme="steampunk"] .world-view,
+:root[data-app-theme="steampunk"] .moodboard-view,
+:root[data-app-theme="steampunk"] .canvas-view,
+:root[data-app-theme="steampunk"] .family-tree-view,
+:root[data-app-theme="steampunk"] .timeline-view,
+:root[data-app-theme="steampunk"] .scryba-home-viewport {
+  background-image: url("../assets/steampunk-clockwork.svg"), radial-gradient(ellipse at 100% 100%, rgba(183, 115, 51, 0.1), transparent 45%);
+  background-size: 270px 270px, auto;
+  background-position: right 12px bottom 12px, center;
+  background-repeat: no-repeat;
+}
+
+:root[data-app-theme="steampunk"] .sidebar {
+  background-image: linear-gradient(145deg, rgba(194, 135, 65, 0.11), transparent 42%), linear-gradient(180deg, rgba(10, 7, 5, 0.1), transparent 45%, rgba(0, 0, 0, 0.16));
+  border-right-color: #5B4328;
+  box-shadow: inset -1px 0 rgba(227, 183, 111, 0.12), 6px 0 24px rgba(0, 0, 0, 0.18);
+}
+
+:root[data-app-theme="steampunk"] .sidebar::after {
+  opacity: 0.19;
+  background-size: 218px;
+  background-position: center bottom -44px;
+}
+
+:root[data-app-theme="steampunk"] .sidebar-header,
+:root[data-app-theme="steampunk"] .chapters-header,
+:root[data-app-theme="steampunk"] .notes-header,
+:root[data-app-theme="steampunk"] .app-header {
+  background-image: linear-gradient(180deg, rgba(194, 145, 78, 0.075), transparent 75%);
+  border-color: rgba(178, 133, 71, 0.38);
+  box-shadow: inset 0 -1px rgba(232, 194, 129, 0.08), 0 3px 14px rgba(0, 0, 0, 0.13);
+}
+
+:root[data-app-theme="steampunk"] .sidebar-project-widget {
+  background: linear-gradient(135deg, rgba(104, 67, 33, 0.34), rgba(28, 20, 14, 0.72));
+  border-bottom-color: rgba(181, 135, 73, 0.3);
+  box-shadow: inset 0 1px rgba(255, 226, 176, 0.07), inset 0 -1px rgba(0, 0, 0, 0.35);
+}
+
+:root[data-app-theme="steampunk"] .nav-item.active {
+  color: #F2E0BD;
+  background: linear-gradient(105deg, rgba(127, 83, 38, 0.56), rgba(67, 46, 27, 0.7));
+  border: 1px solid rgba(193, 149, 83, 0.34);
+  box-shadow: inset 3px 0 #C99A58, inset 0 1px rgba(255, 225, 172, 0.1), 0 3px 10px rgba(0, 0, 0, 0.16);
+}
+
+:root[data-app-theme="steampunk"] .nav-item.active .nav-icon,
+:root[data-app-theme="steampunk"] .nav-item.active .scryba-icon {
+  color: #E1B86F;
+  filter: drop-shadow(0 0 5px rgba(209, 160, 82, 0.3));
+}
+
+:root[data-app-theme="steampunk"] .card,
+:root[data-app-theme="steampunk"] .chapter-item,
+:root[data-app-theme="steampunk"] .note-item-card,
+:root[data-app-theme="steampunk"] .world-topic-card,
+:root[data-app-theme="steampunk"] .timeline-event-card,
+:root[data-app-theme="steampunk"] .scryba-recent-card {
+  border-color: rgba(159, 117, 62, 0.52);
+  background-image: linear-gradient(145deg, rgba(190, 142, 75, 0.055), transparent 48%), linear-gradient(0deg, rgba(0, 0, 0, 0.08), transparent 46%);
+  box-shadow: inset 0 1px rgba(248, 214, 159, 0.07), inset 0 0 0 1px rgba(10, 7, 5, 0.28), 0 8px 22px rgba(0, 0, 0, 0.24);
+}
+
+:root[data-app-theme="steampunk"] .btn-primary,
+:root[data-app-theme="steampunk"] #btn-open-new-project,
+:root[data-app-theme="steampunk"] .dice-floating-button,
+:root[data-app-theme="steampunk"] .scryba-btn-action {
+  color: #F2E2C3;
+  border: 1px solid #98703B;
+  background-color: #594024;
+  background-image: linear-gradient(145deg, rgba(255, 224, 166, 0.2), transparent 48%), linear-gradient(180deg, #76532E, #4A341F);
+  box-shadow: inset 0 1px rgba(255, 239, 205, 0.22), inset 0 -1px rgba(20, 12, 6, 0.62), 0 4px 11px rgba(0, 0, 0, 0.26);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.48);
+}
+
+:root[data-app-theme="steampunk"] .btn-primary:hover,
+:root[data-app-theme="steampunk"] #btn-open-new-project:hover,
+:root[data-app-theme="steampunk"] .dice-floating-button:hover,
+:root[data-app-theme="steampunk"] .scryba-btn-action:hover {
+  background-image: linear-gradient(145deg, rgba(255, 232, 183, 0.26), transparent 50%), linear-gradient(180deg, #896237, #5A3E24);
+  border-color: #C09551;
+  box-shadow: inset 0 1px rgba(255, 242, 215, 0.27), 0 0 16px rgba(182, 128, 55, 0.18), 0 5px 14px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-app-theme="steampunk"] .chapter-item.active {
+  border-color: rgba(193, 149, 83, 0.48);
+  border-left: 2px solid #D0A35E;
+  background: linear-gradient(100deg, rgba(118, 77, 37, 0.42), rgba(42, 30, 20, 0.58));
+  box-shadow: inset 0 1px rgba(255, 226, 176, 0.08), 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+:root[data-app-theme="steampunk"] .badge-book,
+:root[data-app-theme="steampunk"] .badge-rpg,
+:root[data-app-theme="steampunk"] .scryba-recent-badge.badge-book,
+:root[data-app-theme="steampunk"] .scryba-recent-badge.badge-rpg {
+  border: 1px solid rgba(184, 143, 83, 0.42);
+  color: #E7C98F;
+  background: linear-gradient(135deg, rgba(113, 77, 39, 0.55), rgba(48, 36, 24, 0.82));
+  box-shadow: inset 0 1px rgba(255, 236, 190, 0.08);
+}
+
+:root[data-app-theme="steampunk"] .chapter-status-tag.status-done {
+  border-color: rgba(118, 150, 101, 0.38);
+  color: #B5C69A;
+  background: rgba(73, 91, 57, 0.28);
+}
+
+:root[data-app-theme="steampunk"] input:focus,
+:root[data-app-theme="steampunk"] textarea:focus,
+:root[data-app-theme="steampunk"] select:focus,
+:root[data-app-theme="steampunk"] .form-input:focus,
+:root[data-app-theme="steampunk"] .form-select:focus,
+:root[data-app-theme="steampunk"] .form-textarea:focus {
+  border-color: #B88A4D;
+  box-shadow: 0 0 0 3px rgba(184, 138, 77, 0.17), inset 0 1px rgba(255, 226, 176, 0.05);
+}
+
+:root[data-app-theme="steampunk"] .app-header .header-title,
+:root[data-app-theme="steampunk"] .view-section h1,
+:root[data-app-theme="steampunk"] .view-section h2,
+:root[data-app-theme="steampunk"] .chapters-header h3,
+:root[data-app-theme="steampunk"] .notes-header h3,
+:root[data-app-theme="steampunk"] .modal-card h2 {
+  color: #E7D2AA;
+  font-family: var(--font-serif-title);
+  letter-spacing: 0.035em;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.6);
+}
+
+:root[data-app-theme="steampunk"] .view-section h1 {
+  border-bottom: 1px solid rgba(180, 134, 71, 0.24);
+  padding-bottom: 0.35em;
+}
+
+:root[data-app-theme="steampunk"] .modal-card,
+:root[data-app-theme="steampunk"] .settings-panel,
+:root[data-app-theme="steampunk"] .dice-roller-panel,
+:root[data-app-theme="steampunk"] .dice-history-card {
+  border-color: #634A2D;
+  background-image: linear-gradient(145deg, rgba(187, 136, 67, 0.08), transparent 38%), linear-gradient(180deg, #211912, #18120E);
+  box-shadow: inset 0 1px rgba(247, 221, 175, 0.08), 0 18px 48px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-app-theme="steampunk"] .settings-row,
+:root[data-app-theme="steampunk"] .modal-header,
+:root[data-app-theme="steampunk"] .modal-footer {
+  border-color: rgba(176, 131, 70, 0.27);
+}
+
+:root[data-app-theme="steampunk"] .app-root.in-home .scryba-home-viewport {
+  border: 1px solid rgba(184, 138, 77, 0.56);
+  box-shadow: inset 0 0 0 4px rgba(93, 64, 34, 0.28), inset 0 0 0 5px rgba(222, 182, 115, 0.13), inset 0 0 110px rgba(0, 0, 0, 0.32), 0 18px 48px rgba(0, 0, 0, 0.32);
+}
+
+:root[data-app-theme="steampunk"] .canvas-viewport {
+  background-color: transparent;
+  background-image: radial-gradient(color-mix(in srgb, var(--text-faint) 38%, transparent) 0.8px, transparent 0.9px);
+  background-position: 0 0;
+  background-size: 24px 24px;
+  border-color: transparent;
+}
+
+/* Badges mantÃªm as cores semÃ¢nticas em todos os temas, com superfÃ­cies da paleta ativa. */
+:root[data-app-theme] .badge-book,
+:root[data-app-theme] .scryba-recent-badge.badge-book {
+  color: #60A5FA;
+  background: color-mix(in srgb, #2563EB 15%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, #3B82F6 38%, var(--border-subtle));
+}
+
+:root[data-app-theme] .badge-rpg,
+:root[data-app-theme] .scryba-recent-badge.badge-rpg {
+  color: #F87171;
+  background: color-mix(in srgb, #DC2626 15%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, #EF4444 38%, var(--border-subtle));
+}
+
+:root[data-app-theme] .chapter-status-tag.status-draft {
+  color: #FBBF24;
+  background: color-mix(in srgb, #D97706 15%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, #F59E0B 38%, var(--border-subtle));
+}
+
+:root[data-app-theme] .chapter-status-tag.status-review {
+  color: #60A5FA;
+  background: color-mix(in srgb, #2563EB 15%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, #3B82F6 38%, var(--border-subtle));
+}
+
+:root[data-app-theme] .chapter-status-tag.status-done {
+  color: #34D399;
+  background: color-mix(in srgb, #059669 15%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, #10B981 38%, var(--border-subtle));
+}
+
+:root[data-app-theme="light"] .badge-book,
+:root[data-app-theme="light"] .scryba-recent-badge.badge-book,
+:root[data-app-theme="light"] .chapter-status-tag.status-review { color: #1D4ED8; }
+:root[data-app-theme="light"] .badge-rpg,
+:root[data-app-theme="light"] .scryba-recent-badge.badge-rpg { color: #B91C1C; }
+:root[data-app-theme="light"] .chapter-status-tag.status-draft { color: #A16207; }
+:root[data-app-theme="light"] .chapter-status-tag.status-done { color: #15803D; }
+
+:root[data-app-theme="medieval"] .badge-book,
+:root[data-app-theme="medieval"] .scryba-recent-badge.badge-book,
+:root[data-app-theme="medieval"] .chapter-status-tag.status-review { color: #1D4ED8; }
+:root[data-app-theme="medieval"] .badge-rpg,
+:root[data-app-theme="medieval"] .scryba-recent-badge.badge-rpg { color: #B91C1C; }
+:root[data-app-theme="medieval"] .chapter-status-tag.status-draft { color: #A16207; }
+:root[data-app-theme="medieval"] .chapter-status-tag.status-done { color: #15803D; }
+
+:root[data-app-theme="medieval"] .badge-book,
+:root[data-app-theme="medieval"] .scryba-recent-badge.badge-book,
+:root[data-app-theme="medieval"] .badge-rpg,
+:root[data-app-theme="medieval"] .scryba-recent-badge.badge-rpg,
+:root[data-app-theme="medieval"] .chapter-status-tag {
+  box-shadow: inset 0 1px rgba(255, 249, 225, 0.72), 0 1px 2px rgba(81, 55, 26, 0.12);
+}
+
+:root[data-app-theme="witchcraft"] .badge-book,
+:root[data-app-theme="witchcraft"] .scryba-recent-badge.badge-book,
+:root[data-app-theme="witchcraft"] .badge-rpg,
+:root[data-app-theme="witchcraft"] .scryba-recent-badge.badge-rpg,
+:root[data-app-theme="witchcraft"] .chapter-status-tag {
+  box-shadow: inset 0 1px rgba(192, 132, 252, 0.1), 0 0 8px rgba(107, 33, 168, 0.08);
+}
+
+:root[data-app-theme="cyberpunk"] .badge-book,
+:root[data-app-theme="cyberpunk"] .scryba-recent-badge.badge-book,
+:root[data-app-theme="cyberpunk"] .badge-rpg,
+:root[data-app-theme="cyberpunk"] .scryba-recent-badge.badge-rpg,
+:root[data-app-theme="cyberpunk"] .chapter-status-tag {
+  border-radius: 2px;
+  box-shadow: inset 2px 0 rgba(0, 217, 245, 0.34), 0 0 8px rgba(0, 217, 245, 0.06);
+}
+
+:root[data-app-theme="steampunk"] .badge-book,
+:root[data-app-theme="steampunk"] .scryba-recent-badge.badge-book,
+:root[data-app-theme="steampunk"] .badge-rpg,
+:root[data-app-theme="steampunk"] .scryba-recent-badge.badge-rpg,
+:root[data-app-theme="steampunk"] .chapter-status-tag {
+  box-shadow: inset 0 1px rgba(255, 229, 184, 0.14), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* CartÃµes e ferramentas do Mapa mental em pergaminho, no tema Medieval. */
+:root[data-app-theme="medieval"] .canvas-toolbar,
+:root[data-app-theme="medieval"] .canvas-hint,
+:root[data-app-theme="medieval"] .canvas-connection-popover {
+  color: #49331D;
+  background: linear-gradient(145deg, rgba(249, 239, 210, 0.97), rgba(221, 200, 158, 0.97));
+  border-color: #9B7546;
+  box-shadow: inset 0 1px rgba(255, 250, 227, 0.72), 0 8px 22px rgba(76, 52, 24, 0.22);
+}
+
+:root[data-app-theme="medieval"] .canvas-toolbar-divider { background: rgba(112, 78, 39, 0.35); }
+:root[data-app-theme="medieval"] .canvas-zoom-level,
+:root[data-app-theme="medieval"] .canvas-hint,
+:root[data-app-theme="medieval"] .canvas-popover-label,
+:root[data-app-theme="medieval"] .canvas-popover-markers label { color: #705332; }
+
+:root[data-app-theme="medieval"] .canvas-toolbar .btn-ghost,
+:root[data-app-theme="medieval"] .canvas-toolbar .canvas-zoom-btn {
+  color: #573C22;
+  background: rgba(157, 118, 63, 0.12);
+  border-color: rgba(117, 79, 38, 0.35);
+}
+
+:root[data-app-theme="medieval"] .canvas-toolbar .btn-ghost:hover,
+:root[data-app-theme="medieval"] .canvas-toolbar .canvas-zoom-btn:hover {
+  color: #382719;
+  background: rgba(157, 118, 63, 0.22);
+  border-color: #80552B;
+}
+
+:root[data-app-theme="medieval"] .node-item {
+  color: #382719;
+  background: linear-gradient(145deg, #F0E2C1, #D9C294 78%);
+  border: 1px solid #9B7546;
+  border-top: 3px solid #8B6339;
+  border-radius: 5px 3px 5px 3px;
+  box-shadow: inset 0 1px rgba(255, 249, 226, 0.76), inset 0 0 0 1px rgba(128, 85, 43, 0.12), 0 8px 18px rgba(76, 52, 24, 0.24);
+}
+
+:root[data-app-theme="medieval"] .node-item:hover,
+:root[data-app-theme="medieval"] .node-item.selected {
+  border-color: #80552B;
+  box-shadow: inset 0 1px rgba(255, 249, 226, 0.8), 0 0 0 2px rgba(128, 85, 43, 0.16), 0 12px 26px rgba(76, 52, 24, 0.3);
+}
+
+:root[data-app-theme="medieval"] .node-item h3 { color: #382719; }
+:root[data-app-theme="medieval"] .node-item p { color: #5E452A; }
+:root[data-app-theme="medieval"] .node-item .node-empty-copy { color: #8A7352; }
+:root[data-app-theme="medieval"] .node-card-topline { color: #705B3C; }
+
+:root[data-app-theme="medieval"] .node-item.node-personagem { border-top-color: #73516D; }
+:root[data-app-theme="medieval"] .node-item.node-cidade { border-top-color: #4E7061; }
+:root[data-app-theme="medieval"] .node-item.node-magia { border-top-color: #65538A; }
+:root[data-app-theme="medieval"] .node-item.node-evento { border-top-color: #9A5C38; }
+:root[data-app-theme="medieval"] .node-item.node-grupo { border-top-color: #947335; }
+:root[data-app-theme="medieval"] .node-item.node-nota { border-top-color: #93483D; }
+
+:root[data-app-theme="medieval"] .node-card-actions button,
+:root[data-app-theme="medieval"] .canvas-connection-popover .form-input,
+:root[data-app-theme="medieval"] .canvas-connection-popover .form-select {
+  color: #49331D;
+  background: #F1E3C3;
+  border-color: #AD8C5A;
+}
+
+:root[data-app-theme="medieval"] .node-card-actions button:hover {
+  color: #382719;
+  background: #E3D0A7;
+  border-color: #80552B;
+}
+
+:root[data-app-theme="medieval"] .node-card-actions button:last-child:hover,
+:root[data-app-theme="medieval"] .canvas-delete-saved-color {
+  color: #9F3027;
+  background: #F3D8C7;
+  border-color: #A64B3E;
+}
+
+:root[data-app-theme="medieval"] .node-connect-zone::before {
+  background: #80552B;
+  border-color: #F7EACB;
+  box-shadow: 0 0 0 3px rgba(128, 85, 43, 0.2), 0 0 12px rgba(128, 85, 43, 0.3);
+}
+
+:root[data-app-theme="medieval"] .node-connect-zone:hover::before,
+:root[data-app-theme="medieval"] .node-connect-zone:focus-visible::before { background: #B17C36; }
+
+:root[data-app-theme="medieval"] .connection-line { stroke: rgba(128, 85, 43, 0.76); }
+:root[data-app-theme="medieval"] .connection-line:hover,
+:root[data-app-theme="medieval"] .connection-line.selected,
+:root[data-app-theme="medieval"] .connection-group:hover .connection-line { stroke: #A46A2B; filter: drop-shadow(0 0 4px rgba(128, 85, 43, 0.4)); }
+:root[data-app-theme="medieval"] .connection-preview { stroke: #80552B; }
+:root[data-app-theme="medieval"] .connection-label { fill: #49331D; stroke: #E2CEA5; }
+
+/* Tipografia padrÃ£o acompanha imediatamente a troca do tema do aplicativo. */
+/* Tema claro: corrige os textos fixos em branco e adapta a marca ao papel claro. */
+:root[data-app-theme="light"] .nav-item.active {
+  background-color: var(--accent-brand);
+  color: #fff;
+}
+
+:root[data-app-theme="light"] .chapter-status-tag.status-draft {
+  background: #fff3cd;
+  border-color: #d08a00;
+  color: #704600;
+}
+
+:root[data-app-theme="light"] .chapter-status-tag.status-review {
+  background: #dbeafe;
+  border-color: #2563eb;
+  color: #1e3a8a;
+}
+
+:root[data-app-theme="light"] .chapter-status-tag.status-done {
+  background: #dcfce7;
+  border-color: #15803d;
+  color: #14532d;
+}
+
+:root[data-app-theme="light"] .chapter-status-tag:focus-visible {
+  outline: 2px solid var(--text-main);
+  outline-offset: 2px;
+}
+
+:root[data-app-theme="light"] .theme-opt-btn.active {
+  background: var(--accent-brand);
+  color: #fff;
+}
+
+:root[data-app-theme="light"] .writing-scroll-container.theme-dark {
+  background-color: var(--bg-home);
+  color: var(--text-main);
+}
+
+:root[data-app-theme="light"] .writing-scroll-container.theme-dark .writing-title-input,
+:root[data-app-theme="light"] .writing-scroll-container.theme-dark .writing-content-editable {
+  color: var(--text-main);
+}
+
+:root[data-app-theme="light"] .scryba-logo-image,
+:root[data-app-theme="light"] .brand-logo-image {
+  filter: invert(1);
+  mix-blend-mode: multiply;
+}
+
+/* Molduras reaproveitam o realce de cada tema nos cabeÃ§alhos e controles. */
+:root[data-app-theme="witchcraft"] .modal-header,
+:root[data-app-theme="witchcraft"] .sidebar-header,
+:root[data-app-theme="steampunk"] .modal-header,
+:root[data-app-theme="steampunk"] .sidebar-header {
+  box-shadow: inset 0 -1px rgba(210, 170, 116, 0.1);
+}
+
+@media (max-width: 720px) {
+  :root[data-app-theme="steampunk"] .view-section::before { background-size: 190px; }
+  :root[data-app-theme="vampire"] .view-section::after { right: 10px; bottom: 10px; width: 112px; height: 150px; }
+}
+
+/* Tema escuro padrÃ£o: preto OLED, grafite e realces neutros. */
+:root[data-app-theme="dark"] .btn-primary,
+:root[data-app-theme="dark"] .scryba-btn-action {
+  background: #23232A;
+  border-color: #3F3F46;
+  color: #F3EED9;
+  box-shadow: none;
+}
+
+:root[data-app-theme="dark"] .btn-primary:hover,
+:root[data-app-theme="dark"] .scryba-btn-action:hover {
+  background: #2E2E38;
+  border-color: #52525B;
+  color: #F3EED9;
+  box-shadow: none;
+}
+
+:root[data-app-theme="dark"] .badge,
+:root[data-app-theme="dark"] .badge-book,
+:root[data-app-theme="dark"] .badge-rpg,
+:root[data-app-theme="dark"] .badge-pj,
+:root[data-app-theme="dark"] .badge-npc,
+:root[data-app-theme="dark"] .scryba-recent-badge,
+:root[data-app-theme="dark"] .chapter-status-tag {
+  background: #1C1C22;
+  border: 1px solid #27272A;
+  color: #B8B8BD;
+}
+
+:root[data-app-theme="dark"] .chapter-item.active {
+  background: #1F1F24;
+  border-color: #27272A;
+  border-left: 2px solid #8E8E93;
+  box-shadow: none;
+}
+
+:root[data-app-theme="dark"] .chapter-item.drag-over {
+  border-top-color: #8E8E93;
+}
+
+:root[data-app-theme="dark"] .nav-item.active {
+  color: #F3EED9;
+}
+
+:root[data-app-theme="dark"] .badge-book,
+:root[data-app-theme="dark"] .badge-rpg,
+:root[data-app-theme="dark"] .scryba-recent-badge.badge-book,
+:root[data-app-theme="dark"] .scryba-recent-badge.badge-rpg {
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #60A5FA;
+  backdrop-filter: blur(8px);
+}
+
+:root[data-app-theme="dark"] .chapter-status-tag.status-done {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 4px;
+  color: #34D399;
+  font-size: 0.62rem;
+  backdrop-filter: blur(8px);
+}
+
+/* O canvas acompanha o fundo temÃ¡tico do Mural de EstÃ©tica; sÃ³ os pontos ficam por cima. */
+:root[data-app-theme] .canvas-view {
+  background-color: var(--bg-app);
+}
+
+:root[data-app-theme="dark"] .canvas-view,
+:root[data-app-theme="light"] .canvas-view {
+  background-image: radial-gradient(ellipse at 100% 100%, color-mix(in srgb, var(--accent-brand) 8%, transparent), transparent 48%);
+}
+
+:root[data-app-theme="dark"] .canvas-viewport,
+:root[data-app-theme="light"] .canvas-viewport,
+:root[data-app-theme="cyberpunk"] .canvas-viewport,
+:root[data-app-theme="medieval"] .canvas-viewport,
+:root[data-app-theme="witchcraft"] .canvas-viewport,
+:root[data-app-theme="vampire"] .canvas-viewport,
+:root[data-app-theme="steampunk"] .canvas-viewport {
+  background-color: transparent;
+  background-image: radial-gradient(color-mix(in srgb, var(--text-faint) 38%, transparent) 0.8px, transparent 0.9px);
+  background-position: 0 0;
+  background-size: 24px 24px;
+  background-repeat: repeat;
+  border-color: transparent;
+}
+
+/* Compact circular dice button; theme colors come from each theme palette. */
+:root[data-app-theme] .dice-floating-button {
+  width: 52px;
+  min-width: 52px;
+  height: 52px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+:root[data-app-theme] .dice-floating-button .scryba-icon {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+:root[data-app-theme] .dice-floating-label { display: none; }
+
+/* GrimÃ³rio: cada tema aplica sua prÃ³pria textura e ornamento aos cards. */
+:root[data-app-theme="dark"] .spell-card {
+  background: linear-gradient(145deg, #19191E, #121215 68%);
+  border-color: #303037;
+}
+
+:root[data-app-theme="light"] .spell-card {
+  background: linear-gradient(145deg, #fffdf9, #f1e8dc 100%);
+  border-color: #d8c7b7;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.85), 0 6px 18px rgba(73, 51, 31, 0.07);
+}
+:root[data-app-theme="light"] .spell-card::before {
+  background: radial-gradient(ellipse at 100% 0%, rgba(124, 58, 237, 0.1), transparent 58%), repeating-linear-gradient(0deg, transparent 0 22px, rgba(91, 69, 48, 0.025) 23px 24px);
+}
+
+:root[data-app-theme="cyberpunk"] .spell-card {
+  border-radius: 3px;
+  border-color: rgba(0, 217, 245, 0.48);
+  border-left: 2px solid #00D9F5;
+  background: linear-gradient(120deg, rgba(0, 217, 245, 0.08), transparent 38%), linear-gradient(145deg, #111821, #0A0E14 78%);
+  box-shadow: inset 0 0 22px rgba(0, 217, 245, 0.035);
+}
+:root[data-app-theme="cyberpunk"] .spell-card::before {
+  background: repeating-linear-gradient(135deg, transparent 0 13px, rgba(0, 217, 245, 0.045) 14px, transparent 15px 27px), radial-gradient(circle at 100% 0%, rgba(252, 238, 10, 0.16), transparent 38%);
+}
+:root[data-app-theme="cyberpunk"] .spell-card::after { left: auto; right: 18px; width: 34px; background: #FCEE0A; box-shadow: 0 0 10px rgba(252, 238, 10, 0.55); }
+
+:root[data-app-theme="medieval"] .spell-card {
+  border-radius: 3px;
+  border-color: #A98754;
+  background: linear-gradient(135deg, rgba(255, 248, 225, 0.56), transparent 46%), linear-gradient(145deg, #ECDDba, #D8C394);
+  box-shadow: inset 0 0 0 4px rgba(128, 85, 43, 0.07), 0 5px 16px rgba(72, 48, 24, 0.12);
+}
+:root[data-app-theme="medieval"] .spell-card::before {
+  background: radial-gradient(circle at 9% 10%, transparent 0 9px, rgba(128, 85, 43, 0.24) 9.5px 10px, transparent 10.5px), radial-gradient(circle at 91% 90%, transparent 0 9px, rgba(128, 85, 43, 0.2) 9.5px 10px, transparent 10.5px), radial-gradient(ellipse at 100% 0%, rgba(128, 85, 43, 0.12), transparent 55%);
+}
+:root[data-app-theme="medieval"] .spell-card::after { background: #80552B; }
+
+:root[data-app-theme="witchcraft"] .spell-card {
+  border-radius: 16px 5px 16px 5px;
+  border-color: rgba(147, 51, 234, 0.38);
+  background: linear-gradient(145deg, rgba(107, 33, 168, 0.16), transparent 48%), linear-gradient(155deg, #1B1425, #120D19 75%);
+  box-shadow: inset 0 0 24px rgba(147, 51, 234, 0.045);
+}
+:root[data-app-theme="witchcraft"] .spell-card::before {
+  background: radial-gradient(circle at 100% 0%, transparent 0 27px, rgba(192, 132, 252, 0.13) 27.5px 28px, transparent 28.5px), radial-gradient(circle at 100% 0%, transparent 0 40px, rgba(212, 175, 55, 0.12) 40.5px 41px, transparent 41.5px), radial-gradient(ellipse at 100% 0%, rgba(147, 51, 234, 0.2), transparent 58%);
+}
+:root[data-app-theme="witchcraft"] .spell-card::after { background: #D4AF37; }
+
+:root[data-app-theme="vampire"] .spell-card {
+  border-radius: 16px 3px 16px 3px;
+  border-color: rgba(156, 58, 80, 0.46);
+  background: linear-gradient(135deg, rgba(143, 29, 52, 0.19), transparent 52%), linear-gradient(155deg, #24131A, #130B10 76%);
+  box-shadow: inset 0 0 22px rgba(143, 29, 52, 0.05);
+}
+:root[data-app-theme="vampire"] .spell-card::before {
+  background: radial-gradient(circle at 100% 0%, rgba(232, 213, 206, 0.12) 0 2px, transparent 2.5px 24px, rgba(232, 213, 206, 0.08) 24.5px 25px, transparent 25.5px), radial-gradient(ellipse at 100% 0%, rgba(143, 29, 52, 0.28), transparent 54%);
+}
+:root[data-app-theme="vampire"] .spell-card::after { background: #B3324B; box-shadow: 0 0 8px rgba(179, 50, 75, 0.46); }
+
+:root[data-app-theme="steampunk"] .spell-card {
+  border-radius: 8px 2px 8px 2px;
+  border-color: rgba(193, 132, 64, 0.52);
+  background: linear-gradient(145deg, rgba(193, 132, 64, 0.13), transparent 50%), linear-gradient(155deg, #33251A, #20170F 76%);
+  box-shadow: inset 0 0 0 1px rgba(224, 189, 124, 0.07), 0 7px 19px rgba(0, 0, 0, 0.14);
+}
+:root[data-app-theme="steampunk"] .spell-card::before {
+  background: radial-gradient(circle at 100% 0%, transparent 0 14px, rgba(224, 189, 124, 0.18) 14.5px 16px, transparent 16.5px), repeating-conic-gradient(from 0deg at 100% 0%, rgba(224, 189, 124, 0.1) 0deg 3deg, transparent 3deg 18deg), radial-gradient(ellipse at 100% 0%, rgba(193, 132, 64, 0.18), transparent 53%);
+}
+:root[data-app-theme="steampunk"] .spell-card::after { background: #E0BD7C; }
+
+:root[data-app-theme="cyberpunk"] .spell-detail-card { border-radius: 4px; }
+:root[data-app-theme="medieval"] .spell-detail-card { border-radius: 6px; box-shadow: 0 24px 70px rgba(62, 41, 17, 0.38), inset 0 0 0 5px rgba(128, 85, 43, 0.08); }
+:root[data-app-theme="witchcraft"] .spell-detail-card { border-radius: 22px 5px 22px 5px; }
+:root[data-app-theme="vampire"] .spell-detail-card { border-radius: 22px 4px 22px 4px; }
+:root[data-app-theme="steampunk"] .spell-detail-card { border-radius: 12px 3px 12px 3px; }

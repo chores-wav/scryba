@@ -1,11 +1,13 @@
 {
   "name": "scryba",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Scryba - Estúdio Desktop de Escrita & RPG",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "bump": "node scripts/bump-version.js"
+    "bump": "node scripts/bump-version.js",
+    "test": "node --test",
+    "dist:win": "electron-builder --win nsis"
   },
   "keywords": [
     "editor",
@@ -18,6 +20,42 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^44.9.0"
+    "electron": "^44.9.1",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.scryba.desktop",
+    "productName": "Scryba",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "src/assets/scryba-mark.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Scryba",
+      "deleteAppDataOnUninstall": false
+    }
   }
 }

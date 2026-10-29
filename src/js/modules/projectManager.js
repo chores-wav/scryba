@@ -28,8 +28,6 @@ class ProjectManager {
 
     // Campos do formulário Novo Projeto
     this.inputName = document.getElementById('proj-name');
-    this.inputFolder = document.getElementById('proj-folder');
-    this.btnBrowseFolder = document.getElementById('btn-browse-folder');
     this.typeCards = document.querySelectorAll('.type-option-card');
     this.inputDescription = document.getElementById('proj-desc');
     this.selectedType = 'book';
@@ -42,6 +40,14 @@ class ProjectManager {
     this.projectsSearchInput = document.getElementById('projects-search-input');
     this.projectFilterPills = document.querySelectorAll('.project-filter-pill');
     this.modalProjectsEntries = document.getElementById('modal-projects-entries');
+
+    this.modalEditProject = document.getElementById('modal-edit-project');
+    this.formEditProject = document.getElementById('form-edit-project');
+    this.inputEditProjectName = document.getElementById('edit-project-name');
+    this.inputEditProjectDescription = document.getElementById('edit-project-description');
+    this.btnCloseEditProject = document.getElementById('btn-close-edit-project');
+    this.btnCancelEditProject = document.getElementById('btn-cancel-edit-project');
+    this.editingProjectId = null;
   }
 
   bindEvents() {
@@ -64,6 +70,15 @@ class ProjectManager {
     // Fechar Modal Lista de Projetos
     if (this.btnCloseProjectsModal) this.btnCloseProjectsModal.addEventListener('click', () => this.closeProjectsListModal());
     if (this.btnCancelProjectsModal) this.btnCancelProjectsModal.addEventListener('click', () => this.closeProjectsListModal());
+    this.btnCloseEditProject?.addEventListener('click', () => this.closeEditProjectModal());
+    this.btnCancelEditProject?.addEventListener('click', () => this.closeEditProjectModal());
+    this.modalEditProject?.addEventListener('click', event => {
+      if (event.target === this.modalEditProject) this.closeEditProjectModal();
+    });
+    this.formEditProject?.addEventListener('submit', event => {
+      event.preventDefault();
+      this.handleEditProject();
+    });
 
     // Botão "+ Novo Projeto" de dentro da Lista de Projetos
     if (this.btnProjectsModalCreate) {
@@ -92,19 +107,6 @@ class ProjectManager {
     });
 
     // Seleção de Pasta Nativa do Windows via Electron
-    if (this.btnBrowseFolder) {
-      this.btnBrowseFolder.addEventListener('click', async () => {
-        if (window.nativeAPI && window.nativeAPI.selectDirectory) {
-          const res = await window.nativeAPI.selectDirectory();
-          if (res.success && res.path) {
-            this.inputFolder.value = res.path;
-          }
-        } else {
-          alert('Seleção nativa de pasta disponível quando rodando no Electron.');
-        }
-      });
-    }
-
     // Seleção visual do tipo de projeto (Livro vs RPG)
     this.typeCards.forEach(card => {
       card.addEventListener('click', () => {
@@ -130,9 +132,8 @@ class ProjectManager {
   }
 
   // --- MODAL NOVO PROJETO ---
-  openNewModal(prefilledFolder = '') {
+  openNewModal() {
     if (this.formNewProject) this.formNewProject.reset();
-    if (prefilledFolder) this.inputFolder.value = prefilledFolder;
     this.selectedType = 'book';
     this.typeCards.forEach(c => {
       c.classList.toggle('selected', c.dataset.type === 'book');
@@ -147,17 +148,19 @@ class ProjectManager {
 
   handleCreateProject() {
     const title = this.inputName.value.trim();
-    const folderPath = this.inputFolder.value.trim();
     const description = this.inputDescription.value.trim();
 
     if (!title) {
       alert('Por favor, informe o nome do projeto.');
       return;
     }
+    if (window.appState.projects.some(project => project.title.toLocaleLowerCase() === title.toLocaleLowerCase())) {
+      alert('Já existe um projeto com esse nome. Escolha outro para manter a pasta de cada projeto identificável.');
+      return;
+    }
 
     const newProj = window.appState.createProject({
       title,
-      folderPath,
       type: this.selectedType,
       description
     });
@@ -201,7 +204,7 @@ class ProjectManager {
     if (projects.length === 0) {
       this.modalProjectsEntries.innerHTML = `
         <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
-          <div style="font-size: 2.2rem; margin-bottom: 8px;">📂</div>
+          <div style="font-size: 2.2rem; margin-bottom: 8px;">${iconSvg('library')}</div>
           <p style="font-size: 0.95rem; font-weight: 500;">Nenhum projeto encontrado</p>
           <span style="font-size: 0.8rem; color: var(--text-faint);">Tente outro termo de busca ou crie um novo projeto.</span>
         </div>
@@ -211,7 +214,7 @@ class ProjectManager {
 
     this.modalProjectsEntries.innerHTML = projects.map(proj => {
       const isBook = proj.type === 'book';
-      const icon = isBook ? '📜' : '🎲';
+      const icon = iconSvg(isBook ? 'book' : 'dice');
       const badgeClass = isBook ? 'badge-book' : 'badge-rpg';
       const badgeText = isBook ? 'LIVRO' : 'RPG';
       const chapterCount = proj.chapters ? proj.chapters.length : 0;
@@ -232,20 +235,21 @@ class ProjectManager {
                 </div>
               </div>
             </div>
-            <button class="btn-icon btn-delete-proj" data-id="${proj.id}" title="Excluir projeto" style="color: var(--text-faint);">
-              🗑️
+            <button type="button" class="btn-icon btn-delete-proj" data-id="${proj.id}" title="Excluir projeto" aria-label="Excluir ${escapeHtml(proj.title)}" style="color: var(--text-faint);">
+              ${iconSvg('trash')}
             </button>
+            <button type="button" class="btn-icon btn-edit-proj" data-id="${proj.id}" title="Editar projeto" aria-label="Editar ${escapeHtml(proj.title)}">${iconSvg('edit')}</button>
           </div>
 
           <p class="project-list-entry-desc">${escapeHtml(proj.description || 'Sem descrição cadastrada.')}</p>
 
           <div class="project-list-entry-footer">
             <div style="display: flex; gap: 14px;">
-              <span>📝 ${chapterCount} ${isBook ? 'Capítulos' : 'Anotações'}</span>
-              <span>👤 ${charCount} Personagens</span>
+              <span>${iconSvg(isBook ? 'book' : 'note')} ${chapterCount} ${isBook ? 'Capítulos' : 'Anotações'}</span>
+              <span>${iconSvg('users')} ${charCount} Personagens</span>
             </div>
             <button class="btn btn-secondary btn-open-project" data-id="${proj.id}" style="padding: 5px 12px; font-size: 0.82rem;">
-              Abrir Projeto ➔
+              Abrir Projeto ${iconSvg('arrow-right')}
             </button>
           </div>
         </div>
@@ -261,10 +265,17 @@ class ProjectManager {
       });
     });
 
+    this.modalProjectsEntries.querySelectorAll('.btn-edit-proj').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.stopPropagation();
+        this.openEditProjectModal(btn.dataset.id);
+      });
+    });
+
     // Clique direto no card também abre
     this.modalProjectsEntries.querySelectorAll('.project-list-entry').forEach(card => {
       card.addEventListener('click', (e) => {
-        if (e.target.closest('.btn-delete-proj')) return;
+        if (e.target.closest('.btn-delete-proj, .btn-edit-proj')) return;
         const projId = card.dataset.id;
         this.openProjectById(projId);
       });
@@ -284,6 +295,34 @@ class ProjectManager {
     });
   }
 
+  openEditProjectModal(projectId) {
+    const project = window.appState.projects.find(item => item.id === projectId);
+    if (!project || !this.modalEditProject) return;
+    this.editingProjectId = projectId;
+    this.inputEditProjectName.value = project.title || '';
+    this.inputEditProjectDescription.value = project.description || '';
+    this.modalEditProject.classList.add('active');
+    setTimeout(() => this.inputEditProjectName.focus(), 50);
+  }
+
+  closeEditProjectModal() {
+    this.modalEditProject?.classList.remove('active');
+    this.editingProjectId = null;
+  }
+
+  async handleEditProject() {
+    if (!this.editingProjectId) return;
+    const result = await window.appState.updateProjectDetails(this.editingProjectId, {
+      title: this.inputEditProjectName.value,
+      description: this.inputEditProjectDescription.value
+    });
+    if (!result.success) {
+      alert(result.error);
+      return;
+    }
+    this.closeEditProjectModal();
+  }
+
   openProjectById(projId) {
     window.appState.setActiveProject(projId);
     this.closeProjectsListModal();
@@ -293,7 +332,7 @@ class ProjectManager {
   // --- PROJETOS RECENTES NO DASHBOARD ---
   renderRecentProjects() {
     if (!this.recentsContainer) return;
-    const projects = window.appState.getProjects('all').slice(0, 3);
+    const projects = window.appState.getProjects('all');
 
     if (projects.length === 0) {
       this.recentsContainer.innerHTML = `
@@ -306,7 +345,7 @@ class ProjectManager {
 
     this.recentsContainer.innerHTML = projects.map(proj => {
       const isBook = proj.type === 'book';
-      const icon = isBook ? '📜' : '🎲';
+      const icon = iconSvg(isBook ? 'book' : 'dice');
       const badgeClass = isBook ? 'badge-book' : 'badge-rpg';
       const badgeText = isBook ? 'LIVRO' : 'RPG';
 
@@ -318,7 +357,7 @@ class ProjectManager {
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <span class="scryba-recent-badge ${badgeClass}">${badgeText}</span>
-            <span class="scryba-recent-arrow">➔</span>
+            <span class="scryba-recent-arrow">${iconSvg('arrow-right')}</span>
           </div>
         </div>
       `;

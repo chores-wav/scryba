@@ -46,7 +46,69 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  min-height: 204px;
+  text-align: left;
+  color: var(--text-main);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.world-topic-card:hover,
+.world-topic-card:focus-visible {
+  border-color: var(--accent-brand, #dc2626);
+  background: var(--bg-active, #1e1e22);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.world-topic-card-top,
+.world-topic-entry-list-header,
+.world-topic-entry-actions,
+.world-topic-entry-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.world-topic-card-top,
+.world-topic-entry-list-header {
+  justify-content: space-between;
+}
+
+.world-topic-icon {
+  font-size: 1.35rem;
+}
+
+.world-topic-entry-count {
+  color: var(--text-faint, #888);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.world-topic-description,
+.world-topic-preview {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.world-topic-preview {
+  color: var(--text-main);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.world-topic-open-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--accent-brand-light, #fca5a5);
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 .world-topic-header {
@@ -71,6 +133,216 @@
   outline: none;
 }
 
+.world-topic-modal {
+  width: min(540px, calc(100vw - 32px));
+  max-height: min(86vh, 900px);
+  display: flex;
+  flex-direction: column;
+}
+
+.world-topic-modal-description {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.world-topic-modal-body {
+  overflow: auto;
+  padding: 20px 24px 24px;
+}
+
+.world-topic-gallery-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.world-topic-gallery-toolbar h4 {
+  margin: 0 0 4px;
+  color: var(--text-main);
+}
+
+.world-topic-gallery-toolbar p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.world-topic-entry-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.world-topic-editor-view[hidden],
+.world-topic-gallery-view[hidden] {
+  display: none;
+}
+
+.world-topic-back-button {
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.world-topic-back-button:hover {
+  color: var(--text-main);
+}
+
+.world-topic-entry-form {
+  padding: 18px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+}
+
+.world-topic-entry-form .form-group:last-of-type {
+  margin-bottom: 14px;
+}
+
+.world-topic-entry-actions {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.world-topic-entry-list-wrap {
+  margin-top: 24px;
+}
+
+.world-topic-entry-list-header {
+  margin-bottom: 12px;
+}
+
+.world-topic-entry-list-header h4 {
+  margin: 0;
+  color: var(--text-main);
+}
+
+.world-topic-entry-list {
+  display: grid;
+  gap: 10px;
+}
+
+.world-topic-entry-card {
+  position: relative;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.world-topic-entry-card:hover,
+.world-topic-entry-card:focus-visible {
+  border-color: var(--accent-brand, #dc2626);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.world-topic-entry-card-icon {
+  color: var(--accent-brand-light, #fca5a5);
+  font-size: 1.1rem;
+}
+
+.world-topic-entry-content {
+  min-width: 0;
+}
+
+.world-topic-entry-content h5 {
+  margin: 0 0 6px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.world-topic-entry-content p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.world-topic-entry-content .world-topic-entry-empty {
+  color: var(--text-faint, #888);
+  font-style: italic;
+}
+
+.world-topic-entry-buttons {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.world-topic-entry-card:hover .world-topic-entry-buttons,
+.world-topic-entry-card:focus-within .world-topic-entry-buttons {
+  opacity: 1;
+}
+
+.world-topic-entry-buttons .btn {
+  padding: 6px 9px;
+  font-size: 0.78rem;
+}
+
+.world-topic-delete {
+  color: #fca5a5;
+}
+
+.world-topic-empty {
+  padding: 28px 16px;
+  text-align: center;
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+}
+
+.world-topic-empty > span {
+  color: var(--accent-brand-light, #fca5a5);
+  font-size: 1.4rem;
+}
+
+.world-topic-empty p {
+  margin: 8px 0 4px;
+  color: var(--text-main);
+}
+
+.world-topic-empty small {
+  font-size: 0.78rem;
+}
+
+@media (max-width: 600px) {
+  .world-topic-gallery-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .world-topic-entry-list {
+    grid-template-columns: 1fr;
+  }
+
+  .world-topic-modal-body {
+    padding: 16px;
+  }
+
+  .world-topic-entry-buttons {
+    opacity: 1;
+  }
+}
+
 /* Grid de Magias */
 .spells-grid {
   display: grid;
@@ -79,8 +351,11 @@
 }
 
 .spell-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent-brand) 7%, var(--bg-card)), var(--bg-card) 62%);
+  border: 1px solid color-mix(in srgb, var(--accent-brand) 34%, var(--border-subtle));
   border-radius: var(--radius-md);
   padding: 18px;
   display: flex;
@@ -89,15 +364,42 @@
   transition: var(--transition);
 }
 
+.spell-card::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--accent-brand) 13%, transparent), transparent 55%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.spell-card::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 18px;
+  width: 42px;
+  height: 2px;
+  background: var(--accent-brand-light);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.spell-card > * { position: relative; z-index: 1; }
+
 .spell-card:hover {
   border-color: var(--accent-brand);
   transform: translateY(-2px);
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--accent-brand) 12%, transparent);
 }
 
 .spell-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
 .spell-name {
@@ -132,5 +434,284 @@
   font-style: italic;
   border-top: 1px solid var(--border-subtle);
   padding-top: 8px;
+}
+
+.spell-type-tag {
+  flex-shrink: 0;
+  padding: 4px 9px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--accent-brand-light, #fca5a5);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.spell-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.spell-card-actions .btn {
+  padding: 6px 10px;
+  font-size: 0.78rem;
+}
+
+.spell-delete {
+  color: #fca5a5;
+}
+
+.spell-empty-state {
+  grid-column: 1 / -1;
+  padding: 42px 20px;
+  text-align: center;
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+}
+
+.spell-empty-state > span {
+  color: var(--accent-brand-light, #fca5a5);
+  font-size: 1.6rem;
+}
+
+.spell-empty-state h4 {
+  margin: 10px 0 6px;
+  color: var(--text-main);
+}
+
+.spell-empty-state p {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.spell-card[role="button"] {
+  cursor: pointer;
+}
+
+.spell-card[role="button"]:focus-visible {
+  outline: 2px solid var(--accent-brand, #dc2626);
+  outline-offset: 3px;
+}
+
+.spell-detail-card {
+  position: relative;
+  width: min(760px, calc(100vw - 32px));
+  max-height: min(88vh, 820px);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  color: var(--text-main, #f4f0e8);
+  background: linear-gradient(155deg, color-mix(in srgb, var(--accent-brand) 12%, var(--bg-card)), var(--bg-sidebar) 68%);
+  border: 1px solid color-mix(in srgb, var(--accent-brand) 68%, var(--border-subtle));
+  border-radius: 26px 10px 26px 10px;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.62), inset 0 0 0 5px color-mix(in srgb, var(--accent-brand) 8%, transparent);
+}
+
+.spell-detail-card::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid color-mix(in srgb, var(--text-main) 12%, transparent);
+  border-radius: 20px 6px 20px 6px;
+  pointer-events: none;
+}
+
+.spell-detail-close {
+  position: absolute;
+  z-index: 1;
+  top: 15px;
+  right: 15px;
+}
+
+.spell-detail-topline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 34px;
+}
+
+.spell-detail-emblem {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--accent-brand) 16%, var(--bg-input));
+  border: 1px solid color-mix(in srgb, var(--accent-brand) 54%, var(--border-subtle));
+  border-radius: 13px 5px 13px 5px;
+  font-size: 1.35rem;
+}
+
+.spell-detail-type {
+  color: var(--accent-brand-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.spell-detail-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.spell-detail-heading h2 {
+  margin: 0;
+  color: var(--text-main, #f4f0e8);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.35rem, 4vw, 1.8rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.spell-detail-heading p {
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+}
+
+.spell-detail-level {
+  flex-shrink: 0;
+  min-width: 44px;
+  padding: 9px 11px;
+  text-align: center;
+  color: var(--text-main);
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.spell-detail-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.spell-detail-stat {
+  min-width: 0;
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-brand) 16%, var(--bg-card)), color-mix(in srgb, var(--accent-brand) 5%, var(--bg-card)));
+  border: 1px solid color-mix(in srgb, var(--accent-brand) 35%, var(--border-subtle));
+  border-radius: 5px 12px 5px 12px;
+}
+
+.spell-detail-stat-icon {
+  color: var(--accent-brand-light);
+  font-size: 1.15rem;
+}
+
+.spell-detail-stat-icon .scryba-potion-icon {
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  vertical-align: middle;
+  background: currentColor;
+  -webkit-mask: url('../../assets/pocao-magica.png') center / contain no-repeat;
+  mask: url('../../assets/pocao-magica.png') center / contain no-repeat;
+}
+
+.spell-detail-stat small,
+.spell-detail-stat strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spell-detail-stat small {
+  color: var(--text-muted);
+  font-size: 0.65rem;
+}
+
+.spell-detail-stat strong {
+  margin-top: 3px;
+  color: var(--text-main, #f4f0e8);
+  font-size: 0.78rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.spell-detail-effect-wrap {
+  min-height: 240px;
+  padding: 18px;
+  background: color-mix(in srgb, var(--accent-brand) 5%, var(--bg-input));
+  border: 1px solid color-mix(in srgb, var(--accent-brand) 43%, var(--border-subtle));
+  border-radius: 19px 8px 19px 8px;
+}
+
+.spell-detail-effect {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 0.91rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.spell-detail-lore {
+  margin: 0;
+  padding: 0 3px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-style: italic;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.spell-detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.spell-detail-tag {
+  padding: 6px 12px;
+  color: var(--text-main);
+  background: var(--bg-active);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  font-size: 0.74rem;
+}
+
+.spell-detail-tag.concentration {
+  background: color-mix(in srgb, var(--accent-brand) 18%, var(--bg-active));
+  border-color: color-mix(in srgb, var(--accent-brand) 46%, var(--border-subtle));
+}
+
+.spell-detail-tag.ritual {
+  background: color-mix(in srgb, var(--success) 14%, var(--bg-active));
+  border-color: color-mix(in srgb, var(--success) 42%, var(--border-subtle));
+}
+
+@media (max-width: 520px) {
+  .spell-detail-card {
+    gap: 13px;
+    padding: 25px 19px;
+  }
+
+  .spell-detail-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .spell-detail-stat {
+    min-height: 52px;
+  }
+
+  .spell-detail-effect-wrap {
+    min-height: 180px;
+  }
 }
 
