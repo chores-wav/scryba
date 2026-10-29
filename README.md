@@ -15,7 +15,7 @@
 
 ## 📖 Sobre o Projeto
 
-O **Scryba** é uma aplicação desktop desenvolvida em Electron focada em oferecer um ambiente de escrita e organização de campanhas de RPG imersivo, fluido e livre de distrações. Com uma estética inspirada em fanzines obscuros, grimórios e fantasia sombria, ele une a praticidade de um editor modular (estilo Notion) com a atmosfera de um estúdio de escrita místico.
+O **Scryba** é uma aplicação desktop desenvolvida em Electron utilizando de vibe coding, a aplicação é focada em oferecer um ambiente de escrita e organização de campanhas de RPG imersivo, fluido e livre de distrações. Com uma estética inspirada em fanzines obscuros, grimórios e fantasia sombria, ele une a praticidade de um editor modular (estilo Notion) com a atmosfera de um estúdio de escrita místico.
 
 ---
 
