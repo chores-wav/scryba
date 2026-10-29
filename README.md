@@ -6,7 +6,6 @@
 
   [![Electron](https://img.shields.io/badge/Electron-30.0+-47A248?style=for-the-badge&logo=electron&logoColor=white)](https://www.electronjs.org/)
   [![Node.js](https://img.shields.io/badge/Node.js-18.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-  [![License](https://img.shields.io/badge/License-MIT-purple.style=for-the-badge)](LICENSE)
   [![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-D4AF37?style=for-the-badge)](#)
 
 </div>
